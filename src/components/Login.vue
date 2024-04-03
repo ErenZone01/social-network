@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Favicon -->
-  <link href="./src/assets/images/favicon.png" rel="icon" type="image/png">
-  
-  <!-- title and description-->
-  <title>Socialite</title>
-  <meta name="description" content="Socialite - Social sharing network HTML Template">
- 
-  <!-- css files -->
-  <link rel="stylesheet" href="./src/assets/css/tailwind.css">
-  <link rel="stylesheet" href="./src/assets/css/style.css">  
-  
-  <!-- google font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
- 
-</head>
-<body>
-
+<template>
   <div class="sm:flex">
     
     <div class="relative lg:w-[580px] md:w-96 w-full p-10 min-h-screen bg-white shadow-xl flex items-center pt-10 dark:bg-slate-900 z-10">
@@ -139,34 +116,14 @@
     </div>
   
   </div>
-  
-   
-    <!-- Uikit js you can use cdn  https://getuikit.com/docs/installation  or fine the latest  https://getuikit.com/docs/installation -->
-    <script src="./src/assets/js/uikit.min.js"></script>
-    <script src="./src/assets/js/script.js"></script>
+</template>
 
-    <!-- Ion icon -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+export default {
+  // Comportement JavaScript du composant
+}
+</script>
 
-      <!-- Dark mode -->
-      <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
-        } else {
-        document.documentElement.classList.remove('dark')
-        }
-
-        // Whenever the user explicitly chooses light mode
-        localStorage.theme = 'light'
-
-        // Whenever the user explicitly chooses dark mode
-        localStorage.theme = 'dark'
-
-        // Whenever the user explicitly chooses to respect the OS preference
-        localStorage.removeItem('theme')
-    </script>
-
-</body>
-</html>
+<style scoped>
+/* Styles CSS spécifiques au composant */
+</style>
