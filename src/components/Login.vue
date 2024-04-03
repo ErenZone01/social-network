@@ -1,6 +1,4 @@
 <template>
-    <link rel="stylesheet" href="./src/assets/css/tailwind.css">
-    <link rel="stylesheet" href="./src/assets/css/style.css">
     <div class="sm:flex">
 
         <div
@@ -24,8 +22,7 @@
                 <!-- title -->
                 <div>
                     <h2 class="text-2xl font-semibold mb-1.5"> Sign in to your account </h2>
-                    <p class="text-sm text-gray-700 font-normal">If you haven’t signed up yet. <a
-                            href="form-register.html" class="text-blue-700">Register here!</a></p>
+                    <p class="text-sm text-gray-700 font-normal">If you haven’t signed up yet. <a class="text-blue-700"><router-link to="/Register"> Register here!</router-link></a></p>
                 </div>
 
 
@@ -145,10 +142,8 @@
     </div>
 </template>
 
-<script>
-export default {
-    // Comportement JavaScript du composant
-}
+<script setup lang="ts">
+
 </script>
 
 <style scoped>
