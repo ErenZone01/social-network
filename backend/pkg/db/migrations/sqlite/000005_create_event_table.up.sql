@@ -1,0 +1,11 @@
+CREATE TABLE EventGroup(
+    ID_Event INTEGER PRIMARY KEY AUTOINCREMENT,
+    EventDescription TEXT NOT NULL,
+    Title TEXT NOT NULL,
+    EventDays TEXT NOT NULL,
+    Options TEXT NOT NULL,
+    ID_User INTEGER NOT NULL,
+    ID_Group INTEGER NOT NULL,
+    FOREIGN KEY (ID_User) REFERENCES User(ID_User),
+    FOREIGN KEY (ID_Group) REFERENCES Groupe(ID_Group)
+);

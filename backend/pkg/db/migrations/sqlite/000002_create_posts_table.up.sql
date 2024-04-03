@@ -1,0 +1,12 @@
+-- 001_initial.sql
+CREATE TABLE Post (
+    ID_Post INTEGER PRIMARY KEY AUTOINCREMENT,
+    Content TEXT NOT NULL,
+    Title TEXT NOT NULL,
+    Images TEXT NOT NULL,
+    ID_User INTEGER NOT NULL,
+    Privacy TEXT NOT NULL,
+    ID_Group INTEGER NOT NULL,
+    Types   TEXT NOT NULL,
+    FOREIGN KEY (ID_User) REFERENCES User(ID_User)
+);

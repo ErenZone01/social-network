@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaire Utilisateur</title>
+  </head>
+  <body>
+    <h2>Formulaire Utilisateur</h2>
+    <form action="/Register" method="post">
+      <label for="email">Email :</label><br />
+      <input type="email" id="email" name="email" /><br />
+
+      <label for="nickname">Pseudo :</label><br />
+      <input type="text" id="nickname" name="nickname" /><br />
+
+      <label for="password">Mot de passe :</label><br />
+      <input type="password" id="password" name="password" /><br />
+
+      <label for="firstname">Prénom :</label><br />
+      <input type="text" id="firstname" name="firstname" /><br />
+
+      <label for="lastname">Nom :</label><br />
+      <input type="text" id="lastname" name="lastname" /><br />
+
+      <label for="birth">Date de naissance :</label><br />
+      <input type="date" id="birth" name="birth" /><br />
+
+      <label for="avatar">Avatar :</label><br />
+      <input type="file" id="avatar" name="avatar" /><br />
+
+      <label for="about">À propos :</label><br />
+      <textarea id="about" name="about" rows="4" cols="50"></textarea><br />
+
+      <label for="privacy">Confidentialité :</label><br />
+      <select id="privacy" name="privacy">
+        <option value="public">Public</option>
+        <option value="private">Privé</option></select
+      ><br />
+
+      <input type="submit" value="Soumettre" />
+    </form>
+    <!-- <form action="/Login" method="post">
+      <input type="text" name="Login" placeholder="Username or Email" />
+      <input type="password" name="Password" id="" placeholder="Password">
+      <input type="submit" value="Login">
+    </form> -->
+    <button onclick="register()">Register</button>
+    <button onclick="login()">Login</button>
+    <div class="status"></div>
+  </body>
+  <script>
+    // Dans votre composant Vue.js
+    function login() {
+      const user = {
+        Email: 'user1@example.com',
+        Nickname: 'user1',
+        Password: 'password1'
+      }
+
+      fetch('/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+        .then((response) => {
+          // if (!response.ok) {
+          //   throw new Error('Erreur lors de la requête.');
+          // }
+          return response.json()
+        })
+        .then((data) => {
+          // Traitez la réponse du serveur
+          console.log(data)
+          let div = document.getElementsByClassName('status')[0]
+          div.textContent = 'Vous êtes connecté'
+        })
+        .catch((error) => {
+          // Gérez les erreurs
+          let div = document.getElementsByClassName('status')[0]
+          div.textContent = 'Login ou mot de passe incorrect'
+          console.error("Erreur lors de la création de l'utilisateur :", error)
+        })
+    }
+    function register() {
+      const user = {
+        Email: 'max@example.com',
+        Nickname: 'Max',
+        Password: 'password1',
+        Firstname: 'Jdibs',
+        Lastname: 'Ndaw',
+        Birth: "1990-01-01",
+        Avatar: "avatar1.jpg",
+        About: "je suis developpeur",
+        Privacy: "Public"
+      }
+
+      fetch('/Register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+        .then((response) => {
+          // if (!response.ok) {
+          //   throw new Error('Erreur lors de la requête.');
+          // }
+          return response.json()
+        })
+        .then((data) => {
+          // Traitez la réponse du serveur
+          console.log(data)
+          let div = document.getElementsByClassName('status')[0]
+          div.textContent = 'Compte crée avec succé'
+        })
+        .catch((error) => {
+          // Gérez les erreurs
+          let div = document.getElementsByClassName('status')[0]
+          div.textContent = 'Votre compte n\'a pas été crée'
+          console.error("Erreur lors de la création de l'utilisateur :", error)
+        })
+    }
+  </script>
+</html>
