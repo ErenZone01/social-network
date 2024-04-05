@@ -16,15 +16,15 @@ var RegisterHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reque
 	// w.Write([]byte("Bienvenue sur la page d'accueil"))
 	fmt.Println("fin")
 })
-// var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Println("fin")
-// 	// w.Write([]byte("Bienvenue sur la page d'accueil"))
-// })
+var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("fin")
+	// w.Write([]byte("Bienvenue sur la page d'accueil"))
+})
 
 func handlerFunction() {
 	http.HandleFunc("/", handler)
 	http.Handle("/Register", register.MiddlewareRegister(RegisterHandler))
-	http.HandleFunc("/Login", login.MiddlewareLogin)
+	http.Handle("/Login", login.MiddlewareLogin(LoginHandler))
 	http.HandleFunc("/Home", Login)
 	http.HandleFunc("/Post", handlerPost)
 	http.HandleFunc("/Comment", handler)

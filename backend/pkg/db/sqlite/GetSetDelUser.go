@@ -16,7 +16,7 @@ func GetUser(login string) Struct.User {
 	return user
 }
 
-func SetUser(user Struct.User) {
+func CreateNewUser(user Struct.User) {
 	query := `INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES (?,?,?,?,?,?,?,?,?)`
 	//Inserer des utilisateurs dans notre table User
 	_, err := DB.Exec(query, user.Email, user.Nickname, user.Password, user.Firstname, user.Lastname, user.Birth, user.Avatar, user.About, user.Privacy)

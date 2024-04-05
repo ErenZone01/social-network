@@ -55,7 +55,7 @@
                 id="email"
                 v-model="email"
                 name="email"
-                type="email"
+                type="text"
                 autofocus
                 placeholder="Email"
                 required
@@ -91,7 +91,7 @@
             <button
               type="submit"
               class="button bg-primary text-white w-full"
-            >
+              @click="Login($event)">
               Sign in
             </button>
           </div>
@@ -227,33 +227,33 @@
     </div>
   </div>
 </template>
-<script setup lang="js">
-import { onMounted } from 'vue';
-
-function Login() {
-    let email = document.getElementsByName("email")[0].value;
-    let password = document.getElementsByName("password")[0].value;
-    const user = { Email: email, Password: password };
-
-    fetch("http://localhost:8080/Login", {
+<script>
+//import { onMounted } from 'vue';
+//import { RouterLink } from 'vue-router';
+export default{
+  methods:{
+    Login(e) {
+      e.preventDefault();
+      let email = document.getElementsByName("email")[0].value;
+      let password = document.getElementsByName("password")[0].value;
+      const user = { Email: email, Password: password };
+      
+      fetch("http://localhost:8080/Login", {
         method: "POST",
         body: JSON.stringify(user)
-    })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.log("err : ", error));
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.$router.push("/Home"); 
+      })
+      .catch((error) => console.log("err : ", error));
+    },
+  },
+  mounted(){
+    //this.init();
+  },
 }
-
-onMounted(() => {
-    const form = document.getElementById("form");
-    if (form) {
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            console.log("Formulaire soumis");
-            Login();
-        });
-    }
-});
 </script>
 
 

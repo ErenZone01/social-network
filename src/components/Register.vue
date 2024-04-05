@@ -77,6 +77,36 @@
                 />
               </div>
             </div>
+               <!-- Nickname -->
+               <div>
+              <label for="email" class="">Nickname</label>
+              <div class="mt-2.5">
+                <input
+                  id="text"
+                  name="text"
+                  type="text"
+                  placeholder="Nickname"
+                  required=""
+                  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
+                />
+              </div>
+            </div>
+               <!-- Date Of Birth -->
+               <div>
+              <label for="email" class="">Date Of Birth</label>
+              <div class="mt-2.5">
+                <input
+                  id="text"
+                  name="text"
+                  type="text"
+                  placeholder="date of birth"
+                  required=""
+                  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
+                />
+              </div>
+            </div>
+
+
 
             <!-- email -->
             <div class="col-span-2">
@@ -88,6 +118,17 @@
                   type="email"
                   placeholder="Email"
                   required=""
+                  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
+                />
+              </div>
+            </div>
+            <div class="col-span-2">
+              <label for="email" class="">Avatar</label>
+              <div class="mt-2.5">
+                <input
+                  id="text"
+                  name="text"
+                  type="file"
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
               </div>
@@ -106,8 +147,9 @@
                 />
               </div>
             </div>
-
-            <!-- Confirm Password -->
+   <!-- avatar -->
+ 
+            <!-- Confirm Password
             <div>
               <label for="email" class="">Confirm Password</label>
               <div class="mt-2.5">
@@ -119,7 +161,7 @@
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
               </div>
-            </div>
+            </div> -->
 
             <div class="col-span-2">
               <label class="inline-flex items-center" id="rememberme">

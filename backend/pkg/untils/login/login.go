@@ -16,8 +16,8 @@ func enableCors(w *http.ResponseWriter) {
 }
 
 
-func MiddlewareLogin(w http.ResponseWriter, r *http.Request) {
-	//return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+func MiddlewareLogin(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		var err, user = Login(w, r)
 		if err {
 			fmt.Println("le marshal start")
@@ -32,11 +32,12 @@ func MiddlewareLogin(w http.ResponseWriter, r *http.Request) {
 			 enableCors(&w)
 			 w.Header().Set("Content-Type", "application/json")
 			 w.Write(usersJSON)
+			 next.ServeHTTP(w,r)
 		}
 		// Si l'utilisateur n'est pas authentifié, renvoyer une réponse d'erreur 401 Unauthorized
 		fmt.Println("l'utilisateur 'existe pas")
 		//http.Error(w, "l'utilisateur 'existe pas", http.StatusUnauthorized)
-	//})
+	})
 }
 
 func Login(w http.ResponseWriter, r *http.Request) (bool, Struct.User) {

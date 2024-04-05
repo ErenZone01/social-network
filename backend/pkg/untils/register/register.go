@@ -42,16 +42,16 @@ func Register(w http.ResponseWriter, r *http.Request) (bool, string) {
 	}
 
 	Alluser := sqlite.GetAllUser()
-	var err, msg = IsUniqueParams(Alluser, newUser.Email, newUser.Nickname)
+	var err, msg = UserUnique(Alluser, newUser.Email, newUser.Nickname)
 	if !err {
 		return err, msg
 	}
 	//AJouter l'utilisateur a la BD
-	sqlite.SetUser(newUser)
+	sqlite.CreateNewUser(newUser)
 	return err, msg
 }
 
-func IsUniqueParams(Alluser []Struct.User, Email string, Nickname string) (bool, string) {
+func UserUnique(Alluser []Struct.User, Email string, Nickname string) (bool, string) {
 	for _, v := range Alluser {
 		if v.Email == Email {
 			return false, "Email is already used"
