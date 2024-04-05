@@ -12,6 +12,8 @@ CREATE TABLE User (
     Privacy TEXT NOT NULL
 );
 
+INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("max@gmail.com", "max", "1", "Matar", "ndaw", "1990-01-01", "avatar1.jpg", "Description de l'utilisateur 1", "public");
+
 INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("user1@example.com", "user1", "password1", "John", "Doe", "1990-01-01", "avatar1.jpg", "Description de l'utilisateur 1", "public");
 
 INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("user2@example.com", "user2", "password2", "Jane", "Smith", "1985-05-15", "avatar2.jpg", "Description de l'utilisateur 2", "private");

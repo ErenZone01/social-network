@@ -5,10 +5,10 @@ import (
 	Struct "main/pkg/struct"
 )
 
-func GetUser() Struct.User {
+func GetUser(login string) Struct.User {
 	var user Struct.User
-	query := "SELECT ID_User, Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy From User"
-	err := DB.QueryRow(query).Scan(&user.Id, &user.Email, &user.Nickname, &user.Password, &user.Firstname, &user.Lastname, &user.Birth, &user.Avatar, &user.About, &user.Privacy)
+	query := "SELECT ID_User, Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy From User  WHERE Email = ? OR Nickname = ?"
+	err := DB.QueryRow(query, login, login).Scan(&user.Id, &user.Email, &user.Nickname, &user.Password, &user.Firstname, &user.Lastname, &user.Birth, &user.Avatar, &user.About, &user.Privacy)
 	if err != nil {
 		fmt.Println("Error form GetUser", err)
 		return Struct.User{}
