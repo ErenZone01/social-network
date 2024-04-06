@@ -336,14 +336,14 @@ export default{
       let avatar =document.getElementsByName("Avatar")[0].value
       const user = { Email: email, Password: password, Nickname: nickname, firstName: first name, Birth: date of birth, Avatar: avatar, };
       
-      fetch("http://localhost:8080/Login", {
+      fetch("http://localhost:8080/Register", {
         method: "POST",
         body: JSON.stringify(user)
       })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        this.$router.push("/Register"); 
+        this.$router.push("/Login"); 
       })
       .catch((error) => console.log("err : ", error));
     },
