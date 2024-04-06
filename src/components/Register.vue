@@ -181,7 +181,8 @@
 
             <!-- submit button -->
             <div class="col-span-2">
-              <button type="submit" class="button bg-primary text-white w-full">
+              <button type="submit" class="button bg-primary text-white w-full"
+              @click="Register(event)">
                 Get Started
               </button>
             </div>
@@ -320,7 +321,35 @@
 </template>
 
 <style scoped></style>
+<script> 
 
-<script setup lang="ts">
-
+export default{
+  methods:{
+    Register(e) {
+      e.preventDefault();
+      let email = document.getElementsByName("email")[0].value;
+      let password = document.getElementsByName("password")[0].value;
+      let firstName = document.getElementsByName("first name")[0].value;
+      let lastName = document.getElementsByName("Last Name")[0].value;
+      let nickname = document.getElementsByName("nickname")[0].value;
+      let birth = document.getElementsByName("date of birth")[0].value;
+      let avatar =document.getElementsByName("Avatar")[0].value
+      const user = { Email: email, Password: password, Nickname: nickname, firstName: first name, Birth: date of birth, Avatar: avatar, };
+      
+      fetch("http://localhost:8080/Login", {
+        method: "POST",
+        body: JSON.stringify(user)
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.$router.push("/Register"); 
+      })
+      .catch((error) => console.log("err : ", error));
+    },
+  },
+  mounted(){
+    //this.init();
+  },
+}
 </script>
