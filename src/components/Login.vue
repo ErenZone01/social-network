@@ -39,6 +39,7 @@
               ><router-link to="/Register"> Register here!</router-link></a
             >
           </p>
+          <p id="error"></p>
         </div>
 
         <!-- form -->
@@ -91,7 +92,8 @@
             <button
               type="submit"
               class="button bg-primary text-white w-full"
-              @click="Login($event)">
+              @click="Login($event)"
+            >
               Sign in
             </button>
           </div>
@@ -228,32 +230,38 @@
   </div>
 </template>
 <script>
-//import { onMounted } from 'vue';
-//import { RouterLink } from 'vue-router';
-export default{
-  methods:{
+export default {
+  methods: {
     Login(e) {
       e.preventDefault();
       let email = document.getElementsByName("email")[0].value;
       let password = document.getElementsByName("password")[0].value;
       const user = { Email: email, Password: password };
-      
+
       fetch("http://localhost:8080/Login", {
         method: "POST",
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
+        credentials: "include",
+        header: { "Content-Type": "application/json" },
       })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.$router.push("/Home"); 
-      })
-      .catch((error) => console.log("err : ", error));
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.Types == "Error") {
+            var err = document.getElementById("error");
+            err.textContent = data.Msg;err
+            err.style.color="red"
+          } else {
+            this.$router.push("/Home");
+          }
+        })
+        .catch((error) => console.log("err : ", error));
     },
   },
-  mounted(){
+  mounted() {
     //this.init();
   },
-}
+};
 </script>
 
 

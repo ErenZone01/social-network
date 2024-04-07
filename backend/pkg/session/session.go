@@ -5,6 +5,7 @@ import (
 	"log"
 	"main/pkg/db/sqlite"
 	Struct "main/pkg/struct"
+	Errors "main/pkg/untils/error"
 	"net/http"
 	"sync"
 	"time"
@@ -17,19 +18,20 @@ var (
 	sessions     = make(map[int]string)
 	sessionUser  = make(map[string]Struct.User)
 )
+
 // var bd = sqlite.DB
 
-// func actualiseSession() {
-// 	var Allsession, err = bd.DataSession(BD)
-// 	if err != nil {
-// 		fmt.Println("session have problems")
-// 		return
-// 	}
-// 	for i := 0; i < len(Allsession); i++ {
-// 		sessionUser[Allsession[i].Value] = bd.DataUserById(BD, Allsession[i].Users_id)
-// 		sessions[bd.DataUserById(BD, Allsession[i].Users_id).Id] = Allsession[i].Value
-// 	}
-// }
+//	func actualiseSession() {
+//		var Allsession, err = bd.DataSession(BD)
+//		if err != nil {
+//			fmt.Println("session have problems")
+//			return
+//		}
+//		for i := 0; i < len(Allsession); i++ {
+//			sessionUser[Allsession[i].Value] = bd.DataUserById(BD, Allsession[i].Users_id)
+//			sessions[bd.DataUserById(BD, Allsession[i].Users_id).Id] = Allsession[i].Value
+//		}
+//	}
 func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	sessionMutex.Lock()
 	userID_s := sqlite.GetUser(users.Email)
@@ -79,16 +81,17 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 	var session, _ = r.Cookie("session")
 	if session == nil || session.Value == "" {
 		user := Struct.User{}
-		user.Error = "Veuillez vous connecté d'abord"
+		user.Error = "false"
 		return user
 	}
 	var _, e = sessionUser[session.Value]
 	if !e {
 		user := Struct.User{}
-		user.Error = "Veuillez vous connecté d'abord"
+		user.Error = "false"
 		return user
 	}
 	var user = sessionUser[session.Value]
+	user.Error = "true"
 	// user.Actif = "true"
 	expiration := time.Now().Add(2 * time.Hour)
 	//Stockez l'identifiant de session dans un cookie
@@ -99,7 +102,7 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 	})
 	return user
 }
-func deleteCookies(w http.ResponseWriter, r *http.Request) {
+func deleteCookies(w http.ResponseWriter) {
 	//nom du cookie
 	// var userOnline = Myaccount(w, r)
 	// userOnline.Actif = "false"
@@ -115,4 +118,14 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
 	}
 	http.SetCookie(w, &deletecookie)
 	fmt.Println("Cookie supprimé avec succés!")
+}
+func MiddlewareSession(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if Myaccount(w, r).Error != "true" {
+			next.ServeHTTP(w, r)
+			return
+		}
+		Errors.SendError(w, r, "Connectez vous d'abord")
+		fmt.Println("Connectez vous d'abord")
+	})
 }

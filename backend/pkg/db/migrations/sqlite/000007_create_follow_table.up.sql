@@ -1,11 +1,11 @@
 CREATE TABLE Follow(
     ID_Follow INTEGER PRIMARY KEY AUTOINCREMENT,
     ID_User INTEGER NOT NULL,
-    Receiver TEXT NOT NULL,
+    ID_Receiver INTEGER ,
     Privacy TEXT NOT NULL,
     Operation TEXT NOT NULL,
     Types TEXT NOT NULL,
-    ID_Group INTEGER NOT NULL,
+    ID_Group INTEGER ,
     FOREIGN KEY (ID_User) REFERENCES User(ID_User),
     FOREIGN KEY (ID_Group) REFERENCES Groupe(ID_Group)
 );

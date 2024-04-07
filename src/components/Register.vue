@@ -20,7 +20,6 @@
             class="w-28 absolute top-10 left-10 hidden dark:!block"
             alt=""
         /></a>
-
         <!-- logo icon optional -->
         <div class="hidden">
           <img
@@ -29,31 +28,42 @@
             alt="Socialite html template"
           />
         </div>
-
         <!-- title -->
         <div>
           <h2 class="text-2xl font-semibold mb-1.5">Sign up to get started</h2>
           <p class="text-sm text-gray-700 font-normal">
             If you already have an account,
-            <a class="text-blue-700"><router-link to="/Login"> Login here!</router-link></a>
+            <a class="text-blue-700"
+              ><router-link to="/Login"> Login here!</router-link></a
+            >
           </p>
+          <p id="error"></p>
         </div>
-
         <!-- form -->
         <form
-          method="#"
-          action="#"
+          id="form"
           class="space-y-7 text-sm text-black font-medium dark:text-white"
           uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true"
         >
           <div class="grid grid-cols-2 gap-4 gap-y-7">
+            <div class="col-span-2">
+              <label for="email" class="">Avatar</label>
+              <div class="mt-2.5">
+                <input
+                  id="text"
+                  name="avatar"
+                  type="file"
+                  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
+                />
+              </div>
+            </div>
             <!-- first name -->
             <div>
               <label for="email" class="">First name</label>
               <div class="mt-2.5">
                 <input
                   id="text"
-                  name="text"
+                  name="firstname"
                   type="text"
                   autofocus=""
                   placeholder="First name"
@@ -62,14 +72,13 @@
                 />
               </div>
             </div>
-
             <!-- Last name -->
             <div>
               <label for="email" class="">Last name</label>
               <div class="mt-2.5">
                 <input
                   id="text"
-                  name="text"
+                  name="lastname"
                   type="text"
                   placeholder="Last name"
                   required=""
@@ -77,13 +86,13 @@
                 />
               </div>
             </div>
-               <!-- Nickname -->
-               <div>
+            <!-- Nickname -->
+            <div>
               <label for="email" class="">Nickname</label>
               <div class="mt-2.5">
                 <input
                   id="text"
-                  name="text"
+                  name="nickname"
                   type="text"
                   placeholder="Nickname"
                   required=""
@@ -91,13 +100,13 @@
                 />
               </div>
             </div>
-               <!-- Date Of Birth -->
-               <div>
+            <!-- Date Of Birth -->
+            <div>
               <label for="email" class="">Date Of Birth</label>
               <div class="mt-2.5">
                 <input
                   id="text"
-                  name="text"
+                  name="birth"
                   type="text"
                   placeholder="date of birth"
                   required=""
@@ -105,9 +114,6 @@
                 />
               </div>
             </div>
-
-
-
             <!-- email -->
             <div class="col-span-2">
               <label for="email" class="">Email address</label>
@@ -122,17 +128,6 @@
                 />
               </div>
             </div>
-            <div class="col-span-2">
-              <label for="email" class="">Avatar</label>
-              <div class="mt-2.5">
-                <input
-                  id="text"
-                  name="text"
-                  type="file"
-                  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
-                />
-              </div>
-            </div>
 
             <!-- password -->
             <div>
@@ -143,26 +138,40 @@
                   name="password"
                   type="password"
                   placeholder="***"
+                  required
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
               </div>
             </div>
-   <!-- avatar -->
- 
-            <!-- Confirm Password
+            <!-- avatar -->
+
+            <!-- Confirm Password -->
             <div>
               <label for="email" class="">Confirm Password</label>
               <div class="mt-2.5">
                 <input
                   id="password"
-                  name="password"
+                  name="confpassword"
                   type="password"
+                  required
                   placeholder="***"
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
               </div>
-            </div> -->
-
+            </div>
+            <div class="col-span-2">
+              <label for="email" class="">About</label>
+              <div class="mt-2.5">
+                <input
+                  id="email"
+                  name="about"
+                  type="text"
+                  placeholder="About"
+                  required=""
+                  class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
+                />
+              </div>
+            </div>
             <div class="col-span-2">
               <label class="inline-flex items-center" id="rememberme">
                 <input
@@ -178,22 +187,22 @@
                 </span>
               </label>
             </div>
-
             <!-- submit button -->
             <div class="col-span-2">
-              <button type="submit" class="button bg-primary text-white w-full"
-              @click="Register(event)">
+              <button
+                type="submit"
+                class="button bg-primary text-white w-full"
+                @click="Register($event)"
+              >
                 Get Started
               </button>
             </div>
           </div>
-
           <div class="text-center flex items-center gap-6">
             <hr class="flex-1 border-slate-200 dark:border-slate-800" />
             Or continue with
             <hr class="flex-1 border-slate-200 dark:border-slate-800" />
           </div>
-
           <!-- social login -->
           <div
             class="flex gap-2"
@@ -222,7 +231,6 @@
         </form>
       </div>
     </div>
-
     <!-- image slider -->
     <div class="flex-1 relative bg-primary max-md:hidden">
       <div
@@ -308,7 +316,6 @@
             ></div>
           </li>
         </ul>
-
         <!-- slide nav -->
         <div class="flex justify-center">
           <ul
@@ -319,37 +326,52 @@
     </div>
   </div>
 </template>
-
 <style scoped></style>
-<script> 
-
-export default{
-  methods:{
+<script>
+export default {
+  methods: {
     Register(e) {
       e.preventDefault();
       let email = document.getElementsByName("email")[0].value;
       let password = document.getElementsByName("password")[0].value;
-      let firstName = document.getElementsByName("first name")[0].value;
-      let lastName = document.getElementsByName("Last Name")[0].value;
+      let firstName = document.getElementsByName("firstname")[0].value;
+      let lastName = document.getElementsByName("lastname")[0].value;
       let nickname = document.getElementsByName("nickname")[0].value;
-      let birth = document.getElementsByName("date of birth")[0].value;
-      let avatar =document.getElementsByName("Avatar")[0].value
-      const user = { Email: email, Password: password, Nickname: nickname, firstName: first name, Birth: date of birth, Avatar: avatar, };
-      
+      let birth = document.getElementsByName("birth")[0].value;
+      let avatar = document.getElementsByName("avatar")[0].value;
+      let about = document.getElementsByName("about")[0].value;
+      const user = {
+        Email: email,
+        Password: password,
+        Nickname: nickname,
+        FirstName: firstName,
+        Lastname: lastName,
+        Birth: birth,
+        Avatar: avatar,
+        About: about,
+        Privacy: "public",
+      };
+
       fetch("http://localhost:8080/Register", {
         method: "POST",
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
       })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.$router.push("/Login"); 
-      })
-      .catch((error) => console.log("err : ", error));
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.Types == "Error") {
+            console.log(data.Msg);
+            var err = document.getElementById("error");
+            err.textContent = data.Msg;
+          } else {
+            console.log(data);
+            this.$router.push("/Login");
+          }
+        })
+        .catch((error) => console.log("err : ", error));
     },
   },
-  mounted(){
+  mounted() {
     //this.init();
   },
-}
+};
 </script>

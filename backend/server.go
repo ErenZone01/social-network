@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"main/pkg/db/sqlite"
+	"main/pkg/session"
 	"main/pkg/untils/event"
 	"main/pkg/untils/follow"
 	"main/pkg/untils/home"
@@ -12,42 +13,38 @@ import (
 	"net/http"
 )
 
-var RegisterHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// w.Write([]byte("Bienvenue sur la page d'accueil"))
-	fmt.Println("fin")
-})
-var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("fin")
-	// w.Write([]byte("Bienvenue sur la page d'accueil"))
-})
+func MiddlewareCors(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Autoriser l'origine spécifique de votre application frontend
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
+		// Autoriser les méthodes spécifiées
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+		// Autoriser les en-têtes spécifiés
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		// Autoriser l'envoi de cookies
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		// Poursuivre le traitement de la demande
+		next.ServeHTTP(w, r)
+	})
+}
 
 func handlerFunction() {
-	http.HandleFunc("/", handler)
-	http.Handle("/Register", register.MiddlewareRegister(RegisterHandler))
-	http.Handle("/Login", login.MiddlewareLogin(LoginHandler))
-	http.HandleFunc("/Home", Login)
+	http.Handle("/", MiddlewareCors(session.MiddlewareSession(home.Home)))
+	http.Handle("/Register", MiddlewareCors(register.MiddlewareRegister(register.RegisterHandler)))
+	http.Handle("/Login", MiddlewareCors(login.MiddlewareLogin(login.LoginHandler)))
 	http.HandleFunc("/Post", handlerPost)
-	http.HandleFunc("/Comment", handler)
-	http.HandleFunc("/Follow", handler)
-	http.HandleFunc("/Event", handler)
+	http.HandleFunc("/Comment", Comment)
+	http.Handle("/Follow", MiddlewareCors(session.MiddlewareSession(follow.FollowHandler)))
+	http.HandleFunc("/Event", MiddlewareEvent)
 	fmt.Println("http://localhost:8080/")
 	http.ListenAndServe(":8080", nil)
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	home.Home(w, r)
-}
-func Event(w http.ResponseWriter, r *http.Request) {
+func MiddlewareEvent(w http.ResponseWriter, r *http.Request) {
 	event.Event(w, r)
 }
-func Follow(w http.ResponseWriter, r *http.Request) {
-	follow.Follow(w, r)
-}
+
 func Comment(w http.ResponseWriter, r *http.Request) {
-
-}
-
-func Login(w http.ResponseWriter, r *http.Request) {
 
 }
 

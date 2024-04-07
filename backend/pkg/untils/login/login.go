@@ -6,36 +6,20 @@ import (
 	"main/pkg/db/sqlite"
 	"main/pkg/session"
 	Struct "main/pkg/struct"
+	Errors "main/pkg/untils/error"
 	"net/http"
 )
 
-func enableCors(w *http.ResponseWriter) {
-    (*w).Header().Set("Access-Control-Allow-Origin", "*")
-    (*w).Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
-    (*w).Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-}
-
-
 func MiddlewareLogin(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		var err, user = Login(w, r)
+		var err, _ = Login(w, r)
 		if err {
-			fmt.Println("le marshal start")
-			 // Convertissez les données d'utilisateurs en JSON
-			 usersJSON, err := json.Marshal(user)
-			 if err != nil {
-				 http.Error(w, "Erreur de conversion en JSON", http.StatusInternalServerError)
-				 
-			 }
-			 fmt.Println("le user est : ", user)
-			 // Envoyez la réponse JSON
-			 enableCors(&w)
-			 w.Header().Set("Content-Type", "application/json")
-			 w.Write(usersJSON)
-			 next.ServeHTTP(w,r)
+			next.ServeHTTP(w, r)
+			return
 		}
 		// Si l'utilisateur n'est pas authentifié, renvoyer une réponse d'erreur 401 Unauthorized
 		fmt.Println("l'utilisateur 'existe pas")
+		Errors.SendError(w, r, "Login or Password is incorrect")
 		//http.Error(w, "l'utilisateur 'existe pas", http.StatusUnauthorized)
 	})
 }
@@ -63,9 +47,21 @@ func IfUserExist(Alluser []Struct.User, login Struct.User) (bool, Struct.User) {
 	for _, v := range Alluser {
 		if v.Email == login.Email && v.Password == login.Password {
 			return true, v
-		} else if v.Nickname == login.Email && v.Password ==  login.Password {
+		} else if v.Nickname == login.Email && v.Password == login.Password {
 			return true, v
 		}
 	}
 	return false, Struct.User{}
 }
+
+var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("le marshal start")
+	// Convertissez les données d'utilisateurs en JSON
+	var msgFetch Struct.FetchMsg
+	msgFetch.Types= "Reponses" 
+	msgFetch.Msg= "Vous êtes connecté avec succé"
+	msgFetch.Data=""
+	fmt.Println("tout baigne")
+	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
+	json.NewEncoder(w).Encode(msgFetch)
+})
