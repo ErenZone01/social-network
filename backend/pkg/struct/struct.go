@@ -1,9 +1,9 @@
 package Struct
 
 type AllData struct {
-	Alluser []User
-	Allpost []Post
-	Allfollowers []Follow
+	Alluser      []User
+	Allpost      []Post
+	Allfollowers []User
 }
 
 type User struct {
@@ -18,6 +18,7 @@ type User struct {
 	About     string `json:"About"`
 	Privacy   string `json:"Privacy"`
 	Error     string
+	Actif     string
 }
 
 type Post struct {
@@ -45,7 +46,7 @@ type FetchMsg struct {
 
 type Follow struct {
 	ID_Follow   int
-	ID_User    int
+	ID_User     int
 	ID_Receiver int
 	Privacy     string
 	Operation   string

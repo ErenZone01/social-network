@@ -19,30 +19,28 @@ var (
 	sessionUser  = make(map[string]Struct.User)
 )
 
-// var bd = sqlite.DB
-
-//	func actualiseSession() {
-//		var Allsession, err = bd.DataSession(BD)
-//		if err != nil {
-//			fmt.Println("session have problems")
-//			return
-//		}
-//		for i := 0; i < len(Allsession); i++ {
-//			sessionUser[Allsession[i].Value] = bd.DataUserById(BD, Allsession[i].Users_id)
-//			sessions[bd.DataUserById(BD, Allsession[i].Users_id).Id] = Allsession[i].Value
-//		}
-//	}
+func actualiseSession() {
+	var Allsession, err = sqlite.DataSession()
+	if err != nil {
+		fmt.Println("session have problems")
+		return
+	}
+	for i := 0; i < len(Allsession); i++ {
+		sessionUser[Allsession[i].Value] = sqlite.GetUserById(Allsession[i].Users_id)
+		sessions[sqlite.GetUserById(Allsession[i].Users_id).Id] = Allsession[i].Value
+	}
+}
 func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	sessionMutex.Lock()
 	userID_s := sqlite.GetUser(users.Email)
 	userID := userID_s.Id
-	//actualiseSession()
+	actualiseSession()
 	_, exists := sessions[userID]
 	if exists {
 		sessionMutex.Unlock()
 		return false
 	}
-	//users.Actif = "true"
+	users.Actif = "true"
 	//Créez une nouvelle session
 	sessionID := generateSessionID()
 	sessionUser[sessionID] = users
@@ -51,7 +49,7 @@ func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	var newSessionBD Struct.Session
 	newSessionBD.Users_id = userID
 	newSessionBD.Value = sessionID
-	//bd.NewSession(BD, newSessionBD)
+	sqlite.NewSession(newSessionBD)
 	sessionMutex.Unlock()
 	expiration := time.Now().Add(2 * time.Hour)
 	//All_Forum.Allsessions = sessionUser
@@ -102,11 +100,11 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 	})
 	return user
 }
-func deleteCookies(w http.ResponseWriter) {
+func deleteCookies(w http.ResponseWriter, r *http.Request) {
 	//nom du cookie
-	// var userOnline = Myaccount(w, r)
-	// userOnline.Actif = "false"
-	// bd.UpdateUser(BD, userOnline)
+	var userOnline = Myaccount(w, r)
+	userOnline.Actif = "false"
+	sqlite.UpdateUser(userOnline)
 	cookieName := "session"
 	//Créez un cookie avec une date deja expiré
 	expiration := time.Now().AddDate(0, 0, -1)
@@ -121,7 +119,7 @@ func deleteCookies(w http.ResponseWriter) {
 }
 func MiddlewareSession(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if Myaccount(w, r).Error != "true" {
+		if Myaccount(w, r).Error == "true" {
 			next.ServeHTTP(w, r)
 			return
 		}

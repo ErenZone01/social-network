@@ -16,6 +16,18 @@ func GetUser(login string) Struct.User {
 	return user
 }
 
+func GetUserById(Id int) Struct.User {
+	var user Struct.User
+	query := "SELECT ID_User, Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy From User  WHERE ID_User = ?"
+	err := DB.QueryRow(query, Id).Scan(&user.Id, &user.Email, &user.Nickname, &user.Password, &user.Firstname, &user.Lastname, &user.Birth, &user.Avatar, &user.About, &user.Privacy)
+	if err != nil {
+		fmt.Println("Error form GetUser", err)
+		return Struct.User{}
+	}
+	return user
+}
+
+
 func CreateNewUser(user Struct.User) {
 	query := `INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES (?,?,?,?,?,?,?,?,?)`
 	//Inserer des utilisateurs dans notre table User
@@ -32,6 +44,14 @@ func DeleteUser(id int) {
 	`, id)
 	if err != nil {
 		fmt.Println(err)
+		return
+	}
+}
+
+func UpdateUser(user Struct.User) {
+	_, err := DB.Exec("UPDATE User SET Actif = ? WHERE ID_User = ?", user.Actif, user.Id)
+	if err != nil {
+		fmt.Println("Error:", err)
 		return
 	}
 }

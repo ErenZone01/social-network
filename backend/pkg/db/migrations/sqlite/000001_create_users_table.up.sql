@@ -5,11 +5,12 @@ CREATE TABLE User (
     Passwords TEXT NOT NULL,
     Firstname TEXT NOT NULL,
     Lastname TEXT NOT NULL,
-    Nickname TEXT NOT NULL,
+    Nickname TEXT NOT NULL UNIQUE,
     Birth TEXT NOT NULL,
     Avatar  TEXT NOT NULL,
     About   TEXT NOT NULL,
-    Privacy TEXT NOT NULL
+    Privacy TEXT NOT NULL,
+    Actif   TEXT
 );
 
 INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("max@gmail.com", "max", "1", "Matar", "ndaw", "1990-01-01", "avatar1.jpg", "Description de l'utilisateur 1", "public");

@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       AllUsers: [],
-      MyFolling:[]
+      MyFolling: [],
     };
   },
   methods: {
@@ -16,6 +16,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          this.MyFolling = data.Allfollowers;
           this.AllUsers = data.Alluser; // Utilisation de this.allUsers pour faire référence à la propriété data
         })
         .catch((err) => console.log(err));
@@ -24,15 +25,14 @@ export default {
       event.preventDefault();
       fetch("http://localhost:8080/Follow", {
         method: "POST",
-        body : JSON.stringify(user),
+        body: JSON.stringify(user),
         headers: { "Content-type": "Application/Json" },
         credentials: "include",
       })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-  
-          this.MyFolling = data.Allfollower; // Utilisation de this.allUsers pour faire référence à la propriété data
+          // Utilisation de this.allUsers pour faire référence à la propriété data
         })
         .catch((err) => console.log(err));
     },
@@ -2892,8 +2892,9 @@ export default {
                     </a>
                     <div class="side-list-info">125k Following</div>
                   </div>
-                  <button @click="Follow(user,$event)"
-                     class="button bg-primary-soft text-primary dark:text-white"
+                  <button
+                    @click="Follow(user, $event)"
+                    class="button bg-primary-soft text-primary dark:text-white"
                   >
                     follow
                   </button>

@@ -15,8 +15,9 @@ func GetMyFollowers(user Struct.User) []Struct.Follow { // recuperer les gens qu
 	defer rows.Close()
 	for rows.Next() {
 		var follow Struct.Follow
-		err := rows.Scan(&follow.ID_Follow, &follow.ID_User, &follow.ID_Receiver, &follow.Privacy, &follow.Operation, &follow.Privacy, &follow.Types, &follow.ID_Group)
+		err := rows.Scan(&follow.ID_Follow, &follow.ID_User, &follow.ID_Receiver, &follow.Privacy, &follow.Operation,&follow.Types, &follow.ID_Group)
 		if err != nil {
+
 			return nil
 		}
 		follows = append(follows, follow)
@@ -26,7 +27,6 @@ func GetMyFollowers(user Struct.User) []Struct.Follow { // recuperer les gens qu
 	}
 	return follows
 }
-
 func GetMyFollowing(user Struct.User) []Struct.Follow { //recuperer les gens que je suis
 	var follows []Struct.Follow
 	query := `SELECT * FROM Follow WHERE ID_User = ? AND Operation = ?`

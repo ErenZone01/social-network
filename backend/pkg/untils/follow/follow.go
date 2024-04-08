@@ -18,5 +18,6 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 		return
 	}
 	sqlite.SetFollowing(myaccount, following, "true", "person", 0)
-	json.NewEncoder(w).Encode(sqlite.GetMyFollowing(myaccount))
+	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
+	json.NewEncoder(w).Encode("follow sucess")
 })
