@@ -37,7 +37,7 @@ func GetMyFollowing(user Struct.User) []Struct.Follow { //recuperer les gens que
 	defer rows.Close()
 	for rows.Next() {
 		var follow Struct.Follow
-		err := rows.Scan(&follow.ID_Follow, &follow.ID_User, &follow.ID_Receiver, &follow.Privacy, &follow.Operation, &follow.Privacy, &follow.Types, &follow.ID_Group)
+		err := rows.Scan(&follow.ID_Follow, &follow.ID_User, &follow.ID_Receiver, &follow.Privacy, &follow.Operation,&follow.Types, &follow.ID_Group)
 		if err != nil {
 			return nil
 		}

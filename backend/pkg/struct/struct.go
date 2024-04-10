@@ -4,6 +4,7 @@ type AllData struct {
 	Alluser      []User
 	Allpost      []Post
 	Allfollowers []User
+	Allfollowing []User
 }
 
 type User struct {
@@ -17,7 +18,7 @@ type User struct {
 	Avatar    string `json:"Avatar"`
 	About     string `json:"About"`
 	Privacy   string `json:"Privacy"`
-	Error     string
+	Error     bool
 	Actif     string
 }
 

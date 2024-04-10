@@ -1,47 +1,4 @@
-<script>
-export default {
-  data() {
-    return {
-      AllUsers: [],
-      MyFolling: [],
-    };
-  },
-  methods: {
-    GetData() {
-      fetch("http://localhost:8080/", {
-        method: "GET",
-        headers: { "Content-type": "Application/Json" },
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          this.MyFolling = data.Allfollowers;
-          this.AllUsers = data.Alluser; // Utilisation de this.allUsers pour faire référence à la propriété data
-        })
-        .catch((err) => console.log(err));
-    },
-    Follow(user, event) {
-      event.preventDefault();
-      fetch("http://localhost:8080/Follow", {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: { "Content-type": "Application/Json" },
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          // Utilisation de this.allUsers pour faire référence à la propriété data
-        })
-        .catch((err) => console.log(err));
-    },
-  },
-  mounted() {
-    this.GetData();
-  },
-};
-</script>
+
 <template>
   <div id="wrapper">
     <!-- header -->
@@ -4533,7 +4490,55 @@ export default {
   </div>
 </template>
 
-
+<script>
+export default {
+  data() {
+    return {
+      AllUsers: [],
+      MyFolling: [],
+    };
+  },
+  methods: {
+    GetData() {
+      fetch("http://localhost:8080/", {
+        method: "GET",
+        headers: { "Content-type": "Application/Json" },
+        credentials: "include",
+      })
+        .then((responses) => responses.json())
+        .then((response) => {
+          if (response.Types == "Success") {
+            console.log(response);
+            this.MyFolling = response.Data.Allfollowers;
+            this.AllUsers = response.Data.Alluser;
+          } else {
+            console.log("error");
+          }
+          // Utilisation de this.allUsers pour faire référence à la propriété data
+        })
+        .catch((err) => console.log(err));
+    },
+    Follow(user, event) {
+      event.preventDefault();
+      fetch("http://localhost:8080/Follow", {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: { "Content-type": "Application/Json" },
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // Utilisation de this.allUsers pour faire référence à la propriété data
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+  mounted() {
+    this.GetData();
+  },
+};
+</script>
 
 <style scoped>
 </style>

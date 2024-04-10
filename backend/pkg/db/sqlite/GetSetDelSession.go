@@ -8,7 +8,7 @@ import (
 func NewSession(session Struct.Session) {
 	//Inserer des sessions dans notre table Session
 	_, err := DB.Exec(`
-    INSERT INTO AllSession ( user_id,  Session_value) VALUES (?,?)
+    INSERT INTO AllSessions ( user_id,  Session_value) VALUES (?,?)
 `, session.Users_id, session.Value)
 	if err != nil {
 		fmt.Println(err)
@@ -17,7 +17,7 @@ func NewSession(session Struct.Session) {
 }
 
 func DataSession() ([]Struct.Session, error) {
-	query := "SELECT id, user_id, Session_value FROM AllSession"
+	query := "SELECT id, user_id, Session_value FROM AllSessions"
 	rows, err := DB.Query(query)
 	if err != nil {
 		fmt.Println("Error:", err)
@@ -41,7 +41,7 @@ func DataSession() ([]Struct.Session, error) {
 }
 func DeleteSession(id int) {
 	_, err := DB.Exec(`
-	DELETE FROM AllSession WHERE user_id = ?
+	DELETE FROM AllSessions WHERE user_id = ?
 	`, id)
 	if err != nil {
 		fmt.Println(err)

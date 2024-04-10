@@ -22,7 +22,7 @@ var (
 func actualiseSession() {
 	var Allsession, err = sqlite.DataSession()
 	if err != nil {
-		fmt.Println("session have problems")
+		fmt.Println("session have problems : ", err)
 		return
 	}
 	for i := 0; i < len(Allsession); i++ {
@@ -75,31 +75,6 @@ func generateSessionID() string {
 	//log.Printf("successfully parsed UUID %v", u3)
 	return u3.String()
 }
-func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
-	var session, _ = r.Cookie("session")
-	if session == nil || session.Value == "" {
-		user := Struct.User{}
-		user.Error = "false"
-		return user
-	}
-	var _, e = sessionUser[session.Value]
-	if !e {
-		user := Struct.User{}
-		user.Error = "false"
-		return user
-	}
-	var user = sessionUser[session.Value]
-	user.Error = "true"
-	// user.Actif = "true"
-	expiration := time.Now().Add(2 * time.Hour)
-	//Stockez l'identifiant de session dans un cookie
-	http.SetCookie(w, &http.Cookie{
-		Name:    "session",
-		Value:   session.Value,
-		Expires: expiration,
-	})
-	return user
-}
 func deleteCookies(w http.ResponseWriter, r *http.Request) {
 	//nom du cookie
 	var userOnline = Myaccount(w, r)
@@ -117,13 +92,42 @@ func deleteCookies(w http.ResponseWriter, r *http.Request) {
 	http.SetCookie(w, &deletecookie)
 	fmt.Println("Cookie supprimé avec succés!")
 }
-func MiddlewareSession(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if Myaccount(w, r).Error == "true" {
-			next.ServeHTTP(w, r)
-			return
-		}
-		Errors.SendError(w, r, "Connectez vous d'abord")
-		fmt.Println("Connectez vous d'abord")
+func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
+	// Récupérer le cookie de session
+	session, _ := r.Cookie("session")
+
+	// Vérifier si le cookie de session est vide
+	if session == nil || session.Value == "" {
+		Errors.SendError(w, r, "Le cookie de session est vide")
+		user := Struct.User{}
+		user.Error = true
+		return user
+	}
+
+	// Vérifier si le cookie de session est valide
+	actualiseSession()
+	_, exists := sessionUser[session.Value]
+	if !exists {
+		fmt.Println("Le cookie de session n'est pas valide")
+		Errors.SendError(w, r, "Le cookie de session n'est pas valide")
+
+		user := Struct.User{}
+		user.Error = true
+		return user
+	}
+
+	// Le cookie de session est valide, récupérer les informations de l'utilisateur
+	var user = sessionUser[session.Value]
+	user.Error = false
+	user.Actif = "true"
+
+	// Renouveler la durée de vie du cookie de session
+	expiration := time.Now().Add(2 * time.Hour)
+	http.SetCookie(w, &http.Cookie{
+		Name:    "session",
+		Value:   session.Value,
+		Expires: expiration,
 	})
+
+	return user
 }

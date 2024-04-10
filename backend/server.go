@@ -2,9 +2,10 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"main/pkg/db/sqlite"
-	"main/pkg/session"
+	Struct "main/pkg/struct"
 	"main/pkg/untils/event"
 	"main/pkg/untils/follow"
 	"main/pkg/untils/home"
@@ -19,7 +20,7 @@ func MiddlewareCors(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
 		// Autoriser les méthodes spécifiées
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-		// Autoriser les en-têtes spécifiés
+		// Autoriser les en-têtes spécifiés, y compris Authorization
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		// Autoriser l'envoi de cookies
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
@@ -29,15 +30,24 @@ func MiddlewareCors(next http.Handler) http.Handler {
 }
 
 func handlerFunction() {
-	http.Handle("/", MiddlewareCors(session.MiddlewareSession(home.Home)))
+	http.Handle("/", MiddlewareCors(home.Home))
 	http.Handle("/Register", MiddlewareCors(register.MiddlewareRegister(register.RegisterHandler)))
 	http.Handle("/Login", MiddlewareCors(login.MiddlewareLogin(login.LoginHandler)))
 	http.HandleFunc("/Post", handlerPost)
 	http.HandleFunc("/Comment", Comment)
-	http.Handle("/Follow", MiddlewareCors(session.MiddlewareSession(follow.FollowHandler)))
+	http.Handle("/Follow", MiddlewareCors(follow.FollowHandler))
 	http.HandleFunc("/Event", MiddlewareEvent)
 	fmt.Println("http://localhost:8080/")
 	http.ListenAndServe(":8080", nil)
+}
+
+func SendResponses(w http.ResponseWriter, r *http.Request, data interface{}) {
+	var msgFetch Struct.FetchMsg
+	msgFetch.Types = "Success"
+	msgFetch.Msg = "connection succesfully"
+	msgFetch.Data = data
+	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
+	json.NewEncoder(w).Encode(data)
 }
 
 func MiddlewareEvent(w http.ResponseWriter, r *http.Request) {
@@ -55,6 +65,6 @@ func handlerPost(w http.ResponseWriter, r *http.Request) {
 var DB *sql.DB
 
 func main() {
-	DB = sqlite.CreateBD()
+	DB = sqlite.CheckDB()
 	handlerFunction()
 }

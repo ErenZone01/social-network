@@ -1,4 +1,4 @@
-package Errors
+package responses
 
 import (
 	"encoding/json"
@@ -6,14 +6,11 @@ import (
 	"net/http"
 )
 
-func SendError(w http.ResponseWriter, r *http.Request, msg string) {
-	// Convertissez les données d'utilisateurs en JSON
+func SendResponsesHome(w http.ResponseWriter, r *http.Request, data interface{}) {
 	var msgFetch Struct.FetchMsg
-	msgFetch.Types = "Error"
-	msgFetch.Msg = msg
-	msgFetch.Data = ""
-
-	// Envoyez la réponse JSON
+	msgFetch.Types = "Success"
+	msgFetch.Msg = "connection succesfully"
+	msgFetch.Data = data
 	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
 	json.NewEncoder(w).Encode(msgFetch)
 }

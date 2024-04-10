@@ -10,12 +10,27 @@ import (
 )
 
 var migrationsDir = "pkg/db/migrations/sqlite"
+var fileDB = "./pkg/db/sqlite/sql.db"
 var DB *sql.DB
 
+func CheckDB() *sql.DB {
+	var _, err = os.ReadFile(fileDB)
+	if err != nil {
+		return CreateBD()
+	}
+	db, err := sql.Open("sqlite3", fileDB)
+	if err != nil {
+		fmt.Println("err : ", err)
+		return nil
+	}
+	DB = db
+	return db
+}
+
 func CreateBD() *sql.DB {
-	fmt.Println("start")
 	// Ouvrir la connexion à la base de données
-	db, err := sql.Open("sqlite3", "./pkg/db/sqlite/sql.db")
+
+	db, err := sql.Open("sqlite3", fileDB)
 	if err != nil {
 		fmt.Println("err : ", err)
 		return nil
@@ -55,8 +70,8 @@ func migrate(db *sql.DB) error {
 
 		// Exécuter la requête de migration
 		if _, err := db.Exec(string(query)); err != nil {
-			 fmt.Println("error")
-			 return err
+			fmt.Println("error")
+			return err
 		}
 
 		fmt.Println("Applied migration: ", migration)

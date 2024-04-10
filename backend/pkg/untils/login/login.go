@@ -18,7 +18,6 @@ func MiddlewareLogin(next http.Handler) http.Handler {
 			return
 		}
 		// Si l'utilisateur n'est pas authentifié, renvoyer une réponse d'erreur 401 Unauthorized
-		fmt.Println("l'utilisateur 'existe pas")
 		Errors.SendError(w, r, "Login or Password is incorrect")
 		//http.Error(w, "l'utilisateur 'existe pas", http.StatusUnauthorized)
 	})
@@ -55,13 +54,11 @@ func IfUserExist(Alluser []Struct.User, login Struct.User) (bool, Struct.User) {
 }
 
 var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("le marshal start")
 	// Convertissez les données d'utilisateurs en JSON
 	var msgFetch Struct.FetchMsg
 	msgFetch.Types= "Reponses" 
 	msgFetch.Msg= "Vous êtes connecté avec succé"
 	msgFetch.Data=""
-	fmt.Println("tout baigne")
 	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
 	json.NewEncoder(w).Encode(msgFetch)
 })
