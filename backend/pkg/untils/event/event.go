@@ -2,6 +2,6 @@ package event
 
 import "net/http"
 
-func Event(w http.ResponseWriter, r *http.Request) {
-
-}
+var Event = http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
+	
+})

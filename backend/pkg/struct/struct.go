@@ -1,6 +1,7 @@
 package Struct
 
 type AllData struct {
+	Myaccount    User
 	Alluser      []User
 	Allpost      []Post
 	Allfollowers []User

@@ -1013,8 +1013,9 @@
                       class="w-10 h-10 rounded-full shadow"
                     />
                     <div class="flex-1">
-                      <h4 class="text-sm font-medium text-black">
-                        Stell johnson
+                      <h4 class="text-sm font-medium text-black" >
+
+                        Stell johnson 
                       </h4>
                       <div
                         class="text-sm mt-1 text-blue-600 font-light dark:text-white/70"
@@ -4508,8 +4509,10 @@ export default {
         .then((responses) => responses.json())
         .then((response) => {
           if (response.Types == "Success") {
-            console.log(response);
-            this.MyFolling = response.Data.Allfollowers;
+            console.log();
+            this.Myaccount=response.Data.Myaccount
+            this.MyFolling = response.Data.Allfollowers
+            ;
             this.AllUsers = response.Data.Alluser;
           } else {
             console.log("error");
