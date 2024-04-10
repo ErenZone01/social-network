@@ -10,13 +10,13 @@
         <!-- logo image-->
         <a href="#">
           <img
-            src="./src/assets/images/logo.png"
+            src="/src/assets/images/logo.png"
             class="w-28 absolute top-10 left-10 dark:hidden"
             alt=""
         /></a>
         <a href="#">
           <img
-            src="./src/assets/images/logo-light.png"
+            src="/src/assets/images/logo-light.png"
             class="w-28 absolute top-10 left-10 hidden dark:!block"
             alt=""
         /></a>
@@ -156,7 +156,7 @@
               >
                 <img
                   class="w-12"
-                  src="./src/assets/images/logo-icon.png"
+                  src="/src/assets/images/logo-icon.png"
                   alt="Socialite html template"
                 />
                 <h4
@@ -181,7 +181,7 @@
           </li>
           <li class="w-full">
             <img
-              src="./src/assets/images/post/img-2.jpg"
+              src="/src/assets/images/post/img-2.jpg"
               alt=""
               class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left"
             />
@@ -194,7 +194,7 @@
               >
                 <img
                   class="w-12"
-                  src="./src/assets/images/logo-icon.png"
+                  src="/src/assets/images/logo-icon.png"
                   alt="Socialite html template"
                 />
                 <h4

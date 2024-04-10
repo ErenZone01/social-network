@@ -26,22 +26,22 @@
             <div id="logo">
               <a href="feed.html">
                 <img
-                  src="./src/assets/images/logo.png"
+                  src="/src/assets/images/logo.png"
                   alt=""
                   class="w-28 md:block hidden dark:!hidden"
                 />
                 <img
-                  src="./src/assets/images/logo-light.png"
+                  src="/src/assets/images/logo-light.png"
                   alt=""
                   class="dark:md:block hidden"
                 />
                 <img
-                  src="./src/assets/images/logo-mobile.png"
+                  src="/src/assets/images/logo-mobile.png"
                   class="hidden max-md:block w-20 dark:!hidden"
                   alt=""
                 />
                 <img
-                  src="./src/assets/images/logo-mobile-light.png"
+                  src="/src/assets/images/logo-mobile-light.png"
                   class="hidden dark:max-md:block w-20"
                   alt=""
                 />
@@ -86,7 +86,7 @@
                     class="relative px-3 py-1.5 flex items-center gap-4 hover:bg-secondery rounded-lg dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       class="w-9 h-9 rounded-full"
                     />
                     <div>
@@ -105,7 +105,7 @@
                     class="relative px-3 py-1.5 flex items-center gap-4 hover:bg-secondery rounded-lg dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       class="w-9 h-9 rounded-full"
                     />
                     <div>
@@ -124,7 +124,7 @@
                     class="relative px-3 py-1.5 flex items-center gap-4 hover:bg-secondery rounded-lg dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/group/group-2.jpg"
+                      src="/src/assets/images/group/group-2.jpg"
                       class="w-9 h-9 rounded-full"
                     />
                     <div>
@@ -143,7 +143,7 @@
                     class="relative px-3 py-1.5 flex items-center gap-4 hover:bg-secondery rounded-lg dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/group/group-1.jpg"
+                      src="/src/assets/images/group/group-1.jpg"
                       class="w-9 h-9 rounded-full"
                     />
                     <div>
@@ -162,7 +162,7 @@
                     class="relative px-3 py-1.5 flex items-center gap-4 hover:bg-secondery rounded-lg dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/avatars/avatar-6.jpg"
+                      src="/src/assets/images/avatars/avatar-6.jpg"
                       class="w-9 h-9 rounded-full"
                     />
                     <div>
@@ -350,7 +350,7 @@
                     class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/icons/group.png"
+                      src="/src/assets/images/icons/group.png"
                       alt=""
                       class="w-7"
                     />
@@ -371,7 +371,7 @@
                     class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/icons/page.png"
+                      src="/src/assets/images/icons/page.png"
                       alt=""
                       class="w-7"
                     />
@@ -390,7 +390,7 @@
                     class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/icons/event.png"
+                      src="/src/assets/images/icons/event.png"
                       class="w-7"
                     />
                     <div class="flex-1">
@@ -408,7 +408,7 @@
                     class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/icons/market.png"
+                      src="/src/assets/images/icons/market.png"
                       class="w-8 -ml-1"
                     />
                     <div class="flex-1">
@@ -426,7 +426,7 @@
                     class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
                   >
                     <img
-                      src="./src/assets/images/icons/game.png"
+                      src="/src/assets/images/icons/game.png"
                       alt=""
                       class="w-7"
                     />
@@ -533,7 +533,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-3.jpg"
+                          src="/src/assets/images/avatars/avatar-3.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -559,7 +559,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-7.jpg"
+                          src="/src/assets/images/avatars/avatar-7.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -582,7 +582,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-6.jpg"
+                          src="/src/assets/images/avatars/avatar-6.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -605,7 +605,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-2.jpg"
+                          src="/src/assets/images/avatars/avatar-2.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -634,7 +634,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-3.jpg"
+                          src="/src/assets/images/avatars/avatar-3.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -660,7 +660,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-4.jpg"
+                          src="/src/assets/images/avatars/avatar-4.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -684,7 +684,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-2.jpg"
+                          src="/src/assets/images/avatars/avatar-2.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -707,7 +707,7 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-7.jpg"
+                          src="/src/assets/images/avatars/avatar-7.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -800,7 +800,7 @@
                     >
                       <div class="relative w-10 h-10 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-2.jpg"
+                          src="/src/assets/images/avatars/avatar-2.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -832,7 +832,7 @@
                     >
                       <div class="relative w-10 h-10 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-4.jpg"
+                          src="/src/assets/images/avatars/avatar-4.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -861,7 +861,7 @@
                     >
                       <div class="relative w-10 h-10 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-5.jpg"
+                          src="/src/assets/images/avatars/avatar-5.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -890,7 +890,7 @@
                     >
                       <div class="relative w-10 h-10 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-3.jpg"
+                          src="/src/assets/images/avatars/avatar-3.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -922,7 +922,7 @@
                     >
                       <div class="relative w-10 h-10 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-7.jpg"
+                          src="/src/assets/images/avatars/avatar-7.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -951,7 +951,7 @@
                     >
                       <div class="relative w-10 h-10 shrink-0">
                         <img
-                          src="./src/assets/images/avatars/avatar-4.jpg"
+                          src="/src/assets/images/avatars/avatar-4.jpg"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -996,7 +996,7 @@
                 class="rounded-full relative bg-secondery cursor-pointer shrink-0"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-2.jpg"
+                  src="/src/assets/images/avatars/avatar-2.jpg"
                   alt=""
                   class="sm:w-9 sm:h-9 w-7 h-7 rounded-full shadow shrink-0"
                 />
@@ -1008,7 +1008,7 @@
                 <a href="timeline.html">
                   <div class="p-4 py-5 flex items-center gap-4">
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       alt=""
                       class="w-10 h-10 rounded-full shadow"
                     />
@@ -1173,7 +1173,7 @@
 
               <div class="flex items-center gap-2 hidden">
                 <img
-                  src="./src/assets/images/avatars/avatar-2.jpg"
+                  src="/src/assets/images/avatars/avatar-2.jpg"
                   alt=""
                   class="w-9 h-9 rounded-full shadow"
                 />
@@ -1216,7 +1216,7 @@
               <li class="active">
                 <a href="feed.html">
                   <img
-                    src="./src/assets/images/icons/home.png"
+                    src="/src/assets/images/icons/home.png"
                     alt="feeds"
                     class="w-6"
                   />
@@ -1226,7 +1226,7 @@
               <li>
                 <a href="messages.html">
                   <img
-                    src="./src/assets/images/icons/message.png"
+                    src="/src/assets/images/icons/message.png"
                     alt="messages"
                     class="w-5"
                   />
@@ -1236,7 +1236,7 @@
               <li>
                 <a href="video.html">
                   <img
-                    src="./src/assets/images/icons/video.png"
+                    src="/src/assets/images/icons/video.png"
                     alt="messages"
                     class="w-6"
                   />
@@ -1246,7 +1246,7 @@
               <li>
                 <a href="event.html">
                   <img
-                    src="./src/assets/images/icons/event.png"
+                    src="/src/assets/images/icons/event.png"
                     alt="messages"
                     class="w-6"
                   />
@@ -1256,7 +1256,7 @@
               <li>
                 <a href="pages.html">
                   <img
-                    src="./src/assets/images/icons/page.png"
+                    src="/src/assets/images/icons/page.png"
                     alt="pages"
                     class="w-6"
                   />
@@ -1266,7 +1266,7 @@
               <li>
                 <a href="groups.html">
                   <img
-                    src="./src/assets/images/icons/group.png"
+                    src="/src/assets/images/icons/group.png"
                     alt="groups"
                     class="w-6"
                   />
@@ -1276,7 +1276,7 @@
               <li>
                 <a href="market.html">
                   <img
-                    src="./src/assets/images/icons/market.png"
+                    src="/src/assets/images/icons/market.png"
                     alt="market"
                     class="w-7 -ml-1"
                   />
@@ -1286,7 +1286,7 @@
               <li>
                 <a href="blog.html">
                   <img
-                    src="./src/assets/images/icons/blog.png"
+                    src="/src/assets/images/icons/blog.png"
                     alt="blog"
                     class="w-6"
                   />
@@ -1296,7 +1296,7 @@
               <li class="!hidden" id="show__more">
                 <a href="games.html">
                   <img
-                    src="./src/assets/images/icons/game.png"
+                    src="/src/assets/images/icons/game.png"
                     alt="games"
                     class="w-6"
                   />
@@ -1306,7 +1306,7 @@
               <li class="!hidden" id="show__more">
                 <a href="funding.html">
                   <img
-                    src="./src/assets/images/icons/fund.png"
+                    src="/src/assets/images/icons/fund.png"
                     alt="messages"
                     class="w-6"
                   />
@@ -1316,7 +1316,7 @@
               <li class="!hidden" id="show__more">
                 <a href="blog-2.html">
                   <img
-                    src="./src/assets/images/icons/blog-2.png"
+                    src="/src/assets/images/icons/blog-2.png"
                     alt="blog"
                     class="w-6"
                   />
@@ -1326,7 +1326,7 @@
               <li class="!hidden" id="show__more">
                 <a href="event-2.html">
                   <img
-                    src="./src/assets/images/icons/event-2.png"
+                    src="/src/assets/images/icons/event-2.png"
                     alt="event"
                     class="w-6"
                   />
@@ -1336,7 +1336,7 @@
               <li class="!hidden" id="show__more">
                 <a href="groups-2.html">
                   <img
-                    src="./src/assets/images/icons/group-2.png"
+                    src="/src/assets/images/icons/group-2.png"
                     alt="groups"
                     class="w-6"
                   />
@@ -1378,7 +1378,7 @@
                 class="flex items-center gap-2 p-3 px-4 rounded-xl hover:bg-secondery"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-2.jpg"
+                  src="/src/assets/images/avatars/avatar-2.jpg"
                   alt=""
                   class="w-6 rounded-full object-cover"
                 />
@@ -1390,7 +1390,7 @@
                 class="flex items-center gap-2 p-3 px-4 rounded-xl hover:bg-secondery"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-7.jpg"
+                  src="/src/assets/images/avatars/avatar-7.jpg"
                   alt=""
                   class="w-6 rounded-full object-cover"
                 />
@@ -1402,7 +1402,7 @@
                 class="flex items-center gap-2 p-3 px-4 rounded-xl hover:bg-secondery"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-3.jpg"
+                  src="/src/assets/images/avatars/avatar-3.jpg"
                   alt=""
                   class="w-6 rounded-full object-cover"
                 />
@@ -1588,14 +1588,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-1.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-1.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-2.jpg"
+                          src="/src/assets/images/avatars/avatar-2.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1606,14 +1606,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-2.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-2.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-3.jpg"
+                          src="/src/assets/images/avatars/avatar-3.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1624,14 +1624,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-4.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-4.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-5.jpg"
+                          src="/src/assets/images/avatars/avatar-5.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1642,14 +1642,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-5.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-5.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-6.jpg"
+                          src="/src/assets/images/avatars/avatar-6.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1660,14 +1660,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-1.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-1.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-7.jpg"
+                          src="/src/assets/images/avatars/avatar-7.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1678,14 +1678,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-1.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-1.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-2.jpg"
+                          src="/src/assets/images/avatars/avatar-2.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1696,14 +1696,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-2.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-2.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-3.jpg"
+                          src="/src/assets/images/avatars/avatar-3.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1714,14 +1714,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-4.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-4.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-5.jpg"
+                          src="/src/assets/images/avatars/avatar-5.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1732,14 +1732,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-5.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-5.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-6.jpg"
+                          src="/src/assets/images/avatars/avatar-6.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1750,14 +1750,14 @@
                     class="md:pr-3 pr-2 hover:scale-[1.15] hover:-rotate-2 duration-300"
                   >
                     <a
-                      href="./src/assets/images/avatars/avatar-lg-1.jpg"
+                      href="/src/assets/images/avatars/avatar-lg-1.jpg"
                       data-caption="Caption 1"
                     >
                       <div
                         class="md:w-16 md:h-16 w-12 h-12 relative md:border-4 border-2 shadow border-white rounded-full overflow-hidden dark:border-slate-700"
                       >
                         <img
-                          src="./src/assets/images/avatars/avatar-7.jpg"
+                          src="/src/assets/images/avatars/avatar-7.jpg"
                           alt=""
                           class="absolute w-full h-full object-cover"
                         />
@@ -1865,7 +1865,7 @@
               <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
                 <a href="timeline.html">
                   <img
-                    src="./src/assets/images/avatars/avatar-3.jpg"
+                    src="/src/assets/images/avatars/avatar-3.jpg"
                     alt=""
                     class="w-9 h-9 rounded-full"
                   />
@@ -1939,7 +1939,7 @@
               <a href="#preview_modal" uk-toggle>
                 <div class="relative w-full lg:h-96 h-full sm:px-4">
                   <img
-                    src="./src/assets/images/post/img-2.jpg"
+                    src="/src/assets/images/post/img-2.jpg"
                     alt=""
                     class="sm:rounded-lg w-full h-full object-cover"
                   />
@@ -2035,7 +2035,7 @@
                 <div class="flex items-start gap-3 relative">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       alt=""
                       class="w-6 h-6 mt-1 rounded-full"
                     />
@@ -2053,7 +2053,7 @@
                 <div class="flex items-start gap-3 relative">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-3.jpg"
+                      src="/src/assets/images/avatars/avatar-3.jpg"
                       alt=""
                       class="w-6 h-6 mt-1 rounded-full"
                     />
@@ -2086,7 +2086,7 @@
                 class="sm:px-4 sm:py-3 p-2.5 border-t border-gray-100 flex items-center gap-1 dark:border-slate-700/40"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-7.jpg"
+                  src="/src/assets/images/avatars/avatar-7.jpg"
                   alt=""
                   class="w-6 h-6 rounded-full"
                 />
@@ -2149,7 +2149,7 @@
               <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
                 <a href="timeline.html">
                   <img
-                    src="./src/assets/images/avatars/avatar-3.jpg"
+                    src="/src/assets/images/avatars/avatar-3.jpg"
                     alt=""
                     class="w-9 h-9 rounded-full"
                   />
@@ -2236,7 +2236,7 @@
                       data-caption="Caption 1"
                     >
                       <img
-                        src="./src/assets/images/post/img-2.jpg"
+                        src="/src/assets/images/post/img-2.jpg"
                         alt=""
                         class="w-full h-full absolute object-cover insta-0"
                       />
@@ -2249,7 +2249,7 @@
                       data-caption="Caption 2"
                     >
                       <img
-                        src="./src/assets/images/post/img-3.jpg"
+                        src="/src/assets/images/post/img-3.jpg"
                         alt=""
                         class="w-full h-full absolute object-cover insta-0"
                       />
@@ -2262,7 +2262,7 @@
                       data-caption="Caption 3"
                     >
                       <img
-                        src="./src/assets/images/post/img-4.jpg"
+                        src="/src/assets/images/post/img-4.jpg"
                         alt=""
                         class="w-full h-full absolute object-cover insta-0"
                       />
@@ -2371,7 +2371,7 @@
                 <div class="flex items-start gap-3 relative">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       alt=""
                       class="w-6 h-6 mt-1 rounded-full"
                     />
@@ -2389,7 +2389,7 @@
                 <div class="flex items-start gap-3 relative">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-3.jpg"
+                      src="/src/assets/images/avatars/avatar-3.jpg"
                       alt=""
                       class="w-6 h-6 mt-1 rounded-full"
                     />
@@ -2422,7 +2422,7 @@
                 class="sm:px-4 sm:py-3 p-2.5 border-t border-gray-100 flex items-center gap-1 dark:border-slate-700/40"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-7.jpg"
+                  src="/src/assets/images/avatars/avatar-7.jpg"
                   alt=""
                   class="w-6 h-6 rounded-full"
                 />
@@ -2485,7 +2485,7 @@
               <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
                 <a href="timeline.html">
                   <img
-                    src="./src/assets/images/avatars/avatar-5.jpg"
+                    src="/src/assets/images/avatars/avatar-5.jpg"
                     alt=""
                     class="w-9 h-9 rounded-full"
                   />
@@ -2671,7 +2671,7 @@
                 <div class="flex items-start gap-3 relative">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       alt=""
                       class="w-6 h-6 mt-1 rounded-full"
                     />
@@ -2691,7 +2691,7 @@
                 <div class="flex items-start gap-3 relative">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-3.jpg"
+                      src="/src/assets/images/avatars/avatar-3.jpg"
                       alt=""
                       class="w-6 h-6 mt-1 rounded-full"
                     />
@@ -2709,7 +2709,7 @@
                 <div class="flex items-start gap-3 relative">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-5.jpg"
+                      src="/src/assets/images/avatars/avatar-5.jpg"
                       alt=""
                       class="w-6 h-6 mt-1 rounded-full"
                     />
@@ -2731,7 +2731,7 @@
                 class="sm:px-4 sm:py-3 p-2.5 border-t border-gray-100 flex items-center gap-1 dark:border-slate-700/40"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-7.jpg"
+                  src="/src/assets/images/avatars/avatar-7.jpg"
                   alt=""
                   class="w-6 h-6 rounded-full"
                 />
@@ -2839,7 +2839,7 @@
                 >
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       alt=""
                       class="side-list-image rounded-full"
                     />
@@ -2879,7 +2879,7 @@
                 <div class="flex items-center gap-3">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-7.jpg"
+                      src="/src/assets/images/avatars/avatar-7.jpg"
                       alt=""
                       class="bg-gray-200 rounded-full w-10 h-10"
                     />
@@ -2904,7 +2904,7 @@
                 <div class="flex items-center gap-3">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-5.jpg"
+                      src="/src/assets/images/avatars/avatar-5.jpg"
                       alt=""
                       class="bg-gray-200 rounded-full w-10 h-10"
                     />
@@ -2929,7 +2929,7 @@
                 <div class="flex items-center gap-3">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       alt=""
                       class="bg-gray-200 rounded-full w-10 h-10"
                     />
@@ -2954,7 +2954,7 @@
                 <div class="flex items-center gap-3">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-3.jpg"
+                      src="/src/assets/images/avatars/avatar-3.jpg"
                       alt=""
                       class="bg-gray-200 rounded-full w-10 h-10"
                     />
@@ -2979,7 +2979,7 @@
                 <div class="flex items-center gap-3">
                   <a href="timeline.html">
                     <img
-                      src="./src/assets/images/avatars/avatar-4.jpg"
+                      src="/src/assets/images/avatars/avatar-4.jpg"
                       alt=""
                       class="bg-gray-200 rounded-full w-10 h-10"
                     />
@@ -3025,7 +3025,7 @@
                         <div class="relative overflow-hidden rounded-lg">
                           <div class="relative w-full h-40">
                             <img
-                              src="./src/assets/images/product/product-1.jpg"
+                              src="/src/assets/images/product/product-1.jpg"
                               alt=""
                               class="object-cover w-full h-full inset-0"
                             />
@@ -3044,7 +3044,7 @@
                         <div class="relative overflow-hidden rounded-lg">
                           <div class="relative w-full h-40">
                             <img
-                              src="./src/assets/images/product/product-3.jpg"
+                              src="/src/assets/images/product/product-3.jpg"
                               alt=""
                               class="object-cover w-full h-full inset-0"
                             />
@@ -3063,7 +3063,7 @@
                         <div class="relative overflow-hidden rounded-lg">
                           <div class="relative w-full h-40">
                             <img
-                              src="./src/assets/images/product/product-5.jpg"
+                              src="/src/assets/images/product/product-5.jpg"
                               alt=""
                               class="object-cover w-full h-full inset-0"
                             />
@@ -3113,7 +3113,7 @@
                 <a href="timeline.html">
                   <div class="w-10 h-10 relative">
                     <img
-                      src="./src/assets/images/avatars/avatar-2.jpg"
+                      src="/src/assets/images/avatars/avatar-2.jpg"
                       alt=""
                       class="w-full h-full absolute inset-0 rounded-full"
                     />
@@ -3125,7 +3125,7 @@
                 <a href="timeline.html">
                   <div class="w-10 h-10 relative">
                     <img
-                      src="./src/assets/images/avatars/avatar-3.jpg"
+                      src="/src/assets/images/avatars/avatar-3.jpg"
                       alt=""
                       class="w-full h-full absolute inset-0 rounded-full"
                     />
@@ -3137,7 +3137,7 @@
                 <a href="timeline.html">
                   <div class="w-10 h-10 relative">
                     <img
-                      src="./src/assets/images/avatars/avatar-4.jpg"
+                      src="/src/assets/images/avatars/avatar-4.jpg"
                       alt=""
                       class="w-full h-full absolute inset-0 rounded-full"
                     />
@@ -3149,7 +3149,7 @@
                 <a href="timeline.html">
                   <div class="w-10 h-10 relative">
                     <img
-                      src="./src/assets/images/avatars/avatar-5.jpg"
+                      src="/src/assets/images/avatars/avatar-5.jpg"
                       alt=""
                       class="w-full h-full absolute inset-0 rounded-full"
                     />
@@ -3161,7 +3161,7 @@
                 <a href="timeline.html">
                   <div class="w-10 h-10 relative">
                     <img
-                      src="./src/assets/images/avatars/avatar-6.jpg"
+                      src="/src/assets/images/avatars/avatar-6.jpg"
                       alt=""
                       class="w-full h-full absolute inset-0 rounded-full"
                     />
@@ -3173,7 +3173,7 @@
                 <a href="timeline.html">
                   <div class="w-10 h-10 relative">
                     <img
-                      src="./src/assets/images/avatars/avatar-7.jpg"
+                      src="/src/assets/images/avatars/avatar-7.jpg"
                       alt=""
                       class="w-full h-full absolute inset-0 rounded-full"
                     />
@@ -3206,7 +3206,7 @@
                           <a href="timeline.html">
                             <div class="relative w-16 h-16 mx-auto mt-2">
                               <img
-                                src="./src/assets/images/avatars/avatar-5.jpg"
+                                src="/src/assets/images/avatars/avatar-5.jpg"
                                 alt=""
                                 class="h-full object-cover rounded-full shadow w-full"
                               />
@@ -3238,7 +3238,7 @@
                         <a href="timeline.html">
                           <div class="relative w-16 h-16 mx-auto mt-2">
                             <img
-                              src="./src/assets/images/avatars/avatar-4.jpg"
+                              src="/src/assets/images/avatars/avatar-4.jpg"
                               alt=""
                               class="h-full object-cover rounded-full shadow w-full"
                             />
@@ -3267,7 +3267,7 @@
                         <a href="timeline.html">
                           <div class="relative w-16 h-16 mx-auto mt-2">
                             <img
-                              src="./src/assets/images/avatars/avatar-4.jpg"
+                              src="/src/assets/images/avatars/avatar-4.jpg"
                               alt=""
                               class="h-full object-cover rounded-full shadow w-full"
                             />
@@ -3558,7 +3558,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-1.jpg"
+                  src="/src/assets/images/avatars/avatar-1.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3570,7 +3570,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-2.jpg"
+                  src="/src/assets/images/avatars/avatar-2.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3582,7 +3582,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-3.jpg"
+                  src="/src/assets/images/avatars/avatar-3.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3594,7 +3594,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-5.jpg"
+                  src="/src/assets/images/avatars/avatar-5.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3606,7 +3606,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-4.jpg"
+                  src="/src/assets/images/avatars/avatar-4.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3618,7 +3618,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-6.jpg"
+                  src="/src/assets/images/avatars/avatar-6.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3630,7 +3630,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-1.jpg"
+                  src="/src/assets/images/avatars/avatar-1.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3642,7 +3642,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-2.jpg"
+                  src="/src/assets/images/avatars/avatar-2.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3654,7 +3654,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-3.jpg"
+                  src="/src/assets/images/avatars/avatar-3.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3666,7 +3666,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-5.jpg"
+                  src="/src/assets/images/avatars/avatar-5.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3679,7 +3679,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-4.jpg"
+                  src="/src/assets/images/avatars/avatar-4.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3691,7 +3691,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-6.jpg"
+                  src="/src/assets/images/avatars/avatar-6.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3709,7 +3709,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-1.jpg"
+                  src="/src/assets/images/avatars/avatar-1.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3721,7 +3721,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-2.jpg"
+                  src="/src/assets/images/avatars/avatar-2.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3733,7 +3733,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-3.jpg"
+                  src="/src/assets/images/avatars/avatar-3.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3745,7 +3745,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-5.jpg"
+                  src="/src/assets/images/avatars/avatar-5.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3757,7 +3757,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-4.jpg"
+                  src="/src/assets/images/avatars/avatar-4.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3769,7 +3769,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-6.jpg"
+                  src="/src/assets/images/avatars/avatar-6.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3781,7 +3781,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-1.jpg"
+                  src="/src/assets/images/avatars/avatar-1.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3793,7 +3793,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-2.jpg"
+                  src="/src/assets/images/avatars/avatar-2.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3805,7 +3805,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-3.jpg"
+                  src="/src/assets/images/avatars/avatar-3.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3817,7 +3817,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-5.jpg"
+                  src="/src/assets/images/avatars/avatar-5.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3830,7 +3830,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-4.jpg"
+                  src="/src/assets/images/avatars/avatar-4.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3842,7 +3842,7 @@
                 class="flex items-center gap-3.5 rounded-lg p-2 hover:bg-secondery dark:hover:bg-white/10"
               >
                 <img
-                  src="./src/assets/images/avatars/avatar-6.jpg"
+                  src="/src/assets/images/avatars/avatar-6.jpg"
                   alt=""
                   class="w-7 rounded-full"
                 />
@@ -3870,7 +3870,7 @@
       >
         <div class="relative z-10 w-full h-full">
           <img
-            src="./src/assets/images/post/post-1.jpg"
+            src="/src/assets/images/post/post-1.jpg"
             alt=""
             class="w-full h-full object-cover absolute"
           />
@@ -3906,7 +3906,7 @@
           <!-- story heading -->
           <div class="flex gap-3 text-sm font-medium">
             <img
-              src="./src/assets/images/avatars/avatar-5.jpg"
+              src="/src/assets/images/avatars/avatar-5.jpg"
               alt=""
               class="w-9 h-9 rounded-full"
             />
@@ -4014,7 +4014,7 @@
           <div class="relative text-sm font-medium space-y-5">
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-2.jpg"
+                src="/src/assets/images/avatars/avatar-2.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4030,7 +4030,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-3.jpg"
+                src="/src/assets/images/avatars/avatar-3.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4046,7 +4046,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-7.jpg"
+                src="/src/assets/images/avatars/avatar-7.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4062,7 +4062,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-4.jpg"
+                src="/src/assets/images/avatars/avatar-4.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4078,7 +4078,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-5.jpg"
+                src="/src/assets/images/avatars/avatar-5.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4094,7 +4094,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-3.jpg"
+                src="/src/assets/images/avatars/avatar-3.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4110,7 +4110,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-5.jpg"
+                src="/src/assets/images/avatars/avatar-5.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4126,7 +4126,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-2.jpg"
+                src="/src/assets/images/avatars/avatar-2.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4142,7 +4142,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-7.jpg"
+                src="/src/assets/images/avatars/avatar-7.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4158,7 +4158,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-4.jpg"
+                src="/src/assets/images/avatars/avatar-4.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4174,7 +4174,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-5.jpg"
+                src="/src/assets/images/avatars/avatar-5.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4190,7 +4190,7 @@
             </div>
             <div class="flex items-start gap-3 relative">
               <img
-                src="./src/assets/images/avatars/avatar-3.jpg"
+                src="/src/assets/images/avatars/avatar-3.jpg"
                 alt=""
                 class="w-6 h-6 mt-1 rounded-full"
               />
@@ -4209,7 +4209,7 @@
 
         <div class="bg-white p-3 text-sm font-medium flex items-center gap-2">
           <img
-            src="./src/assets/images/avatars/avatar-2.jpg"
+            src="/src/assets/images/avatars/avatar-2.jpg"
             alt=""
             class="w-6 h-6 rounded-full"
           />

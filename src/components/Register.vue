@@ -10,13 +10,13 @@
         <!-- logo image-->
         <a href="#">
           <img
-            src="./src/assets/images/logo.png"
+            src="/src/assets/images/logo.png"
             class="w-28 absolute top-10 left-10 dark:hidden"
             alt=""
         /></a>
         <a href="#">
           <img
-            src="./src/assets/images/logo-light.png"
+            src="/src/assets/images/logo-light.png"
             class="w-28 absolute top-10 left-10 hidden dark:!block"
             alt=""
         /></a>
@@ -24,7 +24,7 @@
         <div class="hidden">
           <img
             class="w-12"
-            src="./src/assets/images/logo-icon.png"
+            src="/src/assets/images/logo-icon.png"
             alt="Socialite html template"
           />
         </div>
@@ -172,21 +172,6 @@
                 />
               </div>
             </div>
-            <div class="col-span-2">
-              <label class="inline-flex items-center" id="rememberme">
-                <input
-                  type="checkbox"
-                  id="accept-terms"
-                  class="!rounded-md accent-red-800"
-                />
-                <span class="ml-2"
-                  >you agree to our
-                  <a href="#" class="text-blue-700 hover:underline"
-                    >terms of use
-                  </a>
-                </span>
-              </label>
-            </div>
             <!-- submit button -->
             <div class="col-span-2">
               <button
@@ -197,36 +182,6 @@
                 Get Started
               </button>
             </div>
-          </div>
-          <div class="text-center flex items-center gap-6">
-            <hr class="flex-1 border-slate-200 dark:border-slate-800" />
-            Or continue with
-            <hr class="flex-1 border-slate-200 dark:border-slate-800" />
-          </div>
-          <!-- social login -->
-          <div
-            class="flex gap-2"
-            uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 400 ;repeat: true"
-          >
-            <a
-              href="#"
-              class="button flex-1 flex items-center gap-2 bg-primary text-white text-sm"
-            >
-              <ion-icon name="logo-facebook" class="text-lg"></ion-icon>
-              facebook
-            </a>
-            <a
-              href="#"
-              class="button flex-1 flex items-center gap-2 bg-sky-600 text-white text-sm"
-            >
-              <ion-icon name="logo-twitter"></ion-icon> twitter
-            </a>
-            <a
-              href="#"
-              class="button flex-1 flex items-center gap-2 bg-black text-white text-sm"
-            >
-              <ion-icon name="logo-github"></ion-icon> github
-            </a>
           </div>
         </form>
       </div>
@@ -241,7 +196,7 @@
         <ul class="uk-slideshow-items w-full h-full">
           <li class="w-full">
             <img
-              src="./src/assets/images/post/img-3.jpg"
+              src="/src/assets/images/post/img-3.jpg"
               alt=""
               class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left"
             />
@@ -254,7 +209,7 @@
               >
                 <img
                   class="w-12"
-                  src="./src/assets/images/logo-icon.png"
+                  src="/src/assets/images/logo-icon.png"
                   alt="Socialite html template"
                 />
                 <h4
@@ -279,7 +234,7 @@
           </li>
           <li class="w-full">
             <img
-              src="./src/assets/images/post/img-2.jpg"
+              src="/src/assets/images/post/img-2.jpg"
               alt=""
               class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left"
             />
@@ -292,7 +247,7 @@
               >
                 <img
                   class="w-12"
-                  src="./src/assets/images/logo-icon.png"
+                  src="/src/assets/images/logo-icon.png"
                   alt="Socialite html template"
                 />
                 <h4

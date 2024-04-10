@@ -3,9 +3,7 @@ import { RouterView } from "vue-router";
 import "./assets/js/uikit.min.js";
 import "./assets/js/simplebar.js";
 import "./assets/js/script.js";
-// Importez les scripts Ionicons
-import "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js";
-import "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js";
+
 </script>
 
 <template>
