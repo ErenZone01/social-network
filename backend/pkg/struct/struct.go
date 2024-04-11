@@ -9,18 +9,19 @@ type AllData struct {
 }
 
 type User struct {
-	Id        int    `json:"ID"`
-	Email     string `json:"Email"`
-	Nickname  string `json:"Nickname"`
-	Password  string `json:"Password"`
-	Firstname string `json:"Firstname"`
-	Lastname  string `json:"Lastname"`
-	Birth     string `json:"Birth"`
-	Avatar    string `json:"Avatar"`
-	About     string `json:"About"`
-	Privacy   string `json:"Privacy"`
-	Error     bool
-	Actif     string
+	Id         int    `json:"ID"`
+	Email      string `json:"Email"`
+	Nickname   string `json:"Nickname"`
+	Password   string `json:"Password"`
+	Firstname  string `json:"Firstname"`
+	Lastname   string `json:"Lastname"`
+	Birth      string `json:"Birth"`
+	Avatar     string `json:"Avatar"`
+	AvatarData []byte `json:"AvatarData"`
+	About      string `json:"About"`
+	Privacy    string `json:"Privacy"`
+	Error      bool
+	Actif      string
 }
 
 type Post struct {

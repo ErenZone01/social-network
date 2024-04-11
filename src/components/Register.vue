@@ -51,8 +51,9 @@
               <div class="mt-2.5">
                 <input
                   id="text"
-                  name="avatar"
+                  name="Avatar"
                   type="file"
+                  accept=".jpeg, .jpg, .gif"
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
               </div>
@@ -281,11 +282,11 @@
     </div>
   </div>
 </template>
-<style scoped></style>
-<script>
+  <style scoped></style>
+  <script>
 export default {
   methods: {
-    Register(e) {
+    async Register(e) {
       e.preventDefault();
       let email = document.getElementsByName("email")[0].value;
       let password = document.getElementsByName("password")[0].value;
@@ -293,7 +294,18 @@ export default {
       let lastName = document.getElementsByName("lastname")[0].value;
       let nickname = document.getElementsByName("nickname")[0].value;
       let birth = document.getElementsByName("birth")[0].value;
-      let avatar = document.getElementsByName("avatar")[0].value;
+      let fileInput = document.getElementsByName("Avatar")[0];
+      let avatar = ""; // Initialiser le nom de l'avatar à une chaîne vide par défaut
+      let avatarData = null; // Initialiser les données de l'avatar à null par défaut
+      let byteArrayList = null;
+      if (fileInput.files.length > 0) {
+        // Vérifier si un fichier a été choisi
+        avatar = fileInput.files[0].name; // Nom du fichier
+        avatarData = await fileInput.files[0].arrayBuffer(); // Données de l'image
+        // Convertir les données de l'image en tableau de bytes
+        let byteArray = new Uint8Array(avatarData);
+        byteArrayList = Array.from(byteArray);
+      }
       let about = document.getElementsByName("about")[0].value;
       const user = {
         Email: email,
@@ -303,6 +315,7 @@ export default {
         Lastname: lastName,
         Birth: birth,
         Avatar: avatar,
+        AvatarData: byteArrayList,
         About: about,
         Privacy: "public",
       };

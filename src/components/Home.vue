@@ -389,10 +389,7 @@
                   <li
                     class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
                   >
-                    <img
-                      src="/src/assets/images/icons/event.png"
-                      class="w-7"
-                    />
+                    <img src="/src/assets/images/icons/event.png" class="w-7" />
                     <div class="flex-1">
                       <a href="timeline.html">
                         <h4
@@ -996,7 +993,7 @@
                 class="rounded-full relative bg-secondery cursor-pointer shrink-0"
               >
                 <img
-                  src="/src/assets/images/avatars/avatar-2.jpg"
+                  :src="'/src/assets/images/avatars/' + Myaccount.Avatar"
                   alt=""
                   class="sm:w-9 sm:h-9 w-7 h-7 rounded-full shadow shrink-0"
                 />
@@ -1008,14 +1005,13 @@
                 <a href="timeline.html">
                   <div class="p-4 py-5 flex items-center gap-4">
                     <img
-                      src="/src/assets/images/avatars/avatar-2.jpg"
+                      :src="'/src/assets/images/avatars/' + Myaccount.Avatar"
                       alt=""
                       class="w-10 h-10 rounded-full shadow"
                     />
                     <div class="flex-1">
-                      <h4 class="text-sm font-medium text-black" >
-
-                        Stell johnson 
+                      <h4 class="text-sm font-medium text-black">
+                        {{ Myaccount.Nickname }}
                       </h4>
                       <div
                         class="text-sm mt-1 text-blue-600 font-light dark:text-white/70"
@@ -4497,6 +4493,19 @@ export default {
     return {
       AllUsers: [],
       MyFolling: [],
+      Myaccount: {
+        Id: 0,
+        Email: "",
+        Nickname: "",
+        Password: "",
+        FirstName: "",
+        Lastname: "",
+        Birth: "",
+        Avatar: "",
+        About: "",
+        Privacy: "public",
+        // Avatar et AvatarData peuvent être initialisés selon vos besoins
+      },
     };
   },
   methods: {
@@ -4510,9 +4519,8 @@ export default {
         .then((response) => {
           if (response.Types == "Success") {
             console.log();
-            this.Myaccount=response.Data.Myaccount
-            this.MyFolling = response.Data.Allfollowers
-            ;
+            this.Myaccount = response.Data.Myaccount;
+            this.MyFolling = response.Data.Allfollowers;
             this.AllUsers = response.Data.Alluser;
           } else {
             console.log("error");

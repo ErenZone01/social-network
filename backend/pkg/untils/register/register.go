@@ -7,6 +7,8 @@ import (
 	Struct "main/pkg/struct"
 	Errors "main/pkg/untils/error"
 	"net/http"
+	"os"
+	"path/filepath"
 )
 
 func MiddlewareRegister(next http.Handler) http.Handler {
@@ -42,9 +44,20 @@ func Register(w http.ResponseWriter, r *http.Request) (bool, string) {
 	}
 	//AJouter l'utilisateur a la BD
 	sqlite.CreateNewUser(newUser)
+	if newUser.Avatar != "" {
+		SaveImage(newUser.Avatar, newUser.AvatarData)
+	}
 	return err, msg
 }
-
+func SaveImage(filename string, img []byte) {
+	var src = "../src/assets/images/avatars"
+	var filepaths = filepath.Join(src, filename)
+	err := os.WriteFile(filepaths, img, 0644)
+	if err != nil {
+		fmt.Println("l'erreur viens de la creation d'image : ", err)
+		return
+	}
+}
 func UserUnique(Alluser []Struct.User, Email string, Nickname string) (bool, string) {
 	for _, v := range Alluser {
 		if v.Email == Email {
@@ -61,10 +74,10 @@ var RegisterHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reque
 	fmt.Println("le marshal start")
 	// Convertissez les données d'utilisateurs en JSON
 	var msgFetch Struct.FetchMsg
-	msgFetch.Types= "Reponses" 
-	msgFetch.Msg= "Votre compte a été crée avec succé"
-	msgFetch.Data=""
-	
+	msgFetch.Types = "Reponses"
+	msgFetch.Msg = "Votre compte a été crée avec succé"
+	msgFetch.Data = ""
+
 	// Envoyez la réponse JSON
 	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
 	json.NewEncoder(w).Encode(msgFetch)
