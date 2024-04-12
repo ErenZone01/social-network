@@ -30,5 +30,5 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
 	data.Allfollowing =followings
-	responses.SendResponsesHome(w,r,data)
+	responses.SendResponsesHome(w,r,"responses succesfully",data)
 })

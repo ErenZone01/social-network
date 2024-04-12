@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"main/pkg/db/sqlite"
 	"main/pkg/untils/comment"
+	"main/pkg/untils/decon"
 	"main/pkg/untils/event"
 	"main/pkg/untils/follow"
 	"main/pkg/untils/home"
@@ -39,6 +40,7 @@ func handlerFunction() {
 	http.Handle("/Comment", MiddlewareCors(comment.Comment))
 	http.Handle("/Follow", MiddlewareCors(follow.FollowHandler))
 	http.Handle("/Event", MiddlewareCors(event.Event))
+	http.Handle("/Decon", MiddlewareCors(decon.Decon))
 }
 
 func main() {

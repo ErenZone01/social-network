@@ -15,8 +15,8 @@ import (
 
 var (
 	sessionMutex sync.Mutex
-	sessions     = make(map[int]string)
-	sessionUser  = make(map[string]Struct.User)
+	Sessions     = make(map[int]string)
+	SessionUser  = make(map[string]Struct.User)
 )
 
 func actualiseSession() {
@@ -26,8 +26,8 @@ func actualiseSession() {
 		return
 	}
 	for i := 0; i < len(Allsession); i++ {
-		sessionUser[Allsession[i].Value] = sqlite.GetUserById(Allsession[i].Users_id)
-		sessions[sqlite.GetUserById(Allsession[i].Users_id).Id] = Allsession[i].Value
+		SessionUser[Allsession[i].Value] = sqlite.GetUserById(Allsession[i].Users_id)
+		Sessions[sqlite.GetUserById(Allsession[i].Users_id).Id] = Allsession[i].Value
 	}
 }
 func Createsession(w http.ResponseWriter, users Struct.User) bool {
@@ -35,7 +35,7 @@ func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	userID_s := sqlite.GetUser(users.Email)
 	userID := userID_s.Id
 	actualiseSession()
-	_, exists := sessions[userID]
+	_, exists := Sessions[userID]
 	if exists {
 		sessionMutex.Unlock()
 		return false
@@ -43,8 +43,8 @@ func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	users.Actif = "true"
 	//Créez une nouvelle session
 	sessionID := generateSessionID()
-	sessionUser[sessionID] = users
-	sessions[userID] = sessionID
+	SessionUser[sessionID] = users
+	Sessions[userID] = sessionID
 	//enregistrer la session dans la base de donnée
 	var newSessionBD Struct.Session
 	newSessionBD.Users_id = userID
@@ -52,7 +52,7 @@ func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	sqlite.NewSession(newSessionBD)
 	sessionMutex.Unlock()
 	expiration := time.Now().Add(2 * time.Hour)
-	//All_Forum.Allsessions = sessionUser
+	//All_Forum.AllSessions = SessionUser
 	//Stockez l'identifiant de session dans un cookie
 	http.SetCookie(w, &http.Cookie{
 		Name:    "session",
@@ -75,7 +75,7 @@ func generateSessionID() string {
 	//log.Printf("successfully parsed UUID %v", u3)
 	return u3.String()
 }
-func deleteCookies(w http.ResponseWriter, r *http.Request) {
+func DeleteCookies(w http.ResponseWriter, r *http.Request) {
 	//nom du cookie
 	var userOnline = Myaccount(w, r)
 	userOnline.Actif = "false"
@@ -106,7 +106,7 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 
 	// Vérifier si le cookie de session est valide
 	actualiseSession()
-	_, exists := sessionUser[session.Value]
+	_, exists := SessionUser[session.Value]
 	if !exists {
 		fmt.Println("Le cookie de session n'est pas valide")
 		Errors.SendError(w, r, "Le cookie de session n'est pas valide")
@@ -117,7 +117,7 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 	}
 
 	// Le cookie de session est valide, récupérer les informations de l'utilisateur
-	var user = sessionUser[session.Value]
+	var user = SessionUser[session.Value]
 	user.Error = false
 	user.Actif = "true"
 

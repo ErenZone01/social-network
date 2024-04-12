@@ -5,10 +5,13 @@ import (
 	"fmt"
 	"main/pkg/db/sqlite"
 	Struct "main/pkg/struct"
+	responses "main/pkg/untils/Responses"
 	Errors "main/pkg/untils/error"
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 func MiddlewareRegister(next http.Handler) http.Handler {
@@ -43,6 +46,7 @@ func Register(w http.ResponseWriter, r *http.Request) (bool, string) {
 		return err, msg
 	}
 	//AJouter l'utilisateur a la BD
+	newUser.Password =  CryptPassword(newUser.Password)
 	sqlite.CreateNewUser(newUser)
 	if newUser.Avatar != "" {
 		SaveImage(newUser.Avatar, newUser.AvatarData)
@@ -71,14 +75,18 @@ func UserUnique(Alluser []Struct.User, Email string, Nickname string) (bool, str
 }
 
 var RegisterHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("le marshal start")
-	// Convertissez les données d'utilisateurs en JSON
-	var msgFetch Struct.FetchMsg
-	msgFetch.Types = "Reponses"
-	msgFetch.Msg = "Votre compte a été crée avec succé"
-	msgFetch.Data = ""
-
 	// Envoyez la réponse JSON
 	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
-	json.NewEncoder(w).Encode(msgFetch)
+	responses.SendResponsesHome(w, r, "Your account is created", nil)
 })
+
+func CryptPassword(password string) string {
+	var convertByte = []byte(password)
+	var Hashed, err = bcrypt.GenerateFromPassword(convertByte, 10)
+	if err != nil {
+		fmt.Println("Erreur lors de la generation de hachage : ", err)
+		return "error"
+	}
+	hash := string(Hashed)
+	return hash
+}

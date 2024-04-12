@@ -6,8 +6,11 @@ import (
 	"main/pkg/db/sqlite"
 	"main/pkg/session"
 	Struct "main/pkg/struct"
+	responses "main/pkg/untils/Responses"
 	Errors "main/pkg/untils/error"
 	"net/http"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 func MiddlewareLogin(next http.Handler) http.Handler {
@@ -39,14 +42,16 @@ func Login(w http.ResponseWriter, r *http.Request) (bool, Struct.User) {
 		return err, user
 	}
 	session.Createsession(w, user)
+	user.Actif = "true"
+	sqlite.UpdateUser(user)
 	return err, user
 }
 
 func IfUserExist(Alluser []Struct.User, login Struct.User) (bool, Struct.User) {
 	for _, v := range Alluser {
-		if v.Email == login.Email && v.Password == login.Password {
+		if v.Email == login.Email && bcrypt.CompareHashAndPassword([]byte(v.Password), []byte(login.Password)) == nil {
 			return true, v
-		} else if v.Nickname == login.Email && v.Password == login.Password {
+		} else if v.Nickname == login.Email && bcrypt.CompareHashAndPassword([]byte(v.Password), []byte(login.Password)) == nil {
 			return true, v
 		}
 	}
@@ -54,11 +59,6 @@ func IfUserExist(Alluser []Struct.User, login Struct.User) (bool, Struct.User) {
 }
 
 var LoginHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// Convertissez les données d'utilisateurs en JSON
-	var msgFetch Struct.FetchMsg
-	msgFetch.Types= "Reponses" 
-	msgFetch.Msg= "Vous êtes connecté avec succé"
-	msgFetch.Data=""
 	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
-	json.NewEncoder(w).Encode(msgFetch)
+	responses.SendResponsesHome(w, r, "connection succesfully", nil)
 })

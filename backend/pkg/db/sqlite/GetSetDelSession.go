@@ -39,10 +39,10 @@ func DataSession() ([]Struct.Session, error) {
 	}
 	return sesList, nil
 }
-func DeleteSession(id int) {
+func DeleteSession(value string) {
 	_, err := DB.Exec(`
-	DELETE FROM AllSessions WHERE user_id = ?
-	`, id)
+	DELETE FROM AllSessions WHERE Session_value = ?
+	`, value)
 	if err != nil {
 		fmt.Println(err)
 		return

@@ -32,5 +32,5 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	data.Allfollowers = followers
 	data.Allfollowing = followings
 	data.Myaccount = user
-	responses.SendResponsesHome(w, r, data)
+	responses.SendResponsesHome(w, r,"response succesfully", data)
 })
