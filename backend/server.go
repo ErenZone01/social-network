@@ -41,6 +41,7 @@ func handlerFunction() {
 	http.Handle("/Follow", MiddlewareCors(follow.FollowHandler))
 	http.Handle("/Event", MiddlewareCors(event.Event))
 	http.Handle("/Decon", MiddlewareCors(decon.Decon))
+	http.Handle("/Invitation", MiddlewareCors(follow.Invitation))
 }
 
 func main() {

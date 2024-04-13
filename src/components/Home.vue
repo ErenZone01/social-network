@@ -991,8 +991,8 @@ export default {
     return {
       AllUsers: [],
       MyFolling: [],
-      Myaccount: {
-      },
+      Myaccount: {},
+      Allnotif : []
     };
   },
   methods: {
@@ -1009,6 +1009,7 @@ export default {
             this.Myaccount = response.Data.Myaccount;
             this.MyFolling = response.Data.Allfollowers;
             this.AllUsers = response.Data.Alluser;
+            this.Allnotif = response.Data.Allnotif
           } else {
             console.log("error l'utilisateur n'est pas connecté");
             this.$router.push("/Login")

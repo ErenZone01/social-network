@@ -5,9 +5,9 @@ import (
 	Struct "main/pkg/struct"
 )
 
-func SetNotif(msg string, IdReceiver int, IdUser int, State string, Type string, IdGroup int){
-	var query = "INSERT INTO Notifications (Messages, ID_Receiver, Types, States, ID_User, ID_Group) VALUES(?,?,?,?,?,?)"
-	_, err := DB.Exec(query, msg, IdReceiver, Type, State, IdUser, IdGroup)
+func SetNotif(msg string, Receiver string, Sender string, State string, Type string, IdGroup int){
+	var query = "INSERT INTO Notifications (Messages, Receiver, Types, States, Sender, ID_Group) VALUES(?,?,?,?,?,?)"
+	_, err := DB.Exec(query, msg, Receiver, Type, State, Sender, IdGroup)
 	if err != nil{
 		fmt.Println("les Nottif : ", err)
 		return
@@ -15,16 +15,16 @@ func SetNotif(msg string, IdReceiver int, IdUser int, State string, Type string,
 }
 
 func UpdateNotif(notif Struct.Notif) {
-	_, err := DB.Exec("UPDATE Notifications SET States = ? WHERE ID_Receiver = ?", notif.States, notif.IdUser)
+	_, err := DB.Exec("UPDATE Notifications SET States = ? WHERE ID_Notification = ?", notif.States, notif.ID_Notif)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
 }
 
-func GetMyNotif(UserID int) []Struct.Notif {
-	query := "SELECT ID_Notification, Messages, ID_Receiver, Types, States, ID_User, ID_Group From Notifications WHERE ID_Receiver = ? "
-	rows, err := DB.Query(query, UserID)
+func GetMyNotif(Receiver string) []Struct.Notif {
+	query := "SELECT ID_Notification, Messages, Receiver, Types, States, Sender, ID_Group From Notifications WHERE Receiver = ? "
+	rows, err := DB.Query(query, Receiver)
 	if err != nil {
 		fmt.Println("Error from GetAllUser: ", err)
 		return []Struct.Notif{}
@@ -33,7 +33,7 @@ func GetMyNotif(UserID int) []Struct.Notif {
 	var notifList []Struct.Notif
 	for rows.Next() {
 		var notif Struct.Notif
-		if err := rows.Scan(&notif.ID_Notif, &notif.Messages, &notif.ID_Receiver, &notif.Types, &notif.States, &notif.IdUser, &notif.ID_Group); err != nil {
+		if err := rows.Scan(&notif.ID_Notif, &notif.Messages, &notif.Receiver, &notif.Types, &notif.States, &notif.Sender, &notif.ID_Group); err != nil {
 			fmt.Println("GetAllUser : Error scanning row: ", err)
 			continue
 		}
@@ -44,4 +44,15 @@ func GetMyNotif(UserID int) []Struct.Notif {
 		return []Struct.Notif{}
 	}
 	return notifList
+}
+
+func GetNotifById(Id int) Struct.Notif {
+	var notif Struct.Notif
+	query := "SELECT * From Notifications  WHERE ID_Notification = ?"
+	err := DB.QueryRow(query, Id).Scan(&notif.ID_Notif, &notif.Messages, &notif.Receiver, &notif.Types, &notif.States, &notif.Sender, &notif.ID_Group)
+	if err != nil {
+		fmt.Println("Error form GetNotif", err)
+		return Struct.Notif{}
+	}
+	return notif
 }

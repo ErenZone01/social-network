@@ -59,11 +59,11 @@ type Follow struct {
 }
 
 type Notif struct {
-	ID_Notif    int
-	Messages    string
-	ID_Receiver int
-	Types       string
-	States      string
-	IdUser      int
-	ID_Group    int
+	ID_Notif int `json:"ID_Notif"`
+	Messages string
+	Receiver string
+	Types    string
+	States   string `json:"States"`
+	Sender   string
+	ID_Group int
 }

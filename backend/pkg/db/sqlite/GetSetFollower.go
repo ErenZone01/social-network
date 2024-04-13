@@ -56,3 +56,33 @@ func SetFollowing(follower Struct.User, following Struct.User, Operation string,
 		return
 	}
 }
+
+
+func DeleteFollow(id int) {
+	_, err := DB.Exec(`
+	DELETE FROM Follow WHERE ID_Follow = ?
+	`, id)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+}
+
+func GetFollowByUsers(Id_Sender int, Id_Receiver int) Struct.Follow {
+	var follow Struct.Follow
+	query := "SELECT SELECT * FROM Follow WHERE ID_User = ? AND ID_Receiver = ? OR ID_Receiver = ? AND ID_User = ?"
+	err := DB.QueryRow(query, Id_Sender, Id_Receiver, Id_Receiver, Id_Sender).Scan(&follow.ID_Follow, &follow.ID_User, &follow.ID_Receiver, &follow.Privacy, &follow.Operation,&follow.Types, &follow.ID_Group)
+	if err != nil {
+		fmt.Println("Error form GetUser", err)
+		return Struct.Follow{}
+	}
+	return follow
+}
+
+func UpdateFollow(follow Struct.Follow) {
+	_, err := DB.Exec("UPDATE Follow SET Operation = ? WHERE ID_Follow = ?", follow.Operation, follow.ID_Follow)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+}

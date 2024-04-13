@@ -19,7 +19,7 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	var Allpost = sqlite.GetAllPost()
 	var Allfollower = sqlite.GetMyFollowers(user)
 	var Allfollowing = sqlite.GetMyFollowing(user)
-	var Allnotif = sqlite.GetMyNotif(user.Id)
+	var Allnotif = sqlite.GetMyNotif(user.Nickname)
 	var followers []Struct.User
 	var followings []Struct.User
 	for _, v := range Allfollower {
