@@ -6,6 +6,7 @@ type AllData struct {
 	Allpost      []Post
 	Allfollowers []User
 	Allfollowing []User
+	Allnotif     []Notif
 }
 
 type User struct {
@@ -54,5 +55,15 @@ type Follow struct {
 	Privacy     string
 	Operation   string
 	Types       string
+	ID_Group    int
+}
+
+type Notif struct {
+	ID_Notif    int
+	Messages    string
+	ID_Receiver int
+	Types       string
+	States      string
+	IdUser      int
 	ID_Group    int
 }

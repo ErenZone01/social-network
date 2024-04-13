@@ -22,13 +22,22 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 		fmt.Println("Follow : erreur de decodage json", err)
 		return
 	}
-	sqlite.SetFollowing(myaccount, following, "true", "person", 0)
+	var operation string;
+	if following.Privacy == "public"{
+		operation = "true"
+	}else{
+		operation = "pending"
+	}
+	sqlite.SetFollowing(myaccount, following, operation, "person", 0)
+	sqlite.SetNotif("following you", following.Id, myaccount.Id, "false", "person",0)
 	var data Struct.AllData
 	var Allfollower = sqlite.GetMyFollowing(myaccount)
+	var Allnotif = sqlite.GetMyNotif(myaccount.Id)
 	var followings []Struct.User
 	for _, v := range Allfollower {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
 	data.Allfollowing =followings
+	data.Allnotif = Allnotif
 	responses.SendResponsesHome(w,r,"responses succesfully",data)
 })
