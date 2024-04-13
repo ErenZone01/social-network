@@ -33,7 +33,7 @@ func GetMyNotif(UserID int) []Struct.Notif {
 	var notifList []Struct.Notif
 	for rows.Next() {
 		var notif Struct.Notif
-		if err := rows.Scan(notif.ID_Notif, notif.Messages, notif.ID_Receiver, notif.Types, notif.States, notif.IdUser, notif.ID_Group); err != nil {
+		if err := rows.Scan(&notif.ID_Notif, &notif.Messages, &notif.ID_Receiver, &notif.Types, &notif.States, &notif.IdUser, &notif.ID_Group); err != nil {
 			fmt.Println("GetAllUser : Error scanning row: ", err)
 			continue
 		}
