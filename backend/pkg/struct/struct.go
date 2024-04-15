@@ -65,5 +65,6 @@ type Notif struct {
 	Types    string
 	States   string `json:"States"`
 	Sender   string
+	AvatarSender string
 	ID_Group int
 }

@@ -10,6 +10,7 @@ import (
 	"main/pkg/untils/follow"
 	"main/pkg/untils/home"
 	"main/pkg/untils/login"
+	"main/pkg/untils/notification"
 	"main/pkg/untils/post"
 	"main/pkg/untils/register"
 	"net/http"
@@ -41,7 +42,7 @@ func handlerFunction() {
 	http.Handle("/Follow", MiddlewareCors(follow.FollowHandler))
 	http.Handle("/Event", MiddlewareCors(event.Event))
 	http.Handle("/Decon", MiddlewareCors(decon.Decon))
-	http.Handle("/Invitation", MiddlewareCors(follow.Invitation))
+	http.Handle("/Invitation", MiddlewareCors(notification.Invitation))
 }
 
 func main() {

@@ -321,7 +321,7 @@
                                         <a href="#"
                                             class="relative flex items-center gap-3 p-2 duration-200 rounded-xl pr-10 hover:bg-secondery dark:hover:bg-white/10">
                                             <div class="relative w-12 h-12 shrink-0">
-                                                <img :src='"/src/assets/images/avatars/avatar-2.jpg"' alt=""
+                                                <img :src='"/src/assets/images/avatars/"+notif.AvatarSender' alt=""
                                                     class="object-cover w-full h-full rounded-full" />
                                             </div>
                                             <div class="flex-1">
@@ -332,7 +332,7 @@
                                                     2 hours ago
                                                 </div>
                                             </div>
-                                            <button @click="Invitation('Accept',notif.ID_Notif,$event)" type="button" class="button text-white bg-primary">
+                                            <button @click="Invitation('true',notif.ID_Notif,$event)" type="button" class="button text-white bg-primary">
                                                 Accept
                                             </button>
                                             <button @click="Invitation('Decline',notif.ID_Notif,$event)" type="button" class="button text-white bg-primary">

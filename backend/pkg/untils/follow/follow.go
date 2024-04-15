@@ -28,8 +28,11 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	}else{
 		operation = "pending"
 	}
+	//tempFollowing := sqlite.GetMyFollowing(myaccount)
+
+
 	sqlite.SetFollowing(myaccount, following, operation, "person", 0)
-	sqlite.SetNotif("following you", following.Nickname, myaccount.Nickname, operation, "person",0)
+	sqlite.SetNotif("following you", following.Nickname, myaccount.Nickname, operation, "person", myaccount.Avatar,0)
 	var data Struct.AllData
 	var Allfollower = sqlite.GetMyFollowing(myaccount)
 	var Allnotif = sqlite.GetMyNotif(myaccount.Nickname)
@@ -42,26 +45,4 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	responses.SendResponsesHome(w,r,"responses succesfully",data)
 })
 
-var Invitation = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	var myaccount = session.Myaccount(w, r)
-	//si le compte n'existe pas quitte
-	if myaccount.Error {
-		return
-	}
-	var notif Struct.Notif
-	var err = json.NewDecoder(r.Body).Decode(&notif)
-	if err != nil {
-		fmt.Println("Follow : erreur de decodage json", err)
-		return
-	}
-	sqlite.UpdateNotif(notif)
-	if notif.States == "decline"{
-		var Sender = sqlite.GetUser(sqlite.GetNotifById(notif.ID_Notif).Sender)
-		var Receiver = sqlite.GetUser(sqlite.GetNotifById(notif.ID_Notif).Receiver)
-		var follow  = sqlite.GetFollowByUsers(Sender.Id, Receiver.Id)
-		sqlite.DeleteFollow(follow.ID_Follow)
-	}else{
-		
-	}
-	responses.SendResponsesHome(w,r,"responses succesfully", nil)
-})
+func IsAlreadyFollowing(Allfollowing []Struct.Follow, User Struct.User, Sender Struct.User){}

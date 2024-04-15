@@ -5,6 +5,7 @@ CREATE TABLE Notifications(
     Types TEXT NOT NULL,
     States TEXT NOT NULL,
     Sender Text NOT NULL,
+    AvatarSender TEXT,
     ID_Group INTEGER NOT NULL,
     FOREIGN KEY (Sender) REFERENCES User(Nickname),
     FOREIGN KEY (Receiver) REFERENCES User(Nickname),
