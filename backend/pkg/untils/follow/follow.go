@@ -22,17 +22,18 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 		fmt.Println("Follow : erreur de decodage json", err)
 		return
 	}
-	var operation string;
-	if following.Privacy == "public"{
+	var operation, msg string
+	if following.Privacy == "public" {
 		operation = "true"
-	}else{
+		msg = "started following you"
+	} else {
 		operation = "pending"
+		msg = "want to follow you"
 	}
 	//tempFollowing := sqlite.GetMyFollowing(myaccount)
 
-
 	sqlite.SetFollowing(myaccount, following, operation, "person", 0)
-	sqlite.SetNotif("following you", following.Nickname, myaccount.Nickname, operation, "person", myaccount.Avatar,0)
+	sqlite.SetNotif(msg, following.Nickname, myaccount.Nickname, operation, "person", myaccount.Avatar, 0)
 	var data Struct.AllData
 	var Allfollower = sqlite.GetMyFollowing(myaccount)
 	var Allnotif = sqlite.GetMyNotif(myaccount.Nickname)
@@ -40,9 +41,9 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	for _, v := range Allfollower {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
-	data.Allfollowing =followings
+	data.Allfollowing = followings
 	data.Allnotif = Allnotif
-	responses.SendResponsesHome(w,r,"responses succesfully",data)
+	responses.SendResponsesHome(w, r, "responses succesfully", data)
 })
 
-func IsAlreadyFollowing(Allfollowing []Struct.Follow, User Struct.User, Sender Struct.User){}
+func IsAlreadyFollowing(Allfollowing []Struct.Follow, User Struct.User, Sender Struct.User) {}

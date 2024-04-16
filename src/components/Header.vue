@@ -332,10 +332,10 @@
                                                     2 hours ago
                                                 </div>
                                             </div>
-                                            <button @click="Invitation('true',notif.ID_Notif,$event)" type="button" class="button text-white bg-primary">
+                                            <button v-if="notif.States == 'pending'" @click="Invitation('true',notif.ID_Notif,$event)" type="button" class="button text-white bg-primary">
                                                 Accept
                                             </button>
-                                            <button @click="Invitation('Decline',notif.ID_Notif,$event)" type="button" class="button text-white bg-primary">
+                                            <button v-if="notif.States == 'pending'" @click="Invitation('Decline',notif.ID_Notif,$event)" type="button" class="button text-white bg-primary">
                                                 Decline
                                             </button>
                                         </a>
@@ -752,7 +752,7 @@
 </template>
 
 <script>
-export default {
+export default {//
     data() {
         return {
             Myaccount: {},

@@ -11,6 +11,6 @@ func SendResponsesHome(w http.ResponseWriter, r *http.Request, msg string ,data 
 	msgFetch.Types = "Success"
 	msgFetch.Msg = msg
 	msgFetch.Data = data
-	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON
+	w.Header().Set("Content-Type", "application/json") // Définir le type de contenu de la réponse comme JSON 
 	json.NewEncoder(w).Encode(msgFetch)
 }

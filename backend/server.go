@@ -28,7 +28,7 @@ func MiddlewareCors(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		// Autoriser l'envoi de cookies
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
-		// Poursuivre le traitement de la demande
+		// Poursuivre le traitement de la demande 
 		next.ServeHTTP(w, r)
 	})
 }

@@ -108,9 +108,7 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 	actualiseSession()
 	_, exists := SessionUser[session.Value]
 	if !exists {
-		fmt.Println("Le cookie de session n'est pas valide")
 		Errors.SendError(w, r, "Le cookie de session n'est pas valide")
-
 		user := Struct.User{}
 		user.Error = true
 		return user

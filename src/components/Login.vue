@@ -258,9 +258,6 @@ export default {
         .catch((error) => console.log("err : ", error));
     },
   },
-  mounted() {
-    //this.init();
-  },
 };
 </script>
 

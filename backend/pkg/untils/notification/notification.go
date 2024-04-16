@@ -22,17 +22,19 @@ var Invitation = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Follow : erreur de decodage json", err)
 		return
 	}
-	sqlite.UpdateNotif(notif)
 	var Sender = sqlite.GetUser(sqlite.GetNotifById(notif.ID_Notif).Sender)
 	var Receiver = sqlite.GetUser(sqlite.GetNotifById(notif.ID_Notif).Receiver)
 	var follow = sqlite.GetFollowByUsers(Sender.Id, Receiver.Id)
-	fmt.Println("le follow : ", follow)
 
 	if notif.States == "Decline" {
 		sqlite.DeleteFollow(follow.ID_Follow)
+		sqlite.DeleteNotif(notif.ID_Notif)
 	} else {
 		follow.Operation = "true"
 		sqlite.UpdateFollow(follow)
+		notif.States = "true"
+		notif.Messages = "started following you"
+		sqlite.UpdateNotif(notif)
 	}
 	responses.SendResponsesHome(w, r, "responses succesfully", nil)
 })

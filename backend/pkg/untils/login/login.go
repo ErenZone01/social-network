@@ -41,7 +41,16 @@ func Login(w http.ResponseWriter, r *http.Request) (bool, Struct.User) {
 	if !err {
 		return err, user
 	}
-	session.Createsession(w, user)
+	var state = session.Createsession(w, user)
+	if !state {
+		SessionValue := session.Sessions[user.Id]
+		//supprimer la session des maps locals
+		delete(session.SessionUser, SessionValue)
+		delete(session.Sessions, user.Id)
+		//supprimer la session de la BD
+		sqlite.DeleteSession(SessionValue)
+		session.Createsession(w,user)
+	}
 	user.Actif = "true"
 	sqlite.UpdateUser(user)
 	return err, user
