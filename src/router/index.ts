@@ -2,8 +2,6 @@ import Home from '@/components/Home.vue'
 import Login from '@/components/Login.vue'
 import Register from '@/components/Register.vue'
 import Timeline from '@/components/Timeline.vue'
-import Messages from '@/components/Messages.vue'
-
 
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -34,12 +32,7 @@ const router = createRouter({
       path: '/Timeline',
       name: 'Timeline',
       component:Timeline
-    },
-    {
-      path: '/Messages',
-      name: 'Messages',
-      component: Messages
-    },
+    }
 
   ]
 })

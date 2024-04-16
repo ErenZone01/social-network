@@ -983,8 +983,6 @@ import Headers from './Header.vue'
 import Posts from './Post.vue'
 import Chat from './Chat.vue'
 import Notif from './Notification.vue'
-
-
 </script>
 
 <script lang="js">
