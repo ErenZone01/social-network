@@ -103,16 +103,19 @@
             </div>
             <!-- Date Of Birth -->
             <div>
-              <label for="email" class="">Date Of Birth</label>
+              <label for="birthdate" class="">Date Of Birth</label>
               <div class="mt-2.5">
                 <input
-                  id="text"
-                  name="birth"
-                  type="text"
-                  placeholder="date of birth"
+                  id="birthdate"
+                  name="birthdate"
+                  type="date"
+                  placeholder="Date of Birth"
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
+                  @input="showCalendar = true"
                 />
+                <!-- Afficher le calendrier si showCalendar est true -->
+                <calendar v-if="showCalendar" @selectDate="setBirthdateAndHideCalendar" />
               </div>
             </div>
             <!-- email -->
@@ -132,7 +135,7 @@
 
             <!-- password -->
             <div>
-              <label for="email" class="">Password</label>
+              <label for="password" class="">Password</label>
               <div class="mt-2.5">
                 <input
                   id="password"
@@ -144,14 +147,12 @@
                 />
               </div>
             </div>
-            <!-- avatar -->
-
             <!-- Confirm Password -->
             <div>
-              <label for="email" class="">Confirm Password</label>
+              <label for="confpassword" class="">Confirm Password</label>
               <div class="mt-2.5">
                 <input
-                  id="password"
+                  id="confpassword"
                   name="confpassword"
                   type="password"
                   required
@@ -161,10 +162,10 @@
               </div>
             </div>
             <div class="col-span-2">
-              <label for="email" class="">About</label>
+              <label for="about" class="">About</label>
               <div class="mt-2.5">
                 <input
-                  id="email"
+                  id="about"
                   name="about"
                   type="text"
                   placeholder="About"
@@ -189,120 +190,37 @@
     </div>
     <!-- image slider -->
     <div class="flex-1 relative bg-primary max-md:hidden">
-      <div
-        class="relative w-full h-full"
-        tabindex="-1"
-        uk-slideshow="animation: slide; autoplay: true"
-      >
-        <ul class="uk-slideshow-items w-full h-full">
-          <li class="w-full">
-            <img
-              src="/src/assets/images/post/img-3.jpg"
-              alt=""
-              class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left"
-            />
-            <div
-              class="absolute bottom-0 w-full uk-tr ansition-slide-bottom-small z-10"
-            >
-              <div
-                class="max-w-xl w-full mx-auto pb-32 px-5 z-30 relative"
-                uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true"
-              >
-                <img
-                  class="w-12"
-                  src="/src/assets/images/logo-icon.png"
-                  alt="Socialite html template"
-                />
-                <h4
-                  class="!text-white text-2xl font-semibold mt-7"
-                  uk-slideshow-parallax="y: 600,0,0"
-                >
-                  Connect With Friends
-                </h4>
-                <p
-                  class="!text-white text-lg mt-7 leading-8"
-                  uk-slideshow-parallax="y: 800,0,0;"
-                >
-                  This phrase is more casual and playful. It suggests that you
-                  are keeping your friends updated on what’s happening in your
-                  life.
-                </p>
-              </div>
-            </div>
-            <div
-              class="w-full h-96 bg-gradient-to-t from-black absolute bottom-0 left-0"
-            ></div>
-          </li>
-          <li class="w-full">
-            <img
-              src="/src/assets/images/post/img-2.jpg"
-              alt=""
-              class="w-full h-full object-cover uk-animation-kenburns uk-animation-reverse uk-transform-origin-center-left"
-            />
-            <div
-              class="absolute bottom-0 w-full uk-tr ansition-slide-bottom-small z-10"
-            >
-              <div
-                class="max-w-xl w-full mx-auto pb-32 px-5 z-30 relative"
-                uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 100 ;repeat: true"
-              >
-                <img
-                  class="w-12"
-                  src="/src/assets/images/logo-icon.png"
-                  alt="Socialite html template"
-                />
-                <h4
-                  class="!text-white text-2xl font-semibold mt-7"
-                  uk-slideshow-parallax="y: 800,0,0"
-                >
-                  Connect With Friends
-                </h4>
-                <p
-                  class="!text-white text-lg mt-7 leading-8"
-                  uk-slideshow-parallax="y: 800,0,0;"
-                >
-                  This phrase is more casual and playful. It suggests that you
-                  are keeping your friends updated on what’s happening in your
-                  life.
-                </p>
-              </div>
-            </div>
-            <div
-              class="w-full h-96 bg-gradient-to-t from-black absolute bottom-0 left-0"
-            ></div>
-          </li>
-        </ul>
-        <!-- slide nav -->
-        <div class="flex justify-center">
-          <ul
-            class="inline-flex flex-wrap justify-center absolute bottom-8 gap-1.5 uk-dotnav uk-slideshow-nav"
-          ></ul>
-        </div>
-      </div>
+      <!-- Contenu de votre image slider -->
     </div>
   </div>
 </template>
-  <style scoped></style>
-  <script>
+
+<script>
+import Calendar from './Calendar.vue'; // Importez votre composant de calendrier
+
 export default {
+  components: {
+    Calendar
+  },
   methods: {
     async Register(e) {
       e.preventDefault();
+      // Récupérer les données du formulaire
       let email = document.getElementsByName("email")[0].value;
       let password = document.getElementsByName("password")[0].value;
       let firstName = document.getElementsByName("firstname")[0].value;
       let lastName = document.getElementsByName("lastname")[0].value;
       let nickname = document.getElementsByName("nickname")[0].value;
-      let birth = document.getElementsByName("birth")[0].value;
+      // Récupérer la date de naissance à partir du champ de date de naissance
+      let birthdate = document.getElementsByName("birthdate")[0].value;
+      // Récupérer les autres données du formulaire
       let fileInput = document.getElementsByName("Avatar")[0];
-      let avatar = ""; // Initialiser le nom de l'avatar à une chaîne vide par défaut
-      let avatarData = null; // Initialiser les données de l'avatar à null par défaut
+      let avatar = ""; 
+      let avatarData = null; 
       let byteArrayList = null;
       if (fileInput.files.length > 0) {
-        // Vérifier si un fichier a été choisi
-        avatar = fileInput.files[0].name; // Nom du fichier
-        avatarData = await fileInput.files[0].arrayBuffer(); // Données de l'image
-        // Convertir les données de l'image en tableau de bytes
+        avatar = fileInput.files[0].name; 
+        avatarData = await fileInput.files[0].arrayBuffer(); 
         let byteArray = new Uint8Array(avatarData);
         byteArrayList = Array.from(byteArray);
       }
@@ -313,7 +231,7 @@ export default {
         Nickname: nickname,
         FirstName: firstName,
         Lastname: lastName,
-        Birth: birth,
+        Birthdate: birthdate,
         Avatar: avatar,
         AvatarData: byteArrayList,
         About: about,
@@ -337,9 +255,20 @@ export default {
         })
         .catch((error) => console.log("err : ", error));
     },
+    setBirthdateAndHideCalendar(selectedDate) {
+      // Mettre à jour la date de naissance avec la date sélectionnée et masquer le calendrier
+      document.getElementsByName("birthdate")[0].value = selectedDate;
+      this.showCalendar = false;
+    }
   },
-  mounted() {
-    //this.init();
-  },
+  data() {
+    return {
+      showCalendar: false // Initialiser la propriété pour afficher/masquer le calendrier
+    };
+  }
 };
 </script>
+
+<style scoped>
+/* Vos styles CSS ici */
+</style>
