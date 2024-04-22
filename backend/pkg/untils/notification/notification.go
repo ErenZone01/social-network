@@ -36,5 +36,14 @@ var Invitation = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		notif.Messages = "started following you"
 		sqlite.UpdateNotif(notif)
 	}
-	responses.SendResponsesHome(w, r, "responses succesfully", nil)
+	var data Struct.AllData;
+	var follower []Struct.User
+	var newNotif = sqlite.GetMyNotif(myaccount.Nickname)
+	var newFollower =sqlite.GetMyFollowers(myaccount)
+	for _, v := range newFollower {
+		follower = append(follower, sqlite.GetUserById(v.ID_Receiver))
+	}
+	data.Allnotif =newNotif
+	data.Allfollowers = follower
+	responses.SendResponsesHome(w, r, "responses succesfully", data)
 })

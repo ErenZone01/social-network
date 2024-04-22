@@ -12,6 +12,7 @@ import (
 	"main/pkg/untils/login"
 	"main/pkg/untils/notification"
 	"main/pkg/untils/post"
+	"main/pkg/untils/profil"
 	"main/pkg/untils/register"
 	"net/http"
 )
@@ -28,7 +29,7 @@ func MiddlewareCors(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		// Autoriser l'envoi de cookies
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
-		// Poursuivre le traitement de la demande 
+		// Poursuivre le traitement de la demande
 		next.ServeHTTP(w, r)
 	})
 }
@@ -43,6 +44,7 @@ func handlerFunction() {
 	http.Handle("/Event", MiddlewareCors(event.Event))
 	http.Handle("/Decon", MiddlewareCors(decon.Decon))
 	http.Handle("/Invitation", MiddlewareCors(notification.Invitation))
+	http.Handle("/Profil", MiddlewareCors(profil.Profil))
 }
 
 func main() {

@@ -232,7 +232,7 @@
 <script>
 export default {
   methods: {
-    Login(e) {
+    Login(e) {//
       e.preventDefault();
       let email = document.getElementsByName("email")[0].value;
       let password = document.getElementsByName("password")[0].value;

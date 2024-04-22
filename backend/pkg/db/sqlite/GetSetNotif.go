@@ -58,7 +58,7 @@ func GetNotifById(Id int) Struct.Notif {
 }
 func DeleteNotif(ID_Notif int) {
 	_, err := DB.Exec(`
-DELETE FROM Notifications WHERE ID_Notif = ?
+DELETE FROM Notifications WHERE ID_Notification = ?
 `, ID_Notif)
 	if err != nil {
 		fmt.Println(err)
