@@ -281,7 +281,7 @@
       >
         <div class="box p-5 px-6">
           <div class="flex items-ce justify-between text-black dark:text-white">
-            <h3 class="font-bold text-lg">Intro</h3>
+            <h3 class="font-bold text-lg">Info</h3>
             <a href="#" class="text-sm text-blue-500">Edit</a>
           </div>
 
@@ -303,8 +303,11 @@
               </svg>
               <div>
                 Flowwed By
-                <span class="font-semibold text-black dark:text-white">
-                  3,240 People
+                <span
+                  v-if="sharedData.MyFollowers"
+                  class="font-semibold text-black dark:text-white"
+                >
+                  {{ sharedData.MyFollowers.length }} People(s)
                 </span>
               </div>
             </li>
@@ -333,6 +336,58 @@
             <li class="flex items-center gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="h-6 w-6"
+              >
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M3 20v-2a4 4 0 014-4h10a4 4 0 014 4v2H3z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+
+              <div>
+                Username
+                <span class="font-semibold text-black dark:text-white">
+                  {{ sharedData.Myuser.Nickname }}
+                </span>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M12 1c-3.31 0-6 2.69-6 6 0 1.66.68 3.17 1.76 4.24C6.83 12.8 12 19 12 19s5.17-6.2 4.24-7.76A5.96 5.96 0 0 1 18 7c0-3.31-2.69-6-6-6zM9 16c-.83 0-1.5-.67-1.5-1.5S8.17 13 9 13s1.5.67 1.5 1.5S9.83 16 9 16zm6 0c-.83 0-1.5-.67-1.5-1.5S14.17 13 15 13s1.5.67 1.5 1.5S15.83 16 15 16zm-1-6v-2m-2 2v-2m4 2v-2"
+                />
+              </svg>
+
+              <div>
+                Birth
+                <span class="font-semibold text-black dark:text-white">
+                  {{ sharedData.Myuser.Birth }}
+                </span>
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -347,9 +402,9 @@
               </svg>
 
               <div>
-                Username
+                About
                 <span class="font-semibold text-black dark:text-white">
-                  {{ sharedData.Myuser.Nickname }}
+                  {{ sharedData.Myuser.About }}
                 </span>
               </div>
             </li>

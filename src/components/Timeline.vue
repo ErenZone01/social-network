@@ -44,7 +44,9 @@
                   class="relative overflow-hidden rounded-full md:border-[6px] border-gray-100 shrink-0 dark:border-slate-900 shadow"
                 >
                   <img
-                    :src="'/src/assets/images/avatars/' + sharedData.Myuser.Avatar"
+                    :src="
+                      '/src/assets/images/avatars/' + sharedData.Myuser.Avatar
+                    "
                     alt=""
                     class="h-full w-full object-cover inset-0"
                   />
@@ -65,16 +67,9 @@
               <h3
                 class="md:text-3xl text-base font-bold text-black dark:text-white"
               >
-                {{ sharedData.Myuser.Firstname }} {{ sharedData.Myuser.Lastname }}
+                {{ sharedData.Myuser.Firstname }}
+                {{ sharedData.Myuser.Lastname }}
               </h3>
-
-              <p
-                class="mt-2 max-w-xl text-sm md:font-normal font-light text-center hidden"
-              >
-                I love beauty and emotion. 🥰 I’m passionate about photography
-                and learning. 📚 I explore genres and styles. 🌈 I think
-                photography is storytelling. 😊
-              </p>
             </div>
           </div>
 
@@ -136,7 +131,10 @@
                   name: 'TimelineProfile',
                   params: { userID: $route.params.userID },
                 }"
-                class="inline-block py-3 leading-8 px-3.5 border-b-2 border-blue-600 text-blue-600"
+                class="inline-block py-3 leading-8 px-3.5 border-b-2 text-blue-600"
+                :class="{
+                  'border-blue-600': $route.name === 'TimelineProfile',
+                }"
                 >Timeline</router-link
               >
 
@@ -146,11 +144,11 @@
                   name: 'TimelineFriends',
                   params: { userID: $route.params.userID },
                 }"
-                class="inline-block py-3 leading-8 px-3.5"
-                >Friend
-                <span class="text-xs pl-2 font-normal lg:inline-block hidden"
-                  >2,680</span
-                ></router-link
+                class="inline-block py-3 leading-8 px-3.5 border-b-2 text-blue-600"
+                :class="{
+                  'border-blue-600': $route.name === 'TimelineFriends',
+                }"
+                >Friend</router-link
               >
 
               <!-- Lien pour les groupes -->
@@ -159,7 +157,8 @@
                   name: 'TimelineGroups',
                   params: { userID: $route.params.userID },
                 }"
-                class="inline-block py-3 leading-8 px-3.5"
+                class="inline-block py-3 leading-8 px-3.5 border-b-2 text-blue-600"
+                :class="{ 'border-blue-600': $route.name === 'TimelineGroups' }"
                 >Group</router-link
               >
             </nav>
