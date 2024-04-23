@@ -35,10 +35,10 @@
               <!-- <div class="side-list-info">125k Following</div> -->
             </div>
             <button
-              @click="Follow(following, $event)"
+              @click="UnFollow(following, $event)"
               class="button bg-primary-soft text-primary dark:text-white"
             >
-              follow
+              unfollow
             </button>
           </div>
 

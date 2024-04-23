@@ -7,6 +7,7 @@ import (
 	"main/pkg/session"
 	Struct "main/pkg/struct"
 	responses "main/pkg/untils/Responses"
+	"main/pkg/untils/home"
 	"net/http"
 )
 
@@ -41,6 +42,7 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	for _, v := range Allfollower {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
+	data.Alluser=home.UserCouldBeFollow(myaccount,sqlite.GetAllUser(), followings)
 	data.Allfollowing = followings
 	data.Allnotif = Allnotif
 	responses.SendResponsesHome(w, r, "responses succesfully", data)

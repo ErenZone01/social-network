@@ -31,7 +31,7 @@ var Profil = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	var followers []Struct.User
 	var followings []Struct.User
 	for _, v := range Allfollower {
-		followers = append(followers, sqlite.GetUserById(v.ID_Receiver))
+		followers = append(followers, sqlite.GetUserById(v.ID_User))
 	}
 	for _, v := range Allfollowing {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))

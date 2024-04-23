@@ -95,7 +95,8 @@ export default {
                 })
                 .then((responses) => responses.json())
                 .then((response) => {
-                    console.log("Operation is succes")
+                    console.log("Follow is succes");
+                    sharedData.AllUsers = response.Data.Alluser
                     sharedData.Allnotif = response.Data.Allnotif;
                     sharedData.MyFollowings = response.Data.Allfollowing;
                     // Utilisation de this.allUsers pour faire référence à la propriété data
@@ -123,6 +124,22 @@ export default {
                 .catch((error) => {
                     console.log("error lors de l'invitation :  ", error);
                 });
+        },
+        UnFollow(user, event) {
+            event.preventDefault();
+            fetch("http://localhost:8080/UnFollow", {
+                    method: "POST",
+                    body: JSON.stringify(user),
+                    headers: { "Content-type": "Application/Json" },
+                    credentials: "include",
+                })
+                .then((responses) => responses.json())
+                .then((response) => {
+                    console.log("Unfollow is success")
+                    sharedData.MyFollowings = response.Data;
+                    // Utilisation de this.allUsers pour faire référence à la propriété data
+                })
+                .catch((err) => console.log(err));
         },
     },
 };

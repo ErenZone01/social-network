@@ -28,11 +28,33 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	for _, v := range Allfollowing {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
-	data.Alluser = Alluser
+	data.Alluser = UserCouldBeFollow(user,Alluser, followings)
 	data.Allpost = Allpost
 	data.Allfollowers = followers
 	data.Allfollowing = followings
 	data.Allnotif = Allnotif
 	data.Myaccount = user
-	responses.SendResponsesHome(w, r,"response succesfully", data)
+	responses.SendResponsesHome(w, r, "response succesfully", data)
 })
+
+func UserCouldBeFollow(myaccount Struct.User, Alluser []Struct.User, Followings []Struct.User) []Struct.User {
+	var newAlluser []Struct.User
+	var actif = true
+	for _, v := range Alluser {
+		if v.Id == myaccount.Id {
+			continue
+		}
+		for _, v2 := range Followings {
+			if v.Id == v2.Id {
+				actif = false
+				break
+			}
+		}
+		if actif {
+			newAlluser = append(newAlluser, v)
+		} else {
+			actif = true
+		}
+	}
+	return newAlluser
+}
