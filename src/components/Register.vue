@@ -108,7 +108,7 @@
                 <input
                   id="text"
                   name="birth"
-                  type="text"
+                  type="date"
                   placeholder="date of birth"
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
@@ -124,8 +124,8 @@
                   name="email"
                   type="email"
                   placeholder="Email"
-                  required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
+                  required
                 />
               </div>
             </div>
