@@ -71,6 +71,7 @@
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
+                <span id="firstname-error" class="text-red-500"></span>
               </div>
             </div>
             <!-- Last name -->
@@ -85,6 +86,8 @@
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
+                <span id="lasttname-error" class="text-red-500"></span>
+
               </div>
             </div>
             <!-- Nickname -->
@@ -99,6 +102,8 @@
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
+                <span id="email-error" class="text-red-500"></span>
+
               </div>
             </div>
             <!-- Date Of Birth -->
@@ -113,6 +118,8 @@
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
+                <span id="birth-error" class="text-red-500"></span>
+
               </div>
             </div>
             <!-- email -->
@@ -289,11 +296,39 @@ export default {
     async Register(e) {
       e.preventDefault();
       let email = document.getElementsByName("email")[0].value;
+      let emailError = document.getElementById("email-error");
+if (!email) {
+  emailError.textContent = "Please enter your first name.";
+  return;
+} else {
+  emailError.textContent = "";
+}
       let password = document.getElementsByName("password")[0].value;
       let firstName = document.getElementsByName("firstname")[0].value;
+let firstNameError = document.getElementById("firstname-error");
+if (!firstName) {
+  firstNameError.textContent = "Please enter your first name.";
+  return;
+} else {
+  firstNameError.textContent = "";
+}
       let lastName = document.getElementsByName("lastname")[0].value;
+      let lastNameError = document.getElementById("lasttname-error");
+if (!lastName) {
+  lastNameError.textContent = "Please enter your last name.";
+  return;
+} else {
+  lastNameError.textContent = "";
+}
       let nickname = document.getElementsByName("nickname")[0].value;
       let birth = document.getElementsByName("birth")[0].value;
+      let birthError = document.getElementById("birth-error");
+if (!birth) {
+  birthError.textContent = "Please enter your birth of date.";
+  return;
+} else {
+  birthError.textContent = "";
+}
       let fileInput = document.getElementsByName("Avatar")[0];
       let avatar = ""; // Initialiser le nom de l'avatar à une chaîne vide par défaut
       let avatarData = null; // Initialiser les données de l'avatar à null par défaut
