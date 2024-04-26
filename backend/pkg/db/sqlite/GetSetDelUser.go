@@ -27,7 +27,6 @@ func GetUserById(Id int) Struct.User {
 	return user
 }
 
-
 func CreateNewUser(user Struct.User) {
 	query := `INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES (?,?,?,?,?,?,?,?,?)`
 	//Inserer des utilisateurs dans notre table User

@@ -34,6 +34,7 @@ func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	sessionMutex.Lock()
 	userID_s := sqlite.GetUser(users.Email)
 	userID := userID_s.Id
+	fmt.Println("idddd", userID)
 	actualiseSession()
 	_, exists := Sessions[userID]
 	if exists {

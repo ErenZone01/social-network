@@ -1,6 +1,7 @@
 package home
 
 import (
+	"fmt"
 	"main/pkg/db/sqlite"
 	"main/pkg/session"
 	Struct "main/pkg/struct"
@@ -17,6 +18,7 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	var data Struct.AllData
 	var Alluser = sqlite.GetAllUser()
 	var Allpost = sqlite.GetAllPost()
+	fmt.Println("allpost", Allpost)
 	var Allfollower = sqlite.GetMyFollowers(user)
 	var Allfollowing = sqlite.GetMyFollowing(user)
 	var Allnotif = sqlite.GetMyNotif(user.Nickname)
@@ -34,5 +36,5 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	data.Allfollowing = followings
 	data.Allnotif = Allnotif
 	data.Myaccount = user
-	responses.SendResponsesHome(w, r,"response succesfully", data)
+	responses.SendResponsesHome(w, r, "response succesfully", data)
 })
