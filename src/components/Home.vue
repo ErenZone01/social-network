@@ -1061,8 +1061,13 @@
                 >
                   <router-link v-if="user.ID" :to="{name : 'TimelineProfile', params:{userID : user.ID}}"
                     ><a>
-                      <img
+                      <img v-if="user.Avatar != ''"
                         :src="'/src/assets/images/avatars/' + user.Avatar"
+                        alt=""
+                        class="side-list-image rounded-full"
+                      />
+                      <img v-else
+                        :src="'/src/assets/images/avatars/Avatar.webp'"
                         alt=""
                         class="side-list-image rounded-full"
                       />
@@ -1229,91 +1234,6 @@
               </div>
             </div>
 
-            <!-- online friends -->
-            <div class="box p-5 px-6 border1 dark:bg-dark2">
-              <div class="flex justify-between text-black dark:text-white">
-                <h3 class="font-bold text-base">Online Friends</h3>
-                <button type="button">
-                  <ion-icon name="sync-outline" class="text-xl"></ion-icon>
-                </button>
-              </div>
-
-              <div class="grid grid-cols-6 gap-3 mt-4">
-                <a href="timeline.html">
-                  <div class="w-10 h-10 relative">
-                    <img
-                      src="/src/assets/images/avatars/avatar-2.jpg"
-                      alt=""
-                      class="w-full h-full absolute inset-0 rounded-full"
-                    />
-                    <div
-                      class="absolute bottom-0 right-0 m-0.5 bg-green-500 rounded-full w-2 h-2"
-                    ></div>
-                  </div>
-                </a>
-                <a href="timeline.html">
-                  <div class="w-10 h-10 relative">
-                    <img
-                      src="/src/assets/images/avatars/avatar-3.jpg"
-                      alt=""
-                      class="w-full h-full absolute inset-0 rounded-full"
-                    />
-                    <div
-                      class="absolute bottom-0 right-0 m-0.5 bg-green-500 rounded-full w-2 h-2"
-                    ></div>
-                  </div>
-                </a>
-                <a href="timeline.html">
-                  <div class="w-10 h-10 relative">
-                    <img
-                      src="/src/assets/images/avatars/avatar-4.jpg"
-                      alt=""
-                      class="w-full h-full absolute inset-0 rounded-full"
-                    />
-                    <div
-                      class="absolute bottom-0 right-0 m-0.5 bg-green-500 rounded-full w-2 h-2"
-                    ></div>
-                  </div>
-                </a>
-                <a href="timeline.html">
-                  <div class="w-10 h-10 relative">
-                    <img
-                      src="/src/assets/images/avatars/avatar-5.jpg"
-                      alt=""
-                      class="w-full h-full absolute inset-0 rounded-full"
-                    />
-                    <div
-                      class="absolute bottom-0 right-0 m-0.5 bg-green-500 rounded-full w-2 h-2"
-                    ></div>
-                  </div>
-                </a>
-                <a href="timeline.html">
-                  <div class="w-10 h-10 relative">
-                    <img
-                      src="/src/assets/images/avatars/avatar-6.jpg"
-                      alt=""
-                      class="w-full h-full absolute inset-0 rounded-full"
-                    />
-                    <div
-                      class="absolute bottom-0 right-0 m-0.5 bg-green-500 rounded-full w-2 h-2"
-                    ></div>
-                  </div>
-                </a>
-                <a href="timeline.html">
-                  <div class="w-10 h-10 relative">
-                    <img
-                      src="/src/assets/images/avatars/avatar-7.jpg"
-                      alt=""
-                      class="w-full h-full absolute inset-0 rounded-full"
-                    />
-                    <div
-                      class="absolute bottom-0 right-0 m-0.5 bg-green-500 rounded-full w-2 h-2"
-                    ></div>
-                  </div>
-                </a>
-              </div>
-            </div>
-
             <!-- Pro Members -->
             <div class="box p-5 px-6 border1 dark:bg-dark2">
               <div class="flex justify-between text-black dark:text-white">
@@ -1440,125 +1360,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- Trends -->
-            <div class="box p-5 px-6 border1 dark:bg-dark2">
-              <div class="flex justify-between text-black dark:text-white">
-                <h3 class="font-bold text-base">Trends for you</h3>
-                <button type="button">
-                  <ion-icon name="sync-outline" class="text-xl"></ion-icon>
-                </button>
-              </div>
-
-              <div
-                class="space-y-3.5 capitalize text-xs font-normal mt-5 mb-2 text-gray-600 dark:text-white/80"
-              >
-                <a href="#">
-                  <div class="flex items-center gap-3 p">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      class="w-5 h-5 -mt-2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"
-                      />
-                    </svg>
-                    <div class="flex-1">
-                      <h4
-                        class="font-semibold text-black dark:text-white text-sm"
-                      >
-                        artificial intelligence
-                      </h4>
-                      <div class="mt-0.5">1,245,62 post</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="#" class="block">
-                  <div class="flex items-center gap-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      class="w-5 h-5 -mt-2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"
-                      />
-                    </svg>
-                    <div class="flex-1">
-                      <h4
-                        class="font-semibold text-black dark:text-white text-sm"
-                      >
-                        Web developers
-                      </h4>
-                      <div class="mt-0.5">1,624 post</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="#" class="block">
-                  <div class="flex items-center gap-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      class="w-5 h-5 -mt-2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"
-                      />
-                    </svg>
-                    <div class="flex-1">
-                      <h4
-                        class="font-semibold text-black dark:text-white text-sm"
-                      >
-                        Ui Designers
-                      </h4>
-                      <div class="mt-0.5">820 post</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="#" class="block">
-                  <div class="flex items-center gap-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      class="w-5 h-5 -mt-2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"
-                      />
-                    </svg>
-                    <div class="flex-1">
-                      <h4
-                        class="font-semibold text-black dark:text-white text-sm"
-                      >
-                        affiliate marketing
-                      </h4>
-                      <div class="mt-0.5">480 post</div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1581,9 +1382,8 @@ import sharedData from '../assets/js/data.js';
 <script lang="js">
 import commonMixin from '../assets/js/untils.js';
 export default {
-  name: 'Friend',
+  name: 'Home',
   mixins: [commonMixin],
- 
   mounted() {
     this.GetData();
   },

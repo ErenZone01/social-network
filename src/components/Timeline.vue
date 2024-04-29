@@ -12,12 +12,22 @@
           <!-- cover -->
           <div class="relative overflow-hidden w-full lg:h-72 h-48">
             <img
-              v-if="sharedData.Myuser && sharedData.Myuser.Avatar"
-              :src="'/src/assets/images/avatars/' + sharedData.Myuser.Avatar"
+              v-if="
+                sharedData.MyuserProfile &&
+                sharedData.MyuserProfile.Avatar != ''
+              "
+              :src="
+                '/src/assets/images/avatars/' + sharedData.MyuserProfile.Avatar
+              "
               alt=""
               class="h-full w-full object-cover inset-0"
             />
-
+            <img
+              v-else
+              :src="'/src/assets/images/avatars/Avatar.webp'"
+              alt=""
+              class="h-full w-full object-cover inset-0"
+            />
             <!-- overly -->
             <div
               class="w-full bottom-0 absolute left-0 bg-gradient-to-t from-black/60 pt-20 z-10"
@@ -35,20 +45,31 @@
           </div>
 
           <!-- user info -->
-          <div class="p-3">
+          <div>
             <div
               class="flex flex-col justify-center md:items-center lg:-mt-48 -mt-28"
             >
-              <div class="relative lg:h-48 lg:w-48 w-28 h-28 mb-4 z-10">
+              <div class="flex justify-center relative lg:h-48 lg:w-48 w-28 h-28 mb-4 z-10">
                 <div
                   class="relative overflow-hidden rounded-full md:border-[6px] border-gray-100 shrink-0 dark:border-slate-900 shadow"
                 >
                   <img
+                    v-if="
+                      sharedData.MyuserProfile &&
+                      sharedData.MyuserProfile.Avatar != ''
+                    "
                     :src="
-                      '/src/assets/images/avatars/' + sharedData.Myuser.Avatar
+                      '/src/assets/images/avatars/' +
+                      sharedData.MyuserProfile.Avatar
                     "
                     alt=""
                     class="h-full w-full object-cover inset-0"
+                  />
+                  <img
+                    v-else
+                    :src="'/src/assets/images/avatars/Avatar.webp'"
+                    alt=""
+                    class="side-list-image rounded-full"
                   />
                 </div>
                 <button
@@ -63,13 +84,50 @@
                   ></ion-icon>
                 </button>
               </div>
-
-              <h3
-                class="md:text-3xl text-base font-bold text-black dark:text-white"
+              
+              <div >
+                <h3
+                  v-if="
+                    sharedData.MyuserProfile.Firstname &&
+                    sharedData.MyuserProfile.Lastname
+                  "
+                  class="md:text-3xl text-base font-bold text-black dark:text-white"
+                >
+                  {{ sharedData.MyuserProfile.Firstname }}
+                  {{ sharedData.MyuserProfile.Lastname }}
+                </h3>
+              </div>
+              <div
+                v-if="sharedData.MyuserProfile.ID == sharedData.Myaccount.ID"
               >
-                {{ sharedData.Myuser.Firstname }}
-                {{ sharedData.Myuser.Lastname }}
-              </h3>
+                Your account is :
+                <button
+                  @click="ChangePrivacy($event)"
+                  class="button bg-primary-soft text-primary dark:text-white"
+                >
+                  {{ sharedData.Myaccount.Privacy }}</button
+                >(click to change it)
+              </div>
+
+              <button
+                v-if="
+                  sharedData.MyuserProfile.ID != sharedData.Myaccount.ID &&
+                  IsMyAccountFollowed()
+                "
+                @click="UnFollow(sharedData.MyuserProfile, $event)"
+                class="button bg-primary-soft text-primary dark:text-white"
+              >
+                unfollow
+              </button>
+              <button
+                v-else-if="
+                  (sharedData.MyuserProfile.ID != sharedData.Myaccount.ID ) && !IsMyAccountFollowed()
+                "
+                @click="Follow(sharedData.MyuserProfile, $event)"
+                class="button bg-primary-soft text-primary dark:text-white"
+              >
+                follow
+              </button>
             </div>
           </div>
 
@@ -183,8 +241,16 @@ import { RouterLink } from "vue-router";
 import sharedData from '../assets/js/data.js';
 </script>
 
-<script lang="js">import commonMixin from '../assets/js/untils.js';
+<script lang="js">
+import commonMixin from '../assets/js/untils.js';
 export default {
-  name: 'Friend',
+  name: 'Timeline',
   mixins: [commonMixin],
+  async mounted(){ this.FetchCustomRef()},
+  watch: {
+    '$route'(to, from) {
+      // Appeler fetchData() lorsque la route change
+       this.FetchCustomRef();
+    }
+  },
 };</script>

@@ -5,10 +5,10 @@ CREATE TABLE User (
     Passwords TEXT NOT NULL,
     Firstname TEXT NOT NULL,
     Lastname TEXT NOT NULL,
-    Nickname TEXT NOT NULL UNIQUE,
+    Nickname TEXT,
     Birth TEXT NOT NULL,
-    Avatar  TEXT NOT NULL,
-    About   TEXT NOT NULL,
+    Avatar  TEXT,
+    About   TEXT,
     Privacy TEXT NOT NULL,
     Actif   TEXT
 );
@@ -31,6 +31,6 @@ INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar
 
 INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("user8@example.com", "user8", "password8", "David", "Martinez", "1980-09-08", "avatar8.jpg", "Description de l'utilisateur 8", "private");
 
-INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("user9@example.com", "user9", "password9", "Olivia", "Garcia", "1997-06-17", "avatar9.jpg", "Description de l'utilisateur 9", "public");
+INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("user9@example.com", "user9", "password9", "Olivia", "Garcia", "1997-06-17", "", "Description de l'utilisateur 9", "public");
 
-INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("user10@example.com", "user10", "password10", "James", "Rodriguez", "1987-12-04", "avatar10.jpg", "Description de l'utilisateur 10", "private");
+INSERT INTO User (Email, Nickname, Passwords, Firstname, Lastname, Birth, Avatar, About, Privacy) VALUES ("user10@example.com", "user10", "password10", "James", "Rodriguez", "1987-12-04", "", "Description de l'utilisateur 10", "private");

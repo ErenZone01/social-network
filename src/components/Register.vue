@@ -53,7 +53,7 @@
                   id="text"
                   name="Avatar"
                   type="file"
-                  accept=".jpeg, .jpg, .gif"
+                  accept=".jpeg, .jpg, .gif, .JPEG, .JPG, .GIF"
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
               </div>
@@ -291,7 +291,11 @@
 </template>
   <style scoped></style>
   <script>
+import commonMixin from "../assets/js/untils.js";
 export default {
+  name: "Timeline",
+  mixins: [commonMixin],
+
   methods: {
     async Register(e) {
       e.preventDefault();
@@ -373,8 +377,6 @@ if (!birth) {
         .catch((error) => console.log("err : ", error));
     },
   },
-  mounted() {
-    //this.init();
-  },
+  mounted(){this.CheckCookie()}
 };
 </script>

@@ -7,9 +7,11 @@ import (
 	Struct "main/pkg/struct"
 	responses "main/pkg/untils/Responses"
 	Errors "main/pkg/untils/error"
+	"math/rand"
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -40,13 +42,16 @@ func Register(w http.ResponseWriter, r *http.Request) (bool, string) {
 	}
 	fmt.Println("le user est : ", newUser)
 	Alluser := sqlite.GetAllUser()
-	var err, msg = UserUnique(Alluser, newUser.Email, newUser.Nickname)
+	var err, msg = UserUnique(Alluser, newUser.Email)
 	if !err {
 		fmt.Println("l'erreur est ici")
 		return err, msg
 	}
 	//AJouter l'utilisateur a la BD
-	newUser.Password =  CryptPassword(newUser.Password)
+	newUser.Password = CryptPassword(newUser.Password)
+	if len(newUser.Nickname) == 0 {
+		newUser.Nickname = generateRandomUsername(newUser.Firstname + newUser.Lastname)
+	}
 	sqlite.CreateNewUser(newUser)
 	if newUser.Avatar != "" {
 		SaveImage(newUser.Avatar, newUser.AvatarData)
@@ -62,13 +67,10 @@ func SaveImage(filename string, img []byte) {
 		return
 	}
 }
-func UserUnique(Alluser []Struct.User, Email string, Nickname string) (bool, string) {
+func UserUnique(Alluser []Struct.User, Email string) (bool, string) {
 	for _, v := range Alluser {
 		if v.Email == Email {
 			return false, "Email is already used"
-		}
-		if v.Nickname == Nickname {
-			return false, "Nickname is already used"
 		}
 	}
 	return true, "It's valid"
@@ -89,4 +91,18 @@ func CryptPassword(password string) string {
 	}
 	hash := string(Hashed)
 	return hash
+}
+
+// Fonction pour générer un nom d'utilisateur aléatoire avec un nombre aléatoire entre 0 et 99999
+func generateRandomUsername(baseUsername string) string {
+	// Initialiser le générateur de nombres aléatoires
+	rand.Seed(time.Now().UnixNano())
+
+	// Générer un nombre aléatoire entre 0 et 99999
+	randomNumber := rand.Intn(100000)
+
+	// Créer le nom d'utilisateur en ajoutant le nombre aléatoire à la base
+	randomUsername := fmt.Sprintf("%s%d", baseUsername, randomNumber)
+
+	return randomUsername
 }

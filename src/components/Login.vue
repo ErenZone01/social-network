@@ -228,11 +228,15 @@
       </div>
     </div>
   </div>
-</template>
+</template>Home
 <script>
+import commonMixin from "../assets/js/untils.js";
 export default {
+  name: "Timeline",
+  mixins: [commonMixin],
   methods: {
-    Login(e) {//
+    Login(e) {
+      //
       e.preventDefault();
       let email = document.getElementsByName("email")[0].value;
       let password = document.getElementsByName("password")[0].value;
@@ -249,8 +253,9 @@ export default {
           console.log(data);
           if (data.Types == "Error") {
             var err = document.getElementById("error");
-            err.textContent = data.Msg;err
-            err.style.color="red"
+            err.textContent = data.Msg;
+            err;
+            err.style.color = "red";
           } else {
             this.$router.push("/Home");
           }
@@ -258,6 +263,7 @@ export default {
         .catch((error) => console.log("err : ", error));
     },
   },
+  mounted(){this.CheckCookie()}
 };
 </script>
 

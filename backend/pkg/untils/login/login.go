@@ -32,7 +32,6 @@ func Login(w http.ResponseWriter, r *http.Request) (bool, Struct.User) {
 	errs := decoder.Decode(&newUser)
 	if errs != nil {
 		fmt.Println("Erreur de décodage JSON")
-		//http.Error(w, "Erreur de décodage JSON", http.StatusBadRequest)
 		return false, Struct.User{}
 	}
 	fmt.Println("user : ", newUser)
@@ -49,7 +48,7 @@ func Login(w http.ResponseWriter, r *http.Request) (bool, Struct.User) {
 		delete(session.Sessions, user.Id)
 		//supprimer la session de la BD
 		sqlite.DeleteSession(SessionValue)
-		session.Createsession(w,user)
+		session.Createsession(w, user)
 	}
 	user.Actif = "true"
 	sqlite.UpdateUser(user)

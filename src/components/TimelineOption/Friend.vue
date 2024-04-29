@@ -1,27 +1,35 @@
 <template>
-  <div class="flex space-x-4">
-    <div
-    class="flex-1"
-      uk-sticky="media: 1024; end: #js-oversized; offset: 80"
-    >
+  <div v-if="sharedData.MyuserProfile.Privacy == 'public' || sharedData.Myaccount.ID == sharedData.MyuserProfile.ID || IsMyAccountFollowed()" class="flex space-x-4">
+    <div class="flex-1" uk-sticky="media: 1024; end: #js-oversized; offset: 80">
       <div class="box p-5 px-6">
         <div
           class="flex items-baseline justify-between text-black dark:text-white"
         >
-          <h3 class="font-bold text-base">My Followings</h3>
+          <h3 class="font-bold text-base">Followings</h3>
         </div>
 
         <div class="side-list">
           <div
-          v-for="following in sharedData.MyFollowings" :key="following.ID"
+            v-for="following in sharedData.MyProfileFollowings"
+            :key="following.ID"
             class="side-list-item"
           >
             <router-link
               v-if="following.ID"
-              :to="{ name: 'TimelineProfile', params: { userID: following.ID } }"
+              :to="{
+                name: 'TimelineProfile',
+                params: { userID: following.ID },
+              }"
               ><a>
                 <img
+                  v-if="following.Avatar != ''"
                   :src="'/src/assets/images/avatars/' + following.Avatar"
+                  alt=""
+                  class="side-list-image rounded-full"
+                />
+                <img
+                  v-else
+                  :src="'/src/assets/images/avatars/Avatar.webp'"
                   alt=""
                   class="side-list-image rounded-full"
                 />
@@ -30,11 +38,11 @@
 
             <div class="flex-1">
               <a href="timeline.html">
-                <h4 class="side-list-title">{{ following.Nickname }}</h4>
+                <h4 class="side-list-title">{{ following.Firstname }}{{ following.Lastname }}</h4>
               </a>
               <!-- <div class="side-list-info">125k Following</div> -->
             </div>
-            <button
+            <button v-if="sharedData.Myaccount.ID == following.ID || sharedData.Myaccount.ID == sharedData.MyuserProfile.ID "
               @click="UnFollow(following, $event)"
               class="button bg-primary-soft text-primary dark:text-white"
             >
@@ -48,20 +56,18 @@
         </div>
       </div>
     </div>
-    <div
-    class="flex-1"
-      uk-sticky="media: 1024; end: #js-oversized; offset: 80"
-    >
+    <div class="flex-1" uk-sticky="media: 1024; end: #js-oversized; offset: 80">
       <div class="box p-5 px-6">
         <div
           class="flex items-baseline justify-between text-black dark:text-white"
         >
-          <h3 class="font-bold text-base">My Followers</h3>
+          <h3 class="font-bold text-base">Followers</h3>
         </div>
 
         <div class="side-list">
           <div
-          v-for="follower in sharedData.MyFollowers" :key="follower.ID"
+            v-for="follower in sharedData.MyProfileFollowers"
+            :key="follower.ID"
             class="side-list-item"
           >
             <router-link
@@ -69,7 +75,14 @@
               :to="{ name: 'TimelineProfile', params: { userID: follower.ID } }"
               ><a>
                 <img
+                  v-if="follower.Avatar != ''"
                   :src="'/src/assets/images/avatars/' + follower.Avatar"
+                  alt=""
+                  class="side-list-image rounded-full"
+                />
+                <img
+                  v-else
+                  :src="'/src/assets/images/avatars/Avatar.webp'"
                   alt=""
                   class="side-list-image rounded-full"
                 />
@@ -78,15 +91,29 @@
 
             <div class="flex-1">
               <a href="timeline.html">
-                <h4 class="side-list-title">{{ follower.Nickname }}</h4>
+                <h4 class="side-list-title">{{ follower.Firstname }}{{ follower.Lastname }}</h4>
               </a>
               <!-- <div class="side-list-info">125k follower</div> -->
             </div>
             <button
+              v-if="
+                sharedData.MyuserProfile.ID == sharedData.Myaccount.ID &&
+                !sharedData.AllId.includes(follower.ID)
+              "
               @click="Follow(follower, $event)"
               class="button bg-primary-soft text-primary dark:text-white"
             >
               follow
+            </button>
+            <button
+              v-if="
+                sharedData.MyuserProfile.ID == sharedData.Myaccount.ID &&
+                sharedData.AllId.includes(follower.ID)
+              "
+              @click="UnFollow(follower, $event)"
+              class="button bg-primary-soft text-primary dark:text-white"
+            >
+              unfollow
             </button>
           </div>
 
@@ -97,7 +124,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 

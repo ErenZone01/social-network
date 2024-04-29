@@ -5,8 +5,8 @@ import Timeline from "@/components/Timeline.vue";
 import Friend from "@/components/TimelineOption/Friend.vue";
 import Group from "@/components/TimelineOption/Group.vue";
 import Profile from "@/components/TimelineOption/Profile.vue";
-
 import { createRouter, createWebHistory } from "vue-router";
+import Groups from "../components/Group.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +14,7 @@ const router = createRouter({
     {
       // Redirection vers la route '/Login' par défaut
       path: "/",
-      redirect: "/Login",
+      redirect: "/Home",
     },
     {
       path: "/Login",
@@ -32,11 +32,16 @@ const router = createRouter({
       component: Home,
     },
     {
+      path: "/Group",
+      name: "Group",
+      component: Groups,
+    },
+    {
       path: "/Timeline/:userID",
       name: "Timeline",
       component: Timeline,
       children: [
-        { path: '', component: Profile }, // ProfileComponent est le composant par défaut
+        { path: "", component: Profile }, // ProfileComponent est le composant par défaut
         {
           path: "/Timeline/:userID/Friends",
           name: "TimelineFriends",

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">
+  <div v-if="sharedData.MyuserProfile.Privacy == 'public' || sharedData.Myaccount.ID == sharedData.MyuserProfile.ID || IsMyAccountFollowed()" class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">
     <!-- feed story -->
 
     <div class="flex-1 xl:space-y-6 space-y-3">
@@ -304,10 +304,16 @@
               <div>
                 Flowwed By
                 <span
-                  v-if="sharedData.MyFollowers"
+                  v-if="sharedData.MyProfileFollowers"
                   class="font-semibold text-black dark:text-white"
                 >
-                  {{ sharedData.MyFollowers.length }} People(s)
+                  {{ sharedData.MyProfileFollowers.length }} People(s)
+                </span>
+                <span
+                  v-else-if="!sharedData.MyProfileFollowers"
+                  class="font-semibold text-black dark:text-white"
+                >
+                  0 People(s)
                 </span>
               </div>
             </li>
@@ -329,7 +335,7 @@
               <div>
                 Email
                 <span class="font-semibold text-black dark:text-white">
-                  {{ sharedData.Myuser.Email }}
+                  {{ sharedData.MyuserProfile.Email }}
                 </span>
               </div>
             </li>
@@ -358,7 +364,7 @@
               <div>
                 Username
                 <span class="font-semibold text-black dark:text-white">
-                  {{ sharedData.Myuser.Nickname }}
+                  {{ sharedData.MyuserProfile.Nickname }}
                 </span>
               </div>
             </li>
@@ -381,7 +387,7 @@
               <div>
                 Birth
                 <span class="font-semibold text-black dark:text-white">
-                  {{ sharedData.Myuser.Birth }}
+                  {{ sharedData.MyuserProfile.Birth }}
                 </span>
               </div>
             </li>
@@ -404,7 +410,7 @@
               <div>
                 About
                 <span class="font-semibold text-black dark:text-white">
-                  {{ sharedData.Myuser.About }}
+                  {{ sharedData.MyuserProfile.About }}
                 </span>
               </div>
             </li>
@@ -423,7 +429,7 @@ export default {
   name: 'Friend',
   mixins: [commonMixin],
   async mounted() {
-        await this.FetchCustomRef();
+      await this.FetchCustomRef();
   }
 };
  </script>

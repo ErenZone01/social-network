@@ -1,6 +1,7 @@
 package sqlite
 
 import (
+	"database/sql"
 	"fmt"
 	Struct "main/pkg/struct"
 )
@@ -77,16 +78,21 @@ func GetFollowByUsers(Id_Sender, Id_Receiver int) (Struct.Follow) {
 	return follow
 }
 // GetFollowByUsers récupère les informations de suivi pour deux utilisateurs spécifiques.
-func GetFollowsByUsers(Id_Sender, Id_Receiver int) (Struct.Follow) {
-	var follow Struct.Follow
-	query := "SELECT * FROM Follow WHERE (ID_User = ? AND ID_Receiver = ?)"
-	err := DB.QueryRow(query, Id_Sender, Id_Receiver).Scan(&follow.ID_Follow, &follow.ID_User, &follow.ID_Receiver, &follow.Privacy, &follow.Operation, &follow.Types, &follow.ID_Group)
-	if err != nil {
-		fmt.Println("Erreur lors de la récupération des données de suivi :", err)
-		return Struct.Follow{}
-	}
-	return follow
+func GetFollowsByUsers(Id_Sender, Id_Receiver int) Struct.Follow {
+    var follow = Struct.Follow{} // Utilisez un pointeur pour pouvoir renvoyer nil
+    query := "SELECT * FROM Follow WHERE (ID_User = ? AND ID_Receiver = ?)"
+    err := DB.QueryRow(query, Id_Sender, Id_Receiver).Scan(&follow.ID_Follow, &follow.ID_User, &follow.ID_Receiver, &follow.Privacy, &follow.Operation, &follow.Types, &follow.ID_Group)
+    if err != nil {
+        if err == sql.ErrNoRows {
+            // Aucune ligne trouvée, renvoie nil
+            return Struct.Follow{}
+        }
+        fmt.Println("Erreur lors de la récupération des données de suivi :", err)
+        return Struct.Follow{}
+    }
+    return follow
 }
+
 func UpdateFollow(follow Struct.Follow) {
 	_, err := DB.Exec("UPDATE Follow SET Operation = ? WHERE ID_Follow = ?", follow.Operation, follow.ID_Follow)
 	if err != nil {

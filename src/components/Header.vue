@@ -533,9 +533,16 @@
                     >
                       <div class="relative w-12 h-12 shrink-0">
                         <img
+                          v-if="notif.AvatarSender && notif.AvatarSender != ''"
                           :src="
                             '/src/assets/images/avatars/' + notif.AvatarSender
                           "
+                          alt=""
+                          class="object-cover w-full h-full rounded-full"
+                        />
+                        <img
+                          v-else
+                          :src="'/src/assets/images/avatars/Avatar.webp'"
                           alt=""
                           class="object-cover w-full h-full rounded-full"
                         />
@@ -841,9 +848,19 @@
               class="rounded-full relative bg-secondery cursor-pointer shrink-0"
             >
               <img
+                v-if="
+                  sharedData.Myaccount.Avatar &&
+                  sharedData.Myaccount.Avatar != ''
+                "
                 :src="
                   '/src/assets/images/avatars/' + sharedData.Myaccount.Avatar
                 "
+                alt=""
+                class="sm:w-9 sm:h-9 w-7 h-7 rounded-full shadow shrink-0"
+              />
+              <img
+                v-else
+                :src="'/src/assets/images/avatars/Avatar.webp'"
                 alt=""
                 class="sm:w-9 sm:h-9 w-7 h-7 rounded-full shadow shrink-0"
               />
@@ -853,7 +870,8 @@
               uk-drop="offset:6;pos: bottom-right;animate-out: true; animation: uk-animation-scale-up uk-transform-origin-top-right "
             >
               <a>
-                <router-link v-if="sharedData.Myaccount.ID"
+                <router-link
+                  v-if="sharedData.Myaccount.ID"
                   :to="{
                     name: 'TimelineProfile',
                     params: { userID: sharedData.Myaccount.ID },
@@ -861,10 +879,20 @@
                 >
                   <div class="p-4 py-5 flex items-center gap-4">
                     <img
+                      v-if="
+                        sharedData.Myaccount.Avatar &&
+                        sharedData.Myaccount.Avatar != ''
+                      "
                       :src="
                         '/src/assets/images/avatars/' +
                         sharedData.Myaccount.Avatar
                       "
+                      alt=""
+                      class="w-10 h-10 rounded-full shadow"
+                    />
+                    <img
+                      v-else
+                      :src="'/src/assets/images/avatars/Avatar.webp'"
                       alt=""
                       class="w-10 h-10 rounded-full shadow"
                     />
@@ -1004,8 +1032,8 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/Home">
-                <a href="groups.html">
+              <router-link to="/Group">
+                <a>
                   <img
                     src="/src/assets/images/icons/group.png"
                     alt="groups"

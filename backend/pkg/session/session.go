@@ -5,6 +5,7 @@ import (
 	"log"
 	"main/pkg/db/sqlite"
 	Struct "main/pkg/struct"
+	responses "main/pkg/untils/Responses"
 	Errors "main/pkg/untils/error"
 	"net/http"
 	"sync"
@@ -32,7 +33,7 @@ func actualiseSession() {
 }
 func Createsession(w http.ResponseWriter, users Struct.User) bool {
 	sessionMutex.Lock()
-	userID_s := sqlite.GetUser(users.Email)
+	userID_s := sqlite.GetUserById(users.Id)
 	userID := userID_s.Id
 	actualiseSession()
 	_, exists := Sessions[userID]
@@ -129,3 +130,10 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 
 	return user
 }
+
+var CheckSession = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	if !Myaccount(w, r).Error {
+		responses.SendResponsesHome(w, r, "You are already connected", nil)
+		return
+	}
+})

@@ -1,0 +1,5 @@
+1- separer les des UserProfiles est de la personne connecté (Myfollowers, Myfollowing)
+2- gerer le fetch automatique lorsque le meme component est appelé deux fois de suite
+3- gerer la securité concernant l'email et enlever le username comme obligatoire
+4- l'Avatar none dois etre mis dans toutes les pages si l'utilisateur n'a pas de photo de profile
+5- gerer les pages d'erreur 404 405 500

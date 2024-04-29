@@ -28,7 +28,7 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	for _, v := range Allfollowing {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
-	data.Alluser = UserCouldBeFollow(user,Alluser, followings)
+	data.Alluser = UserCouldBeFollow(user, Alluser, followings)
 	data.Allpost = Allpost
 	data.Allfollowers = followers
 	data.Allfollowing = followings

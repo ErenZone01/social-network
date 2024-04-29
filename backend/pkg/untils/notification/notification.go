@@ -19,7 +19,7 @@ var Invitation = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	var notif Struct.Notif
 	var err = json.NewDecoder(r.Body).Decode(&notif)
 	if err != nil {
-		fmt.Println("Follow : erreur de decodage json", err)
+		fmt.Println("Notif : erreur de decodage json", err)
 		return
 	}
 	var Sender = sqlite.GetUser(sqlite.GetNotifById(notif.ID_Notif).Sender)
@@ -36,14 +36,14 @@ var Invitation = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		notif.Messages = "started following you"
 		sqlite.UpdateNotif(notif)
 	}
-	var data Struct.AllData;
+	var data Struct.AllData
 	var follower []Struct.User
 	var newNotif = sqlite.GetMyNotif(myaccount.Nickname)
-	var newFollower =sqlite.GetMyFollowers(myaccount)
+	var newFollower = sqlite.GetMyFollowers(myaccount)
 	for _, v := range newFollower {
 		follower = append(follower, sqlite.GetUserById(v.ID_Receiver))
 	}
-	data.Allnotif =newNotif
+	data.Allnotif = newNotif
 	data.Allfollowers = follower
 	responses.SendResponsesHome(w, r, "responses succesfully", data)
 })

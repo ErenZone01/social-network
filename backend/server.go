@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"main/pkg/db/sqlite"
+	"main/pkg/session"
 	"main/pkg/untils/comment"
 	"main/pkg/untils/decon"
 	"main/pkg/untils/event"
@@ -46,11 +47,13 @@ func handlerFunction() {
 	http.Handle("/Decon", MiddlewareCors(decon.Decon))
 	http.Handle("/Invitation", MiddlewareCors(notification.Invitation))
 	http.Handle("/Profil", MiddlewareCors(profil.Profil))
+	http.Handle("/Privacy", MiddlewareCors(profil.Privacy))
+	http.Handle("/CheckSession", MiddlewareCors(session.CheckSession))
 }
 
 func main() {
 	DB = sqlite.CheckDB()
 	handlerFunction()
-	fmt.Println("http://localhost:8080/")
+	fmt.Println(":8080")
 	http.ListenAndServe(":8080", nil)
 }

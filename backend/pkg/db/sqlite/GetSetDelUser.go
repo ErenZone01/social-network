@@ -49,7 +49,7 @@ func DeleteUser(id int) {
 }
 
 func UpdateUser(user Struct.User) {
-	_, err := DB.Exec("UPDATE User SET Actif = ? WHERE ID_User = ?", user.Actif, user.Id)
+	_, err := DB.Exec("UPDATE User SET Actif = ? , Privacy = ? WHERE ID_User = ?", user.Actif, user.Privacy, user.Id)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
