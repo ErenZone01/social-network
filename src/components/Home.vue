@@ -89,9 +89,10 @@
             >
               <!-- post heading -->
               <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
-                <a href="timeline.html">
+                <a v-for="user in AllUsers " :key="user.ID" href="timeline.html">
                   <img
-                    src="/src/assets/images/avatars/avatar-5.jpg"
+                    v-if="user.ID === Post.ID_User"
+                    :src="'/src/assets/images/avatars/'+user.Avatar"
                     alt=""
                     class="w-9 h-9 rounded-full"
                   />

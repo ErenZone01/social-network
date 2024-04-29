@@ -27,7 +27,7 @@
           <button
             class="inline-flex items-center py-1 px-2.5 gap-1 font-medium text-sm rounded-full bg-slate-50 border-2 border-slate-100 group aria-expanded:bg-slate-100 aria-expanded: dark:text-white dark:bg-slate-700 dark:border-slate-600"
             type="button">
-            <select id="option" name="option">
+            <select id="option" v-model="option" name="option">
                     <option value="Public">Public</option>
                     <option value="Allmost private">Allmost private</option>
                     <option value="Private">Private</option>
@@ -35,6 +35,13 @@
             <ion-icon name="chevron-down-outline"
               class="text-base duration-500 group-aria-expanded:rotate-180"></ion-icon>
           </button>
+        </div>
+        <div v-if="option === 'Allmost private'">
+          <h2>Choisissez les amis qui peuvent voir cette publication :</h2>
+          <div v-for="friend in AllUsers" :key="friend.Id">
+            <input type="checkbox" v-model="selectedFriends" :value="friend.Id">
+            <label>{{ friend.Firstname }}</label>
+          </div>
         </div>
         <div class="flex items-center gap-2">
           <div class="col-span-2">
