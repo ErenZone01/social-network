@@ -7,7 +7,7 @@ import (
 )
 
 func SendError(w http.ResponseWriter, r *http.Request, msg string) {
-	// Convertissez les données d'utilisateurs en JSON
+	// Convertissez les données d'utilisateurs en JSON 
 	var msgFetch Struct.FetchMsg
 	msgFetch.Types = "Error"
 	msgFetch.Msg = msg

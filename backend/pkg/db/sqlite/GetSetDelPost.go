@@ -15,7 +15,7 @@ func GetPostsByUserID(userID int) ([]Struct.Post, error) {
 	defer rows.Close()
 	for rows.Next() {
 		var post Struct.Post
-		err := rows.Scan(&post.Id, &post.Content, &post.Title, &post.Images, &post.ID_User, &post.Privacy, &post.ID_Group, &post.Types)
+		err := rows.Scan(&post.Id, &post.Names, &post.Content, &post.Title, &post.Image, &post.ID_User, &post.Privacy, &post.ID_Group, &post.Types, &post.CreatedPost)
 		if err != nil {
 			return nil, err
 		}
@@ -28,9 +28,9 @@ func GetPostsByUserID(userID int) ([]Struct.Post, error) {
 }
 
 func CreateNewPost(post Struct.Post) {
-	query := `INSERT INTO Post (Content, Title, Images, ID_User, Privacy, ID_Group, Types) VALUES  (?,?,?,?,?,?,?)`
+	query := `INSERT INTO Post (Names, Content, Title, Imagee, ID_User, Privacy, ID_Group, Types, CreatedPost) VALUES  (?,?,?,?,?,?,?,?,?)`
 	//Inserer des utilisateurs dans notre table User
-	_, err := DB.Exec(query, post.Content, post.Title, post.Images, post.ID_User, post.Privacy, post.ID_Group, post.Types)
+	_, err := DB.Exec(query, post.Names, post.Content, post.Title, post.Image, post.ID_User, post.Privacy, post.ID_Group, post.Types, post.CreatedPost)
 	if err != nil {
 		fmt.Println("SetPost : ", err)
 		return
@@ -48,7 +48,7 @@ func DeletePost(id int) {
 }
 
 func GetAllPost() []Struct.Post {
-	query := "SELECT * From Post"
+	query := "SELECT * FROM Post ORDER BY ID_Post DESC"
 	rows, err := DB.Query(query)
 	if err != nil {
 		fmt.Println("Error from GetAllPost: ", err)
@@ -58,7 +58,7 @@ func GetAllPost() []Struct.Post {
 	var PostLists []Struct.Post
 	for rows.Next() {
 		var post Struct.Post
-		if err := rows.Scan(&post.Id, &post.Content, &post.Title, &post.Images, &post.ID_User, &post.Privacy, &post.ID_Group, &post.Types); err != nil {
+		if err := rows.Scan(&post.Id, &post.Names, &post.Content, &post.Title, &post.Image, &post.ID_User, &post.Privacy, &post.ID_Group, &post.Types, &post.CreatedPost); err != nil {
 			fmt.Println("GetAllUser : Error scanning row: ", err)
 			continue
 		}

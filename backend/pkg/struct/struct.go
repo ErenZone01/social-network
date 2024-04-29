@@ -27,14 +27,17 @@ type User struct {
 }
 
 type Post struct {
-	Id       int    `json:"ID"`
-	Content  string `json:"Content"`
-	Title    string `json:"Title"`
-	Images   string `json:"Images"`
-	ID_User  int    `json:"ID_User"`
-	Privacy  string `json:"Privacy"`
-	ID_Group string `json:"ID_Group"`
-	Types    string `json:"Types"`
+	Id          int     `json:"ID"`
+	Names       *string `json:"Names"`
+	Content     string  `json:"Content"`
+	Title       string  `json:"Title"`
+	Image       string  `json:"Image"`
+	ImageData   []byte  `json:"ImageData"`
+	ID_User     int     `json:"ID_User"`
+	Privacy     string  `json:"Privacy"`
+	ID_Group    string  `json:"ID_Group"`
+	Types       string  `json:"Types"`
+	CreatedPost *string `json:"CreatedPost"`
 }
 
 type Session struct {
@@ -60,12 +63,12 @@ type Follow struct {
 }
 
 type Notif struct {
-	ID_Notif int `json:"ID_Notif"`
-	Messages string
-	Receiver string
-	Types    string
-	States   string `json:"States"`
-	Sender   string
+	ID_Notif     int `json:"ID_Notif"`
+	Messages     string
+	Receiver     string
+	Types        string
+	States       string `json:"States"`
+	Sender       string
 	AvatarSender string
-	ID_Group int
+	ID_Group     int
 }

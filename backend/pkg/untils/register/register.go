@@ -54,12 +54,12 @@ func Register(w http.ResponseWriter, r *http.Request) (bool, string) {
 	}
 	sqlite.CreateNewUser(newUser)
 	if newUser.Avatar != "" {
-		SaveImage(newUser.Avatar, newUser.AvatarData)
+		SaveImage(newUser.Avatar, newUser.AvatarData, "avatars")
 	}
 	return err, msg
 }
-func SaveImage(filename string, img []byte) {
-	var src = "../src/assets/images/avatars"
+func SaveImage(filename string, img []byte, route string) {
+	var src = "../src/assets/images/"+route
 	var filepaths = filepath.Join(src, filename)
 	err := os.WriteFile(filepaths, img, 0644)
 	if err != nil {
