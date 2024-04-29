@@ -61,6 +61,9 @@ export default {
                 sharedData.MyFollowers = response.Data.Allfollowers;
                 sharedData.MyFollowings = response.Data.Allfollowing;
                 sharedData.AllUsers = response.Data.Alluser;
+                sharedData.AllUtilisateur = response.Data.AllUtilisateur
+                sharedData.Allpost = response.Data.Allpost;
+
             } else {
                 console.log("error GetData : ", response.Msg);
                 this.$router.push("/Login");

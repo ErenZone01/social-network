@@ -17,6 +17,7 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	}
 	var data Struct.AllData
 	var Alluser = sqlite.GetAllUser()
+	var AllUtilisateur = Alluser
 	var Allpost = sqlite.GetAllPost()
 	fmt.Println("allpost", Allpost)
 	var Allfollower = sqlite.GetMyFollowers(user)
@@ -34,6 +35,7 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	data.Allpost = Allpost
 	data.Allfollowers = followers
 	data.Allfollowing = followings
+	data.AllUtilisateur = AllUtilisateur
 	data.Allnotif = Allnotif
 	data.Myaccount = user
 	responses.SendResponsesHome(w, r, "response succesfully", data)

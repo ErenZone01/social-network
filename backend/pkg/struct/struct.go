@@ -7,7 +7,7 @@ type AllData struct {
 	Allfollowers []User
 	Allfollowing []User
 	Allnotif     []Notif
-	
+	AllUtilisateur []User
 }
 
 type User struct {
