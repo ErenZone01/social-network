@@ -1,5 +1,5 @@
 <template>
-    
+     <Headers />
   <div id="wrapper">
 
 <!-- main contents -->
@@ -72,7 +72,7 @@
 
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-5.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-5.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
                 <div
                   class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
@@ -89,7 +89,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-2.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-2.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
               </div>
               <div class="flex-1 min-w-0">
@@ -104,7 +104,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-3.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-3.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
                 <div
                   class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
@@ -121,7 +121,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-4.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-4.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
               </div>
               <div class="flex-1 min-w-0">
@@ -136,7 +136,7 @@
 
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-5.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-5.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
                 <div
                   class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
@@ -153,7 +153,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-2.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-2.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
               </div>
               <div class="flex-1 min-w-0">
@@ -168,7 +168,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-3.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-3.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
               </div>
               <div class="flex-1 min-w-0">
@@ -182,7 +182,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-4.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-4.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
               </div>
               <div class="flex-1 min-w-0">
@@ -196,7 +196,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-5.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-5.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
                 <div
                   class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
@@ -213,7 +213,7 @@
             </a>
             <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
               <div class="relative w-14 h-14 shrink-0">
-                <img src="assets/images/avatars/avatar-2.jpg" alt=""
+                <img src="/src/assets/images/avatars/avatar-2.jpg" alt=""
                   class="object-cover w-full h-full rounded-full">
               </div>
               <div class="flex-1 min-w-0">
@@ -252,7 +252,7 @@
             </button>
 
             <div class="relative cursor-pointer max-md:hidden" uk-toggle="target: .rightt ; cls: hidden">
-              <img src="assets/images/avatars/avatar-6.jpg" alt="" class="w-8 h-8 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-6.jpg" alt="" class="w-8 h-8 rounded-full shadow">
               <div class="w-2 h-2 bg-teal-500 rounded-full absolute right-0 bottom-0 m-px"></div>
             </div>
             <div class="cursor-pointer" uk-toggle="target: .rightt ; cls: hidden">
@@ -293,7 +293,7 @@
         <div class="w-full p-5 py-10 overflow-y-auto md:h-[calc(100vh-204px)] h-[calc(100vh-195px)]">
 
           <div class="py-10 text-center text-sm lg:pt-8">
-            <img src="assets/images/avatars/avatar-6.jpg" class="w-24 h-24 rounded-full mx-auto mb-3" alt="">
+            <img src="/src/assets/images/avatars/avatar-6.jpg" class="w-24 h-24 rounded-full mx-auto mb-3" alt="">
             <div class="mt-8">
               <div class="md:text-xl text-base font-medium text-black dark:text-white"> Monroe Parker </div>
               <div class="text-gray-500 text-sm   dark:text-white/80"> @Monroepark </div>
@@ -308,13 +308,13 @@
 
             <!-- received -->
             <div class="flex gap-3">
-              <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
               <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> Hi, I’m John </div>
             </div>
 
             <!-- sent -->
             <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
               <div
                 class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
                 I’m Lisa. welcome John</div>
@@ -329,14 +329,14 @@
 
             <!-- received -->
             <div class="flex gap-3">
-              <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
               <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> I’m selling a photo of a sunset. It’s a
                 print on canvas, signed by the photographer. Do you like it? 😊 </div>
             </div>
 
             <!-- sent -->
             <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-4 h-4 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-4 h-4 rounded-full shadow">
               <div
                 class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
                 Wow, it’s beautiful. How much ? 😍 </div>
@@ -344,15 +344,15 @@
 
             <!-- sent media-->
             <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-4 h-4 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-4 h-4 rounded-full shadow">
 
               <a class="block rounded-[18px] border overflow-hidden" href="#">
                 <div class="max-w-md">
                   <div class="max-w-full relative w-72">
                     <div class="relative" style="padding-bottom: 57.4286%">
                       <div class="w-full h-full absolute inset-0">
-                        <img src="assets/images/product/product-2.jpg" alt=""
-                          class="block max-w-full max-h-52 w-full h-full object-cover">
+                        <img src="/src/assets/images/product/product-1.jpg" alt=""
+                          class="block max-w-full max-h-52 w-full h-full Groupsobject-cover">
                       </div>
                     </div>
                   </div>
@@ -371,14 +371,14 @@
 
             <!-- received -->
             <div class="flex gap-3">
-              <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
               <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> I’m glad you like it. I’m asking for $200
                 🤑</div>
             </div>
 
             <!-- sent -->
             <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
               <div
                 class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
                 $200? Too steep. Can you lower the price a bit? 😕</div>
@@ -386,7 +386,7 @@
 
             <!-- received -->
             <div class="flex gap-3">
-              <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
               <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> Well, I can’t go too low because I paid a
                 lot. But I’m willing to negotiate. What’s your offer? 🤔 </div>
 
@@ -394,7 +394,7 @@
 
             <!-- sent -->
             <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
               <div
                 class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
                 Sorry, can’t pay more than $150. 😅</div>
@@ -409,13 +409,13 @@
 
             <!-- received -->
             <div class="flex gap-3">
-              <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
               <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> $150? Too low. Photo worth more. 😬</div>
             </div>
 
             <!-- sent -->
             <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
               <div
                 class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
                 Too high. I Can’t . How about $160? Final offer. 😬 </div>
@@ -423,14 +423,14 @@
 
             <!-- received -->
             <div class="flex gap-3">
-              <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
               <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> Fine, fine. You’re hard to please. I’ll
                 take $160, but only because I like you. 😍</div>
             </div>
 
             <!-- sent -->
             <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
+              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
               <div
                 class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
                 Great, thank you. I appreciate it. I love this photo and can’t wait to hang it. 😩 </div>
@@ -565,7 +565,7 @@
           <div class="w-full h-1.5 bg-gradient-to-r to-purple-500 via-red-500 from-pink-500 -mt-px"></div>
 
           <div class="py-10 text-center text-sm pt-20">
-            <img src="assets/images/avatars/avatar-3.jpg" class="w-24 h-24 rounded-full mx-auto mb-3" alt="">
+            <img src="/src/assets/images/avatars/avatar-3.jpg" class="w-24 h-24 rounded-full mx-auto mb-3" alt="">
             <div class="mt-8">
               <div class="md:text-xl text-base font-medium text-black dark:text-white"> Monroe Parker </div>
               <div class="text-gray-500 text-sm mt-1 dark:text-white/80">@Monroepark</div>
@@ -618,8 +618,18 @@
 </main>
 
 </div>
-
+<Chat></Chat> <Chat></Chat>
+  <Posts></Posts>
+  <Notif></Notif>
+  <Posts></Posts>
+  <Notif></Notif>
 </template>
+<script lang="js" setup>
+import Headers from './Header.vue'
+import Chat from './Chat.vue'
+import Notif from './Notification.vue'
+import sharedData from '../assets/js/data.js';
+</script>
 
 <script lang="js">
 export default{

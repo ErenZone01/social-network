@@ -1020,8 +1020,8 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/Home">
-                <a href="messages.html">
+              <router-link to="/Messages">
+                <a>
                   <img
                     src="/src/assets/images/icons/message.png"
                     alt="messages"
