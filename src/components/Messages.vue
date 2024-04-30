@@ -69,162 +69,28 @@
 
           <!-- users list -->
           <div class="space-y-2 p-2 overflow-y-auto md:h-[calc(100vh-204px)] h-[calc(100vh-130px)]">
+            <div v-for="user in sharedData.AllUtilisateur" :key="user.ID">
 
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-5.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-                <div
-                  class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
+              <a v-if="(IfAnAccountFollowMe(user) || IfIFollowAnAccount(user))&& (user.ID != sharedData.Myaccount.ID)" href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
+                <div class="relative w-14 h-14 shrink-0">
+                  <img v-if="user.Avatar != ''" :src='"/src/assets/images/avatars/"+user.Avatar' alt=""
+                    class="object-cover w-full h-full rounded-full">
+                    <img v-else :src='"/src/assets/images/avatars/Avatar.webp"' alt=""
+                    class="object-cover w-full h-full rounded-full">
+                  <div
+                    class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
+                  </div>
                 </div>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Jesse Steeve</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <div class="mr-auto text-sm text-black dark:text-white font-medium">{{user.Nickname}}</div>
+                    <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
+                  </div>
+                  <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Love your photos 😍
+                  </div>
                 </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Love your photos 😍
-                </div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-2.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Martin Gray</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
-                  <div class="w-2.5 h-2.5 bg-blue-600 rounded-full dark:bg-slate-700"></div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Photo editor
-                  needed. Fix photos? 🛠️</div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-3.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-                <div
-                  class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
-                </div>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Monroe Parker</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Can i call you to
-                  day?</div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-4.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">James Lewis</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap"> Want to buy
-                  landscape photo? 🌄 </div>
-              </div>
-            </a>
-
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-5.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-                <div
-                  class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
-                </div>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Jesse Steeve</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Headshot needed.
-                  Resume. Do it? 👩‍💼</div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-2.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Martin Gray</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">04:20PM</div>
-                  <div class="w-2.5 h-2.5 bg-blue-600 rounded-full dark:bg-slate-700"></div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Online course
-                  interesting? 🎓</div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-3.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Monroe Parker</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">I’m glad you like
-                  it.😊</div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-4.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">James Lewis</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">01:10PM</div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap"> Product
-                  photographer wanted? 📷 </div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-5.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-                <div
-                  class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
-                </div>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Jesse Steeve</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">09:40AM</div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Love your photos 😍
-                </div>
-              </div>
-            </a>
-            <a href="#" class="relative flex items-center gap-4 p-2 duration-200 rounded-xl hover:bg-secondery">
-              <div class="relative w-14 h-14 shrink-0">
-                <img src="/src/assets/images/avatars/avatar-2.jpg" alt=""
-                  class="object-cover w-full h-full rounded-full">
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <div class="mr-auto text-sm text-black dark:text-white font-medium">Martin Gray</div>
-                  <div class="text-xs font-light text-gray-500 dark:text-white/70">02:52PM</div>
-                </div>
-                <div class="font-medium overflow-hidden text-ellipsis text-sm whitespace-nowrap">Photo editor
-                  needed. Fix photos? 🛠️</div>
-              </div>
-            </a>
+              </a>
+            </div>
 
           </div>
 
@@ -618,21 +484,21 @@
 </main>
 
 </div>
-<Chat></Chat> <Chat></Chat>
-  <Posts></Posts>
+<Chat></Chat>
   <Notif></Notif>
   <Posts></Posts>
-  <Notif></Notif>
 </template>
 <script lang="js" setup>
 import Headers from './Header.vue'
 import Chat from './Chat.vue'
 import Notif from './Notification.vue'
 import sharedData from '../assets/js/data.js';
+import CommonMixin from '../assets/js/untils.js'
 </script>
 
 <script lang="js">
 export default{
-  
+  name:'Messages',
+  mixins:[CommonMixin]
 }
 </script>

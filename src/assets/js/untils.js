@@ -171,6 +171,29 @@ export default {
             }
             return false;
         },
+        IfAnAccountFollowMe(account) {
+            if (sharedData.MyFollowers) {
+                //Vérifier si l 'ID de Myaccount est dans MyFollowers
+                console.log("my followers : ", sharedData.MyFollowers)
+
+                return sharedData.MyFollowers.some(
+                    follower => follower.ID === account.ID
+                );
+            }
+            return false;
+        },
+        IfIFollowAnAccount(account) {
+            console.log("my following : ", sharedData.MyFollowings)
+
+            if (sharedData.MyFollowings) {
+                //Vérifier si l 'ID de Myaccount est dans MyFollowers
+                return sharedData.MyFollowings.some(
+                    following => following.ID === account.ID
+                );
+
+            }
+            return false;
+        },
         async CheckCookie() {
             var fetch = await CustomFetch("http://localhost:8080/CheckSession", "GET", null);
             if (fetch.Types == "Success") {
