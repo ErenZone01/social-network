@@ -117,19 +117,25 @@
                 <!-- post heading -->
                 <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
                   <a
-                    v-for="user in sharedData.AllUsers"
+                    v-for="user in sharedData.AllUtilisateur"
                     :key="user.ID"
-                    href="timeline.html"
                   >
+                  
                     <img
-                      v-if="user.ID === Post.ID_User"
+                     v-if="user.ID == Post.ID_User && user.Avatar != ''"
                       :src="'/src/assets/images/avatars/' + user.Avatar"
+                      alt=""
+                      class="w-9 h-9 rounded-full"
+                    />
+                    <img
+                      v-else-if="user.ID == Post.ID_User && user.Avatar == ''"
+                      :src="'/src/assets/images/avatars/Avatar.webp'"
                       alt=""
                       class="w-9 h-9 rounded-full"
                     />
                   </a>
                   <div class="flex-1">
-                    <a href="timeline.html">
+                    <a >
                       <h4 class="text-black dark:text-white">
                         {{ Post.Names }}
                       </h4>
