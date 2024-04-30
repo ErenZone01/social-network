@@ -100,7 +100,7 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 
 	// Vérifier si le cookie de session est vide
 	if session == nil || session.Value == "" {
-		Errors.SendError(w, r, "Le cookie de session est vide")
+		Errors.SendError(w, r, http.StatusOK, "Le cookie de session est vide")
 		user := Struct.User{}
 		user.Error = true
 		return user
@@ -110,7 +110,7 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 	actualiseSession()
 	_, exists := SessionUser[session.Value]
 	if !exists {
-		Errors.SendError(w, r, "Le cookie de session n'est pas valide")
+		Errors.SendError(w, r, http.StatusOK, "Le cookie de session n'est pas valide")
 		user := Struct.User{}
 		user.Error = true
 		return user

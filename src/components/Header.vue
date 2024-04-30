@@ -1007,7 +1007,9 @@
       <div class="pr-4">
         <nav id="side">
           <ul>
-            <li class="active">
+            <li :class="{
+                  'active': $route.name === 'Home',
+                }">
               <router-link to="/Home">
                 <a>
                   <img
@@ -1019,7 +1021,9 @@
                 </a>
               </router-link>
             </li>
-            <li>
+            <li :class="{
+                  'active': $route.name === 'Messages',
+                }">
               <router-link to="/Messages">
                 <a>
                   <img
@@ -1031,7 +1035,9 @@
                 </a>
               </router-link>
             </li>
-            <li>
+            <li :class="{
+                  'active': $route.name === 'Group',
+                }">
               <router-link to="/Group">
                 <a>
                   <img

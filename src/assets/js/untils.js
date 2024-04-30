@@ -11,19 +11,32 @@ export async function CustomFetch(url, method, data) {
             },
             credentials: "include",
             // N'ajoute pas le corps si la méthode est POST
-            body: (method == 'POST') ? JSON.stringify(data) : undefined,
+            body: (method === 'POST') ? JSON.stringify(data) : undefined,
         });
 
+        // Vérifier si la réponse est un statut OK (200)
         if (!response.ok) {
-            throw new Error('Erreur lors de la requête fetch');
+            // Vérifier si la réponse est une méthode non autorisée (Method Not Allowed)
+            if (response.status === 405) {
+                throw new Error('Méthode non autorisée (Method Not Allowed). Statut : ' + response.status);
+            }
+            // Vérifier si la réponse est une erreur interne du serveur (Internal Server Error)
+            else if (response.status === 500) {
+                throw new Error('Erreur interne du serveur (Internal Server Error). Statut : ' + response.status);
+            }
+            // Si ce n'est pas le cas, lancer une erreur avec le statut de la réponse
+            else {
+                throw new Error('Erreur lors de la requête fetch. Statut : ' + response.status);
+            }
         }
+        // Convertir la réponse en format JSON
+        const responseData = await response.json();
 
-        const responseData = await response.json(); // Convertit la réponse en format JSON
-        return responseData; // Retourne les données récupérées
+        // Retourner les données récupérées
+        return responseData;
     } catch (error) {
         console.error('Erreur lors de la requête fetch :', error);
-        console.error(" Error #%d", 500)
-        throw error; // Lance l'erreur pour être gérée par l'appelant
+        throw error; // Lancer l'erreur pour être gérée par l'appelant
     }
 };
 
@@ -32,6 +45,7 @@ export default {
         async FetchCustomRef() {
             try {
                 var user = parseInt(this.$route.params.userID);
+                console.log("le params est : ", user)
                 var fetch = await CustomFetch("http://localhost:8080/Profil", "POST", { ID: user });
                 if (fetch.Types == "Success") {
                     sharedData.MyuserProfile = fetch.Data.Myaccount;
@@ -42,7 +56,7 @@ export default {
                         sharedData.AllId.push(sharedData.MyProfileFollowings[i].ID);
                     }
                     console.log(fetch);
-                } else {
+                } else if (fetch.Msg == "Methods Not Allowed") { console.log("le message : ", fetch.Msg); } else {
                     console.log("le message : ", fetch.Msg);
                     this.$router.push("/Login");
                 }

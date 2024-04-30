@@ -35,7 +35,7 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	//tempFollowing := sqlite.GetMyFollowing(myaccount)
 	if IsAlreadyFollowing(myaccount, following) {
 		fmt.Println("You have already follow : ", following.Nickname)
-		Errors.SendError(w, r, "You have already follow : "+following.Nickname)
+		Errors.SendError(w, r, http.StatusOK, "You have already follow : "+following.Nickname)
 		return
 	}
 	sqlite.SetFollowing(myaccount, following, operation, "person", 0)

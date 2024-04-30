@@ -21,7 +21,7 @@ func MiddlewareLogin(next http.Handler) http.Handler {
 			return
 		}
 		// Si l'utilisateur n'est pas authentifié, renvoyer une réponse d'erreur 401 Unauthorized
-		Errors.SendError(w, r, "Login or Password is incorrect")
+		Errors.SendError(w, r, http.StatusOK, "Login or Password is incorrect")
 		//http.Error(w, "l'utilisateur 'existe pas", http.StatusUnauthorized)
 	})
 }

@@ -24,7 +24,7 @@ func MiddlewareRegister(next http.Handler) http.Handler {
 			return
 		}
 		fmt.Println("err : ", msg)
-		Errors.SendError(w, r, msg)
+		Errors.SendError(w, r, http.StatusOK, msg)
 		// Si l'utilisateur n'est pas authentifié, renvoyer une réponse d'erreur 401 Unauthorized
 		//http.Error(w, msg, http.StatusUnauthorized)
 	})

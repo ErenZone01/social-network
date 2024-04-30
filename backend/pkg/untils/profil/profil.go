@@ -7,6 +7,7 @@ import (
 	"main/pkg/session"
 	Struct "main/pkg/struct"
 	responses "main/pkg/untils/Responses"
+	Errors "main/pkg/untils/error"
 	"main/pkg/untils/home"
 	"net/http"
 )
@@ -57,6 +58,10 @@ var Profil = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	}
 	var data = Struct.AllData{}
 	var ProfilUser = sqlite.GetUserById(idUser.Id)
+	if ProfilUser.Email == "" {
+		Errors.SendError(w, r, http.StatusMethodNotAllowed , "Methods Not Allowed")
+		return
+	}
 	fmt.Println("le profil user est : ", ProfilUser)
 	// var Allpost = sqlite.GetAllPost()
 	var Allfollower = sqlite.GetMyFollowers(ProfilUser)
