@@ -53,7 +53,7 @@
                   id="text"
                   name="Avatar"
                   type="file"
-                  accept=".jpeg, .jpg, .gif, .JPEG, .JPG, .GIF"
+                  accept=".jpeg, .jpg, .gif"
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
               </div>
@@ -86,8 +86,7 @@
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
-                <span id="lasttname-error" class="text-red-500"></span>
-
+                <span id="lastname-error" class="text-red-500"></span>
               </div>
             </div>
             <!-- Nickname -->
@@ -102,8 +101,6 @@
                   required=""
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
-                <span id="email-error" class="text-red-500"></span>
-
               </div>
             </div>
             <!-- Date Of Birth -->
@@ -119,7 +116,6 @@
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
                 <span id="birth-error" class="text-red-500"></span>
-
               </div>
             </div>
             <!-- email -->
@@ -134,6 +130,7 @@
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                   required
                 />
+                <span id="email-error" class="text-red-500"></span>
               </div>
             </div>
 
@@ -149,6 +146,7 @@
                   required
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
+                <span id="password-error" class="text-red-500"></span>
               </div>
             </div>
             <!-- avatar -->
@@ -165,6 +163,7 @@
                   placeholder="***"
                   class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
                 />
+                <span id="confpassword-error" class="text-red-500"></span>
               </div>
             </div>
             <div class="col-span-2">
@@ -289,50 +288,85 @@
     </div>
   </div>
 </template>
-  <style scoped></style>
-  <script>
-import commonMixin from "../assets/js/untils.js";
+<style scoped></style>
+<script>import commonMixin from "../assets/js/untils.js";
 export default {
   name: "Timeline",
   mixins: [commonMixin],
 
+
   methods: {
     async Register(e) {
       e.preventDefault();
-      let email = document.getElementsByName("email")[0].value;
-      let emailError = document.getElementById("email-error");
-if (!email) {
-  emailError.textContent = "Please enter your first name.";
-  return;
-} else {
-  emailError.textContent = "";
-}
-      let password = document.getElementsByName("password")[0].value;
       let firstName = document.getElementsByName("firstname")[0].value;
-let firstNameError = document.getElementById("firstname-error");
-if (!firstName) {
-  firstNameError.textContent = "Please enter your first name.";
-  return;
-} else {
-  firstNameError.textContent = "";
-}
+      let firstNameError = document.getElementById("firstname-error");
+      if (!firstName) {
+        firstNameError.textContent = "Please enter your first name.";
+        return;
+      } else {
+        firstNameError.textContent = "";
+      }
+
       let lastName = document.getElementsByName("lastname")[0].value;
-      let lastNameError = document.getElementById("lasttname-error");
-if (!lastName) {
-  lastNameError.textContent = "Please enter your last name.";
-  return;
-} else {
-  lastNameError.textContent = "";
-}
+      let lastNameError = document.getElementById("lastname-error");
+      if (!lastName) {
+        lastNameError.textContent = "Please enter your last name.";
+        return;
+      } else {
+        lastNameError.textContent = "";
+      }
       let nickname = document.getElementsByName("nickname")[0].value;
       let birth = document.getElementsByName("birth")[0].value;
       let birthError = document.getElementById("birth-error");
-if (!birth) {
-  birthError.textContent = "Please enter your birth of date.";
-  return;
-} else {
-  birthError.textContent = "";
-}
+
+      if (!birth) {
+        birthError.textContent = "Please enter your birth date.";
+        return;
+      } else {
+        birthError.textContent = "";
+      }
+
+      let birthDate = new Date(birth);
+      let today = new Date();
+      if (birthDate > today) {
+        birthError.textContent = "Please enter a valid date of birth.";
+        return;
+      } else {
+        birthError.textContent = "";
+      }
+
+      let email = document.getElementsByName("email")[0].value;
+      let emailError = document.getElementById("email-error");
+      if (!email) {
+        emailError.textContent = "Please enter your email.";
+        return;
+      } else if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+        emailError.textContent = "Please enter a valid email address.";
+        return;
+      } else {
+        emailError.textContent = "";
+      }
+
+      let password = document.getElementsByName("password")[0].value;
+      let passwordError = document.getElementById("password-error");
+      if (!password) {
+        passwordError.textContent = "Please enter your password.";
+        return;
+      } else {
+        passwordError.textContent = "";
+      }
+      let confpassword = document.getElementsByName("confpassword")[0].value;
+      let confpasswordError = document.getElementById("confpassword-error");
+      if (!confpassword) {
+        confpasswordError.textContent = "Please confirm your password.";
+        return;
+      } else if (password !== confpassword) {
+        confpasswordError.textContent = "Passwords do not match.";
+        return;
+      } else {
+        confpasswordError.textContent = "";
+      }
+
       let fileInput = document.getElementsByName("Avatar")[0];
       let avatar = ""; // Initialiser le nom de l'avatar à une chaîne vide par défaut
       let avatarData = null; // Initialiser les données de l'avatar à null par défaut
@@ -377,6 +411,8 @@ if (!birth) {
         .catch((error) => console.log("err : ", error));
     },
   },
-  mounted(){this.CheckCookie()}
+  mounted() {
+    //this.init();
+  },
 };
 </script>
