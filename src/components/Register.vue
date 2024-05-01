@@ -289,11 +289,11 @@
   </div>
 </template>
 <style scoped></style>
-<script>import commonMixin from "../assets/js/untils.js";
+<script>
+import commonMixin from "../assets/js/untils.js";
 export default {
   name: "Timeline",
   mixins: [commonMixin],
-
 
   methods: {
     async Register(e) {
@@ -334,7 +334,6 @@ export default {
       } else {
         birthError.textContent = "";
       }
-
       let email = document.getElementsByName("email")[0].value;
       let emailError = document.getElementById("email-error");
       if (!email) {
@@ -344,17 +343,52 @@ export default {
         emailError.textContent = "Please enter a valid email address.";
         return;
       } else {
+        let atIndex = email.indexOf("@");
+        let dotIndex = email.lastIndexOf(".");
+
+        if (
+          atIndex === 0 ||
+          dotIndex === email.length - 1 ||
+          dotIndex - atIndex === 1
+        ) {
+          emailError.textContent = "Please enter a valid email address.";
+          return;
+        }
+
+        let username = email.substring(0, atIndex);
+        let domain = email.substring(atIndex + 1, dotIndex);
+        let extension = email.substring(dotIndex + 1);
+
+        let alphanumericRegex = /^[a-zA-Z0-9]+$/;
+        if (
+          !username.match(alphanumericRegex) ||
+          !domain.match(alphanumericRegex) ||
+          !extension.match(alphanumericRegex)
+        ) {
+          emailError.textContent = "Please enter a valid email address.";
+          return;
+        }
+
         emailError.textContent = "";
       }
-
       let password = document.getElementsByName("password")[0].value;
       let passwordError = document.getElementById("password-error");
+      let passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
       if (!password) {
         passwordError.textContent = "Please enter your password.";
+        return;
+      } else if (password.length !== 8) {
+        passwordError.textContent =
+          "Password must be at most 8 characters long.";
+        return;
+      } else if (!password.match(passwordRegex)) {
+        passwordError.textContent =
+          "Password must contain at least one letter and one digit.";
         return;
       } else {
         passwordError.textContent = "";
       }
+
       let confpassword = document.getElementsByName("confpassword")[0].value;
       let confpasswordError = document.getElementById("confpassword-error");
       if (!confpassword) {
