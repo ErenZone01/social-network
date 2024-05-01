@@ -51,10 +51,7 @@ export default {
                     sharedData.MyuserProfile = fetch.Data.Myaccount;
                     sharedData.MyProfileFollowings = fetch.Data.Allfollowing;
                     sharedData.MyProfileFollowers = fetch.Data.Allfollowers;
-                    sharedData.AllId = [];
-                    for (let i = 0; i < sharedData.MyProfileFollowings.length; i++) {
-                        sharedData.AllId.push(sharedData.MyProfileFollowings[i].ID);
-                    }
+                    sharedData.MyProfilePost = fetch.Data.Allpost;
                     console.log(fetch);
                 } else if (fetch.Msg == "Methods Not Allowed") { console.log("le message : ", fetch.Msg); } else {
                     console.log("le message : ", fetch.Msg);
@@ -104,11 +101,7 @@ export default {
                 if (this.$route.name !== 'Home') {
                     this.FetchCustomRef();
                 }
-                sharedData.AllId = []
-                for (let i = 0; i < sharedData.MyProfileFollowings.length; i++) {
-                    console.log(sharedData.MyProfileFollowings[i].ID);
-                    sharedData.AllId.push(sharedData.MyProfileFollowings[i].ID);
-                }
+
             } else {
 
                 if (fetch.Msg.toLowerCase().includes("you have already follow")) { console.log("Error of Follow : ", fetch.Msg); } else {
@@ -138,14 +131,10 @@ export default {
             if (response.Types == "Success") {
                 console.log("Unfollow is success")
                 sharedData.MyFollowings = response.Data;
-                sharedData.AllId = []
                 if (this.$route.name !== 'Home') {
                     this.FetchCustomRef();
                 }
-                for (let i = 0; i < sharedData.MyProfileFollowings.length; i++) {
-                    console.log(sharedData.MyProfileFollowings[i].ID);
-                    sharedData.AllId.push(sharedData.MyProfileFollowings[i].ID);
-                }
+
             } else {
                 console.log("Error of UnFollow : ", response.Msg);
                 this.$router.push("/Login");
@@ -166,8 +155,7 @@ export default {
             }
         },
         IsMyAccountFollowed() {
-            console.log("je suis dedans");
-            if (sharedData.MyProfileFollowers.length > 0 && sharedData.Myaccount) {
+            if (sharedData.MyProfileFollowers && sharedData.Myaccount) {
                 //Vérifier si l 'ID de Myaccount est dans MyFollowers
                 return sharedData.MyProfileFollowers.some(
                     follower => follower.ID === sharedData.Myaccount.ID

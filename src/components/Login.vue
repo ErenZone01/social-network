@@ -79,14 +79,6 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <input id="rememberme" name="rememberme" type="checkbox" />
-              <label for="rememberme" class="font-normal">Remember me</label>
-            </div>
-            <a href="#" class="text-blue-700">Forgot password </a>
-          </div>
-
           <!-- submit button -->
           <div>
             <button
@@ -96,38 +88,6 @@
             >
               Sign in
             </button>
-          </div>
-
-          <div class="text-center flex items-center gap-6">
-            <hr class="flex-1 border-slate-200 dark:border-slate-800" />
-            Or continue with
-            <hr class="flex-1 border-slate-200 dark:border-slate-800" />
-          </div>
-
-          <!-- social login -->
-          <div
-            class="flex gap-2"
-            uk-scrollspy="target: > *; cls: uk-animation-scale-up; delay: 400 ;repeat: true"
-          >
-            <a
-              href="#"
-              class="button flex-1 flex items-center gap-2 bg-primary text-white text-sm"
-            >
-              <ion-icon name="logo-facebook" class="text-lg"></ion-icon>
-              facebook
-            </a>
-            <a
-              href="#"
-              class="button flex-1 flex items-center gap-2 bg-sky-600 text-white text-sm"
-            >
-              <ion-icon name="logo-twitter"></ion-icon> twitter
-            </a>
-            <a
-              href="#"
-              class="button flex-1 flex items-center gap-2 bg-black text-white text-sm"
-            >
-              <ion-icon name="logo-github"></ion-icon> github
-            </a>
           </div>
         </form>
       </div>

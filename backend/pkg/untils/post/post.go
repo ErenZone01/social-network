@@ -36,7 +36,7 @@ var Post = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	// Appeler la fonction CreateNewPost pour enregistrer le post dans la base de données
 	sqlite.CreateNewPost(NewPost)
 	var Allpost = sqlite.GetAllPost()
-	fmt.Println("allposts", Allpost)
+	fmt.Println("New post added by : ", user.Nickname)
 
 	responses.SendResponsesHome(w, r, "response succesfully", Allpost)
 })

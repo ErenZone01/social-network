@@ -61,6 +61,8 @@ func Createsession(w http.ResponseWriter, users Struct.User) bool {
 		Value:   sessionID,
 		Expires: expiration,
 	})
+	fmt.Println("New session created for : ", users.Nickname)
+
 	return true
 }
 func generateSessionID() string {
@@ -128,7 +130,6 @@ func Myaccount(w http.ResponseWriter, r *http.Request) Struct.User {
 		Value:   session.Value,
 		Expires: expiration,
 	})
-
 	return user
 }
 

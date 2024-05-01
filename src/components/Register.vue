@@ -293,8 +293,6 @@
 export default {
   name: "Timeline",
   mixins: [commonMixin],
-
-
   methods: {
     async Register(e) {
       e.preventDefault();

@@ -19,7 +19,7 @@ var UnFollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reque
 	var following Struct.User
 	var err = json.NewDecoder(r.Body).Decode(&following)
 	if err != nil {
-		fmt.Println("Follow : erreur de decodage json", err)
+		fmt.Println("UnFollow : erreur de decodage json", err)
 		return
 	}
 	var followings []Struct.User
@@ -29,5 +29,6 @@ var UnFollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Reque
 	for _, v := range Allfollowing {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
+	fmt.Println(myaccount.Nickname," unfollow ", following.Nickname)
 	responses.SendResponsesHome(w, r, "responses succesfully", followings)
 })

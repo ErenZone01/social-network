@@ -249,17 +249,6 @@
                     class="uk-slider-items grid-small"
                     uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
                   >
-                    <li class="w-28" uk-scrollspy-class="uk-animation-fade">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="book"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">Story</div>
-                      </div>
-                    </li>
                     <li class="w-28">
                       <div
                         class="p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4"
@@ -269,39 +258,6 @@
                           class="text-2xl drop-shadow-md"
                         ></ion-icon>
                         <div class="mt-1.5 text-sm font-medium">Post</div>
-                      </div>
-                    </li>
-                    <li class="w-28">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-purple-100/60 text-purple-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="videocam"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">Reel</div>
-                      </div>
-                    </li>
-                    <li class="w-28">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-pink-100/60 text-pink-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="location"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">location</div>
-                      </div>
-                    </li>
-                    <li class="w-28">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-sky-100/70 text-sky-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="happy"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">Status</div>
                       </div>
                     </li>
                   </ul>
@@ -363,77 +319,6 @@
                     <div class="mt-1 text-xs text-gray-500 dark:text-white">
                       Meet people with similar interests.
                     </div>
-                  </div>
-                </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img
-                    src="/src/assets/images/icons/page.png"
-                    alt=""
-                    class="w-7"
-                  />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Pages
-                      </h4>
-                    </a>
-                    <div class="mt-1">Find and connect with businesses.</div>
-                  </div>
-                </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img src="/src/assets/images/icons/event.png" class="w-7" />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Event
-                      </h4>
-                    </a>
-                    <div class="mt-1">Discover fun activities near you .</div>
-                  </div>
-                </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img
-                    src="/src/assets/images/icons/market.png"
-                    class="w-8 -ml-1"
-                  />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Event
-                      </h4>
-                    </a>
-                    <div class="mt-1">Find local buyers and sellers .</div>
-                  </div>
-                </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img
-                    src="/src/assets/images/icons/game.png"
-                    alt=""
-                    class="w-7"
-                  />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Games
-                      </h4>
-                    </a>
-                    <div class="mt-1">play game with friends have fun.</div>
                   </div>
                 </li>
               </ul>

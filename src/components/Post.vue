@@ -45,8 +45,9 @@
             class="inline-flex items-center py-1 px-2.5 gap-1 font-medium text-sm rounded-full bg-slate-50 border-2 border-slate-100 group aria-expanded:bg-slate-100 aria-expanded: dark:text-white dark:bg-slate-700 dark:border-slate-600"
             type="button"
           >
-            <select id="option" v-model="option" name="option">
-              <option value="Public">Public</option>
+            <select id="option" name="option">
+              <!-- Option "Public" avec selected pour le définir comme par défaut -->
+              <option value="Public" selected >Public</option>
               <option value="Allmost private">Allmost private</option>
               <option value="Private">Private</option>
             </select>

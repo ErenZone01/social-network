@@ -62,10 +62,9 @@ var Profil = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		Errors.SendError(w, r, http.StatusMethodNotAllowed , "Methods Not Allowed")
 		return
 	}
-	fmt.Println("le profil user est : ", ProfilUser)
-	// var Allpost = sqlite.GetAllPost()
 	var Allfollower = sqlite.GetMyFollowers(ProfilUser)
 	var Allfollowing = sqlite.GetMyFollowing(ProfilUser)
+	var MyPost, _ = sqlite.GetPostsByUserID(ProfilUser.Id)
 	var followers = []Struct.User{}
 	var followings = []Struct.User{}
 
@@ -75,11 +74,9 @@ var Profil = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	for _, v := range Allfollowing {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
-
-	// data.Alluser = Alluser
-	// data.Allpost = Allpost
 	data.Allfollowers = followers
 	data.Allfollowing = followings
+	data.Allpost = MyPost
 	data.Myaccount = ProfilUser
 
 	responses.SendResponsesHome(w, r, "response succesfully", data)

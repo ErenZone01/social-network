@@ -1,165 +1,87 @@
 <template>
-  <div v-if="sharedData.MyuserProfile.Privacy == 'public' || sharedData.Myaccount.ID == sharedData.MyuserProfile.ID || IsMyAccountFollowed()" class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col" id="js-oversized">
+  <div
+    v-if="
+      sharedData.MyuserProfile.Privacy == 'public' ||
+      sharedData.Myaccount.ID == sharedData.MyuserProfile.ID ||
+      IsMyAccountFollowed()
+    "
+    class="flex 2xl:gap-12 gap-10 mt-8 max-lg:flex-col"
+    id="js-oversized"
+  >
     <!-- feed story -->
 
     <div class="flex-1 xl:space-y-6 space-y-3">
-      <!--  post image-->
       <div
+        v-for="Post in sharedData.MyProfilePost"
+        :key="Post.Id"
         class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2"
       >
         <!-- post heading -->
         <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
-          <a href="timeline.html">
-            <img
-              src="/src/assets/images/avatars/avatar-3.jpg"
-              alt=""
-              class="w-9 h-9 rounded-full"
-            />
+          <a>
+            <router-link
+              v-if="sharedData.MyuserProfile.ID"
+              :to="{
+                name: 'TimelineProfile',
+                params: { userID: sharedData.MyuserProfile.ID },
+              }"
+            >
+              <img
+                v-if="
+                  sharedData.MyuserProfile.ID == Post.ID_User &&
+                  sharedData.MyuserProfile.Avatar != ''
+                "
+                :src="
+                  '/src/assets/images/avatars/' +
+                  sharedData.MyuserProfile.Avatar
+                "
+                alt=""
+                class="w-9 h-9 rounded-full"
+              />
+              <img
+                v-else-if="
+                  sharedData.MyuserProfile.ID == Post.ID_User &&
+                  sharedData.MyuserProfile.Avatar == ''
+                "
+                :src="'/src/assets/images/avatars/Avatar.webp'"
+                alt=""
+                class="w-9 h-9 rounded-full"
+              />
+            </router-link>
           </a>
           <div class="flex-1">
-            <a href="timeline.html">
-              <h4 class="text-black dark:text-white">Monroe Parker</h4>
+            <a>
+              <h4 class="text-black dark:text-white">
+                {{ Post.Names }}
+              </h4>
             </a>
             <div class="text-xs text-gray-500 dark:text-white/80">
-              2 hours ago
-            </div>
-          </div>
-
-          <div class="-mr-1">
-            <button type="button" class="button-icon w-8 h-8">
-              <ion-icon class="text-xl" name="ellipsis-horizontal"></ion-icon>
-            </button>
-            <div
-              class="w-[245px]"
-              uk-dropdown="pos: bottom-right; animation: uk-animation-scale-up uk-transform-origin-top-right; animate-out: true; mode: click"
-            >
-              <nav>
-                <a href="#">
-                  <ion-icon
-                    class="text-xl shrink-0"
-                    name="bookmark-outline"
-                  ></ion-icon>
-                  Add to favorites
-                </a>
-                <a href="#">
-                  <ion-icon
-                    class="text-xl shrink-0"
-                    name="notifications-off-outline"
-                  ></ion-icon>
-                  Mute Notification
-                </a>
-                <a href="#">
-                  <ion-icon
-                    class="text-xl shrink-0"
-                    name="flag-outline"
-                  ></ion-icon>
-                  Report this post
-                </a>
-                <a href="#">
-                  <ion-icon
-                    class="text-xl shrink-0"
-                    name="share-outline"
-                  ></ion-icon>
-                  Share your profile
-                </a>
-                <hr />
-                <a
-                  href="#"
-                  class="text-red-400 hover:!bg-red-50 dark:hover:!bg-red-500/50"
-                >
-                  <ion-icon
-                    class="text-xl shrink-0"
-                    name="stop-circle-outline"
-                  ></ion-icon>
-                  Unfollow
-                </a>
-              </nav>
+              {{ Post.CreatedPost }}
             </div>
           </div>
         </div>
 
-        <!-- post image -->
-        <div class="relative w-full lg:h-96 h-full sm:px-4">
-          <img
-            src="/src/assets/images/post/img-2.jpg"
-            alt=""
-            class="sm:rounded-lg w-full h-full object-cover"
-          />
+        <div class="sm:px-4 p-2.5 pt-0">
+          <p>{{ Post.Content }}</p>
         </div>
-
+        <a
+          v-if="Post.Image != ''"
+          href="#preview_modal"
+          uk-toggle=""
+          aria-expanded="false"
+        >
+          <div class="relative w-full lg:h-96 h-full sm:px-4">
+            <img
+              :src="'/src/assets/images/post/' + Post.Image"
+              alt=""
+              class="sm:rounded-lg w-full h-full object-cover"
+            />
+          </div>
+        </a>
         <!-- post icons -->
-        <div class="sm:p-4 p-2.5 flex items-center gap-4 text-xs font-semibold">
-          <div>
-            <div class="flex items-center gap-2.5">
-              <button
-                type="button"
-                class="button-icon text-red-500 bg-red-100 dark:bg-slate-700"
-              >
-                <ion-icon class="text-lg" name="heart"></ion-icon>
-              </button>
-              <a href="#">1,300</a>
-            </div>
-            <div
-              class="p-1 px-2 bg-white rounded-full drop-shadow-md w-[212px] dark:bg-slate-700 text-2xl"
-              uk-drop="offset:10;pos: top-left; animate-out: true; animation: uk-animation-scale-up uk-transform-origin-bottom-left"
-            >
-              <div
-                class="flex gap-2"
-                uk-scrollspy="target: > button; cls: uk-animation-scale-up; delay: 100 ;repeat: true"
-              >
-                <button
-                  type="button"
-                  class="text-red-600 hover:scale-125 duration-300"
-                >
-                  <span> 👍 </span>
-                </button>
-                <button
-                  type="button"
-                  class="text-red-600 hover:scale-125 duration-300"
-                >
-                  <span> ❤️ </span>
-                </button>
-                <button
-                  type="button"
-                  class="text-red-600 hover:scale-125 duration-300"
-                >
-                  <span> 😂 </span>
-                </button>
-                <button
-                  type="button"
-                  class="text-red-600 hover:scale-125 duration-300"
-                >
-                  <span> 😯 </span>
-                </button>
-                <button
-                  type="button"
-                  class="text-red-600 hover:scale-125 duration-300"
-                >
-                  <span> 😢 </span>
-                </button>
-              </div>
-
-              <div
-                class="w-2.5 h-2.5 absolute -bottom-1 left-3 bg-white rotate-45 hidden"
-              ></div>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <button
-              type="button"
-              class="button-icon bg-slate-200/70 dark:bg-slate-700"
-            >
-              <ion-icon class="text-lg" name="chatbubble-ellipses"></ion-icon>
-            </button>
-            <span>260</span>
-          </div>
-          <button type="button" class="button-icon ml-auto">
-            <ion-icon class="text-xl" name="paper-plane-outline"></ion-icon>
-          </button>
-          <button type="button" class="button-icon">
-            <ion-icon class="text-xl" name="share-outline"></ion-icon>
-          </button>
-        </div>
+        <div
+          class="sm:p-4 p-2.5 flex items-center gap-4 text-xs font-semibold"
+        ></div>
 
         <!-- comments -->
         <div
@@ -219,9 +141,18 @@
           class="sm:px-4 sm:py-3 p-2.5 border-t border-gray-100 flex items-center gap-1 dark:border-slate-700/40"
         >
           <img
-            src="/src/assets/images/avatars/avatar-7.jpg"
+            v-if="sharedData.MyuserProfile.Avatar != ''"
+            :src="
+              '/src/assets/images/avatars/' + sharedData.MyuserProfile.Avatar
+            "
             alt=""
-            class="w-6 h-6 rounded-full"
+            class="w-9 h-9 rounded-full"
+          />
+          <img
+            v-else-if="sharedData.MyuserProfile.Avatar == ''"
+            :src="'/src/assets/images/avatars/Avatar.webp'"
+            alt=""
+            class="w-9 h-9 rounded-full"
           />
 
           <div class="flex-1 relative overflow-hidden h-10">
