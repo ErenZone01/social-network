@@ -46,7 +46,8 @@
             type="button"
           >
             <select id="option" v-model="option" name="option">
-              <option value="Public">Public</option>
+              <!-- Option "Public" avec selected pour le définir comme par défaut -->
+              <option value="Public" selected >Public</option>
               <option value="Allmost private">Allmost private</option>
               <option value="Private">Private</option>
             </select>
@@ -57,12 +58,11 @@
           </button>
         </div>
         <div v-if="option === 'Allmost private'">
-          <h2>Choisissez les amis qui peuvent voir cette publication :</h2>
-          <div v-for="friend in AllUsers" :key="friend.Id">
+          <div v-for="friend in sharedData.MyFollowings" :key="friend.ID">
             <input
               type="checkbox"
               v-model="selectedFriends"
-              :value="friend.Id"
+              :value="friend.ID"
             />
             <label>{{ friend.Firstname }}</label>
           </div>
@@ -103,7 +103,7 @@ import sharedData from '../assets/js/data.js';
 export default{
   name: 'Post',
   mixins: [commonMixin],
-
+ data(){ return {option:sharedData.option}},
   methods: {
    async CreatePost(e) {
       e.preventDefault();

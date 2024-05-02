@@ -238,202 +238,31 @@
             >
               <h3 class="font-bold text-md">Create</h3>
 
-              <!-- slider -->
-              <div
-                class="mt-4"
-                tabindex="-1"
-                uk-slider="finite:true;sets: true"
-              >
-                <div class="uk-slider-container pb-1">
-                  <ul
-                    class="uk-slider-items grid-small"
-                    uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
-                  >
-                    <li class="w-28" uk-scrollspy-class="uk-animation-fade">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-teal-100/60 text-teal-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="book"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">Story</div>
-                      </div>
-                    </li>
-                    <li class="w-28">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="camera"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">Post</div>
-                      </div>
-                    </li>
-                    <li class="w-28">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-purple-100/60 text-purple-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="videocam"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">Reel</div>
-                      </div>
-                    </li>
-                    <li class="w-28">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-pink-100/60 text-pink-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="location"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">location</div>
-                      </div>
-                    </li>
-                    <li class="w-28">
-                      <div
-                        class="p-3 px-4 rounded-lg bg-sky-100/70 text-sky-600 dark:text-white dark:bg-dark4"
-                      >
-                        <ion-icon
-                          name="happy"
-                          class="text-2xl drop-shadow-md"
-                        ></ion-icon>
-                        <div class="mt-1.5 text-sm font-medium">Status</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                <!-- slide nav icons -->
-                <div class="dark:hidden">
-                  <a
-                    class="absolute -translate-y-1/2 top-1/2 -left-4 flex items-center w-8 h-full px-1.5 justify-start bg-gradient-to-r from-white via-white dark:from-slate-600 dark:via-slate-500 dark:from-transparent dark:via-transparent"
-                    href="#"
-                    uk-slider-item="previous"
-                  >
-                    <ion-icon
-                      name="chevron-back"
-                      class="text-xl dark:text-white"
-                    ></ion-icon>
-                  </a>
-                  <a
-                    class="absolute -translate-y-1/2 top-1/2 -right-4 flex items-center w-8 h-full px-1.5 justify-end bg-gradient-to-l from-white via-white dark:from-transparent dark:via-transparent"
-                    href="#"
-                    uk-slider-item="next"
-                  >
-                    <ion-icon
-                      name="chevron-forward"
-                      class="text-xl dark:text-white"
-                    ></ion-icon>
-                  </a>
-                </div>
-
-                <!-- slide nav -->
-                <div class="justify-center mt-2 -mb-2 hidden dark:flex">
-                  <ul
-                    class="inline-flex flex-wrap justify-center gap-1 uk-dotnav uk-slider-nav"
-                  ></ul>
-                </div>
-              </div>
-
               <!-- list -->
               <ul
-                class="-m-1 mt-4 pb-1 text-xs text-gray-500 dark:text-white"
-                uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-bottom-small ;repeat: true"
+                class="uk-slider-items grid-small"
+                uk-scrollspy="target: > li; cls: uk-animation-scale-up , uk-animation-slide-right-small; delay: 20 ;repeat: true"
               >
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img
-                    src="/src/assets/images/icons/group.png"
-                    alt=""
-                    class="w-7"
-                  />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Groups
-                      </h4>
-                    </a>
-                    <div class="mt-1 text-xs text-gray-500 dark:text-white">
-                      Meet people with similar interests.
-                    </div>
+                <li class="w-28 create-btn" uk-toggle="target: #create-status">
+                  <div
+                    class="p-3 px-4 rounded-lg bg-sky-100/60 text-sky-600 dark:text-white dark:bg-dark4"
+                  >
+                    <ion-icon
+                      name="camera"
+                      class="text-2xl drop-shadow-md"
+                    ></ion-icon>
+                    <div class="mt-1.5 text-sm font-medium">Post</div>
                   </div>
                 </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img
-                    src="/src/assets/images/icons/page.png"
-                    alt=""
-                    class="w-7"
-                  />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Pages
-                      </h4>
-                    </a>
-                    <div class="mt-1">Find and connect with businesses.</div>
-                  </div>
-                </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img src="/src/assets/images/icons/event.png" class="w-7" />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Event
-                      </h4>
-                    </a>
-                    <div class="mt-1">Discover fun activities near you .</div>
-                  </div>
-                </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img
-                    src="/src/assets/images/icons/market.png"
-                    class="w-8 -ml-1"
-                  />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Event
-                      </h4>
-                    </a>
-                    <div class="mt-1">Find local buyers and sellers .</div>
-                  </div>
-                </li>
-                <li
-                  class="flex items-center gap-4 hover:bg-secondery rounded-md p-1.5 cursor-pointer dark:hover:bg-white/10"
-                >
-                  <img
-                    src="/src/assets/images/icons/game.png"
-                    alt=""
-                    class="w-7"
-                  />
-                  <div class="flex-1">
-                    <a href="timeline.html">
-                      <h4
-                        class="font-medium text-sm text-black dark:text-white"
-                      >
-                        Games
-                      </h4>
-                    </a>
-                    <div class="mt-1">play game with friends have fun.</div>
+                <li class="w-28 create-btn" @click="toggleForm">
+                  <div
+                    class="p-3 px-4 rounded-lg bg-purple-100/60 text-purple-600 dark:text-white dark:bg-dark4"
+                  >
+                    <ion-icon
+                      name="videocam"
+                      class="text-2xl drop-shadow-md"
+                    ></ion-icon>
+                    <div class="mt-1.5 text-sm font-medium">Group</div>
                   </div>
                 </li>
               </ul>
@@ -1007,7 +836,11 @@
       <div class="pr-4">
         <nav id="side">
           <ul>
-            <li class="active">
+            <li
+              :class="{
+                active: $route.name === 'Home',
+              }"
+            >
               <router-link to="/Home">
                 <a>
                   <img
@@ -1019,9 +852,13 @@
                 </a>
               </router-link>
             </li>
-            <li>
-              <router-link to="/Home">
-                <a href="messages.html">
+            <li
+              :class="{
+                active: $route.name === 'Messages',
+              }"
+            >
+              <router-link to="/Messages">
+                <a>
                   <img
                     src="/src/assets/images/icons/message.png"
                     alt="messages"
@@ -1031,7 +868,11 @@
                 </a>
               </router-link>
             </li>
-            <li>
+            <li
+              :class="{
+                active: $route.name === 'Group',
+              }"
+            >
               <router-link to="/Group">
                 <a>
                   <img
@@ -1048,6 +889,32 @@
       </div>
     </div>
   </div>
+
+  <!-- group creation form  -->
+  <div class="group-form-container" v-show="showForm">
+    <button class="close-button" @click="closeForm">×</button>
+    <form class="group-form">
+      <div class="form-group">
+        <label for="groupName">Group Name</label>
+        <input type="text" id="groupName" v-model="groupName" />
+      </div>
+      <div class="form-group">
+        <label for="groupDescription">Group Description</label>
+        <textarea id="groupDescription" v-model="groupDescription"></textarea>
+      </div>
+      <!-- Champ pour la photo de profil -->
+      <div class="form-group">
+        <label for="groupProfilePic">Group Profile Picture</label>
+        <input
+          type="file"
+          id="groupProfilePic"
+          accept=".PNG, .png, .JPG, .JPEG, .jpeg, .jpg"
+        />
+      </div>
+      <button @click="this.CreateGroup($event)">Create</button>
+    </form>
+  </div>
+  <div class="overlay" v-if="showForm"></div>
 </template>
 
 <script lang="js" setup>
@@ -1055,11 +922,235 @@ import sharedData from '../assets/js/data.js';</script>
 
 <script lang="js">
 import commonMixin from '../assets/js/untils.js';
+import {CustomFetch} from '../assets/js/untils.js';
+
+import { ref } from "vue";
+// group creation
+const showForm = ref(false);
+const groupName = ref("");
+const groupDescription = ref("");
+
   export default {
   name: 'Header',
   mixins: [commonMixin],
   async mounted() {
     this.GetData();
   },
+  methods:{async CreateGroup(event){
+    event.preventDefault();
+    let Picture = document.getElementById("groupProfilePic")
+      let avatar = ""; // Initialiser le nom de l'avatar à une chaîne vide par défaut
+      let avatarData = null; // Initialiser les données de l'avatar à null par défaut
+      let byteArrayList = null;
+      if (Picture.files.length > 0) {
+        // Vérifier si un fichier a été choisi
+        avatar = Picture.files[0].name; // Nom du fichier
+        avatarData = await Picture.files[0].arrayBuffer(); // Données de l'image
+        // Convertir les données de l'image en tableau de bytes
+        let byteArray = new Uint8Array(avatarData);
+        byteArrayList = Array.from(byteArray);
+      }
+var StructGroup = {
+	GroupName : groupName.value,
+	GroupImage	: avatar,
+	GroupImageFile	: byteArrayList,
+	GroupDescription : groupDescription.value,
+	IdMember	:"",
+	IdCreator	:0}
+
+      var fetch = await CustomFetch("http://localhost:8080/Group", "POST", StructGroup);
+            if (fetch.Types == "Success") {
+                console.log("Data of group : ", fetch.Data.Allgroup);
+                sharedData.Allgroup = fetch.Data.Allgroup;
+            } else {
+                console.log("Error of Creation Group : ", fetch.Msg);
+                this.$router.push("/Login");
+            }
+    console.log("Name Group : ", groupName.value, ", Description : ", groupDescription.value , ", Image : ", avatar)
+
+  }}
 };
+
+
+// Function to toggle the display of the form
+const toggleForm = () => {
+  showForm.value = !showForm.value;
+};
+const closeForm = () => {
+  showForm.value = false;
+  groupName.value = "";
+  groupDescription.value = "";
+};
+
+	// Gérer le changement de la photo de profil
+  const handleProfilePicChange = (event) => {
+  const file = event.target.files[0];
+  groupProfilePic.value = file;
+  groupProfilePicName= file.Name
+};
+
 </script>
+
+<style scoped>
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(250, 245, 245, 0.712);
+  z-index: 999;
+}
+.header {
+  backdrop-filter: blur(100px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 50px;
+  position: fixed;
+  background-color: #476678;
+  padding: 15px 0;
+}
+.logo {
+  width: 30%;
+}
+.logo img {
+  width: 100px !important;
+}
+nav {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  cursor: pointer;
+}
+nav img {
+  width: 25px;
+  height: 25px;
+}
+.pages {
+  width: 55%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+.profil,
+.home {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+}
+.msg-log {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 35%;
+}
+.messagerie {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+}
+.logOut {
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+}
+.logOut img {
+  margin-left: 5px;
+  width: 20px;
+}
+/* responsivite */
+@media screen and (max-width: 800px) {
+  nav span {
+    display: none;
+  }
+}
+.group-form-container {
+  z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-height: 550px;
+  overflow-y: auto;
+  max-width: 90%;
+}
+.group-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form-group {
+  margin-bottom: 25px;
+}
+.form-group label {
+  font-size: 16px;
+  color: #333;
+}
+.group-form input,
+.group-form textarea,
+.group-form select {
+  margin-top: 5px;
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease; /* Transition de la couleur de la bordure */
+}
+.group-form select {
+  width: 100% !important;
+}
+.group-form textarea {
+  resize: none;
+}
+.group-form input:focus,
+.group-form textarea:focus,
+.group-form select:focus {
+  border-color: #5c9edd; /* Couleur de la bordure au focus */
+  outline: none; /* Supprimer le contour */
+}
+.group-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #5c9edd; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transition de la couleur de fond */
+}
+.group-form button:hover {
+  background-color: #4b89d0;
+}
+.close-button {
+  position: absolute;
+  top: -15px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  color: gray;
+}
+.close-button:hover {
+  color: #cc0000;
+  background-color: transparent;
+}
+.create-btn {
+  cursor: pointer;
+}
+</style>

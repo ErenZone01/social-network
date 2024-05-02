@@ -32,16 +32,6 @@
             <div
               class="w-full bottom-0 absolute left-0 bg-gradient-to-t from-black/60 pt-20 z-10"
             ></div>
-
-            <div class="absolute bottom-0 right-0 m-4 z-20">
-              <div class="flex items-center gap-3">
-                <button
-                  class="button bg-black/10 text-white flex items-center gap-2 backdrop-blur-small"
-                >
-                  Edit
-                </button>
-              </div>
-            </div>
           </div>
 
           <!-- user info -->
@@ -226,7 +216,6 @@
       </div>
     </main>
   </div>
-  <Chat></Chat>
   <Posts></Posts>
   <Notif></Notif>
 </template>

@@ -11,19 +11,32 @@ export async function CustomFetch(url, method, data) {
             },
             credentials: "include",
             // N'ajoute pas le corps si la méthode est POST
-            body: (method == 'POST') ? JSON.stringify(data) : undefined,
+            body: (method === 'POST') ? JSON.stringify(data) : undefined,
         });
 
+        // Vérifier si la réponse est un statut OK (200)
         if (!response.ok) {
-            throw new Error('Erreur lors de la requête fetch');
+            // Vérifier si la réponse est une méthode non autorisée (Method Not Allowed)
+            if (response.status === 405) {
+                throw new Error('Méthode non autorisée (Method Not Allowed). Statut : ' + response.status);
+            }
+            // Vérifier si la réponse est une erreur interne du serveur (Internal Server Error)
+            else if (response.status === 500) {
+                throw new Error('Erreur interne du serveur (Internal Server Error). Statut : ' + response.status);
+            }
+            // Si ce n'est pas le cas, lancer une erreur avec le statut de la réponse
+            else {
+                throw new Error('Erreur lors de la requête fetch. Statut : ' + response.status);
+            }
         }
+        // Convertir la réponse en format JSON
+        const responseData = await response.json();
 
-        const responseData = await response.json(); // Convertit la réponse en format JSON
-        return responseData; // Retourne les données récupérées
+        // Retourner les données récupérées
+        return responseData;
     } catch (error) {
         console.error('Erreur lors de la requête fetch :', error);
-        console.error(" Error #%d", 500)
-        throw error; // Lance l'erreur pour être gérée par l'appelant
+        throw error; // Lancer l'erreur pour être gérée par l'appelant
     }
 };
 
@@ -32,17 +45,15 @@ export default {
         async FetchCustomRef() {
             try {
                 var user = parseInt(this.$route.params.userID);
+                console.log("le params est : ", user)
                 var fetch = await CustomFetch("http://localhost:8080/Profil", "POST", { ID: user });
                 if (fetch.Types == "Success") {
                     sharedData.MyuserProfile = fetch.Data.Myaccount;
                     sharedData.MyProfileFollowings = fetch.Data.Allfollowing;
                     sharedData.MyProfileFollowers = fetch.Data.Allfollowers;
-                    sharedData.AllId = [];
-                    for (let i = 0; i < sharedData.MyProfileFollowings.length; i++) {
-                        sharedData.AllId.push(sharedData.MyProfileFollowings[i].ID);
-                    }
+                    sharedData.MyProfilePost = fetch.Data.Allpost;
                     console.log(fetch);
-                } else {
+                } else if (fetch.Msg == "Methods Not Allowed") { console.log("le message : ", fetch.Msg); } else {
                     console.log("le message : ", fetch.Msg);
                     this.$router.push("/Login");
                 }
@@ -63,6 +74,7 @@ export default {
                 sharedData.AllUsers = response.Data.Alluser;
                 sharedData.AllUtilisateur = response.Data.AllUtilisateur
                 sharedData.Allpost = response.Data.Allpost;
+                sharedData.Allgroup = response.Data.Allgroup;
 
             } else {
                 console.log("error GetData : ", response.Msg);
@@ -90,11 +102,7 @@ export default {
                 if (this.$route.name !== 'Home') {
                     this.FetchCustomRef();
                 }
-                sharedData.AllId = []
-                for (let i = 0; i < sharedData.MyProfileFollowings.length; i++) {
-                    console.log(sharedData.MyProfileFollowings[i].ID);
-                    sharedData.AllId.push(sharedData.MyProfileFollowings[i].ID);
-                }
+
             } else {
 
                 if (fetch.Msg.toLowerCase().includes("you have already follow")) { console.log("Error of Follow : ", fetch.Msg); } else {
@@ -124,14 +132,10 @@ export default {
             if (response.Types == "Success") {
                 console.log("Unfollow is success")
                 sharedData.MyFollowings = response.Data;
-                sharedData.AllId = []
                 if (this.$route.name !== 'Home') {
                     this.FetchCustomRef();
                 }
-                for (let i = 0; i < sharedData.MyProfileFollowings.length; i++) {
-                    console.log(sharedData.MyProfileFollowings[i].ID);
-                    sharedData.AllId.push(sharedData.MyProfileFollowings[i].ID);
-                }
+
             } else {
                 console.log("Error of UnFollow : ", response.Msg);
                 this.$router.push("/Login");
@@ -152,8 +156,7 @@ export default {
             }
         },
         IsMyAccountFollowed() {
-            console.log("je suis dedans");
-            if (sharedData.MyProfileFollowers.length > 0 && sharedData.Myaccount) {
+            if (sharedData.MyProfileFollowers && sharedData.Myaccount) {
                 //Vérifier si l 'ID de Myaccount est dans MyFollowers
                 return sharedData.MyProfileFollowers.some(
                     follower => follower.ID === sharedData.Myaccount.ID
@@ -166,6 +169,29 @@ export default {
                 //Vérifier si l 'ID de Myaccount est dans MyFollowers
                 return sharedData.MyProfileFollowings.some(
                     following => following.ID === sharedData.Myaccount.ID
+                );
+
+            }
+            return false;
+        },
+        IfAnAccountFollowMe(account) {
+            if (sharedData.MyFollowers) {
+                //Vérifier si l 'ID de Myaccount est dans MyFollowers
+                console.log("my followers : ", sharedData.MyFollowers)
+
+                return sharedData.MyFollowers.some(
+                    follower => follower.ID === account.ID
+                );
+            }
+            return false;
+        },
+        IfIFollowAnAccount(account) {
+            console.log("my following : ", sharedData.MyFollowings)
+
+            if (sharedData.MyFollowings) {
+                //Vérifier si l 'ID de Myaccount est dans MyFollowers
+                return sharedData.MyFollowings.some(
+                    following => following.ID === account.ID
                 );
 
             }

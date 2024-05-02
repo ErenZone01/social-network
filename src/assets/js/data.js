@@ -6,14 +6,16 @@ const sharedData = reactive({
     MyuserProfile: {},
     MyProfileFollowers: [],
     MyProfileFollowings: [],
+    MyProfilePost: [],
     MyFollowers: [],
     MyFollowings: [],
     Allnotif: [],
     Allpost: [],
     AllUsers: [],
     Myaccount: {},
-    AllId: [],
-    AllUtilisateur: []
+    AllUtilisateur: [],
+    Allgroup: [],
+    option: 'Public',
 });
 
 export default sharedData;

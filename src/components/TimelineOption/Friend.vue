@@ -37,12 +37,12 @@
             </router-link>
 
             <div class="flex-1">
-              <a href="timeline.html">
-                <h4 class="side-list-title">{{ following.Firstname }}{{ following.Lastname }}</h4>
+              <a>
+                <h4 class="side-list-title">{{ following.Nickname }}</h4>
               </a>
               <!-- <div class="side-list-info">125k Following</div> -->
             </div>
-            <button v-if="sharedData.Myaccount.ID == following.ID || sharedData.Myaccount.ID == sharedData.MyuserProfile.ID "
+            <button v-if="sharedData.Myaccount.ID == sharedData.MyuserProfile.ID "
               @click="UnFollow(following, $event)"
               class="button bg-primary-soft text-primary dark:text-white"
             >
@@ -90,31 +90,11 @@
             </router-link>
 
             <div class="flex-1">
-              <a href="timeline.html">
-                <h4 class="side-list-title">{{ follower.Firstname }}{{ follower.Lastname }}</h4>
+              <a>
+                <h4 class="side-list-title">{{ follower.Nickname }}</h4>
               </a>
               <!-- <div class="side-list-info">125k follower</div> -->
             </div>
-            <button
-              v-if="
-                sharedData.MyuserProfile.ID == sharedData.Myaccount.ID &&
-                !sharedData.AllId.includes(follower.ID)
-              "
-              @click="Follow(follower, $event)"
-              class="button bg-primary-soft text-primary dark:text-white"
-            >
-              follow
-            </button>
-            <button
-              v-if="
-                sharedData.MyuserProfile.ID == sharedData.Myaccount.ID &&
-                sharedData.AllId.includes(follower.ID)
-              "
-              @click="UnFollow(follower, $event)"
-              class="button bg-primary-soft text-primary dark:text-white"
-            >
-              unfollow
-            </button>
           </div>
 
           <button class="bg-secondery button w-full mt-2 hidden">

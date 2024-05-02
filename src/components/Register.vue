@@ -294,7 +294,6 @@ import commonMixin from "../assets/js/untils.js";
 export default {
   name: "Timeline",
   mixins: [commonMixin],
-
   methods: {
     async Register(e) {
       e.preventDefault();

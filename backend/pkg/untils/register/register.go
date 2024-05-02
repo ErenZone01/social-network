@@ -24,7 +24,7 @@ func MiddlewareRegister(next http.Handler) http.Handler {
 			return
 		}
 		fmt.Println("err : ", msg)
-		Errors.SendError(w, r, msg)
+		Errors.SendError(w, r, http.StatusOK, msg)
 		// Si l'utilisateur n'est pas authentifié, renvoyer une réponse d'erreur 401 Unauthorized
 		//http.Error(w, msg, http.StatusUnauthorized)
 	})
@@ -40,7 +40,6 @@ func Register(w http.ResponseWriter, r *http.Request) (bool, string) {
 		//http.Error(w, "Erreur de décodage JSON", http.StatusBadRequest)
 		return false, "Erreur de decodage JSON"
 	}
-	fmt.Println("le user est : ", newUser)
 	Alluser := sqlite.GetAllUser()
 	var err, msg = UserUnique(Alluser, newUser.Email)
 	if !err {
@@ -56,6 +55,7 @@ func Register(w http.ResponseWriter, r *http.Request) (bool, string) {
 	if newUser.Avatar != "" {
 		SaveImage(newUser.Avatar, newUser.AvatarData, "avatars")
 	}
+	fmt.Println(newUser.Nickname," is registered !")
 	return err, msg
 }
 func SaveImage(filename string, img []byte, route string) {
