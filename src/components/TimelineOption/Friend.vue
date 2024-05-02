@@ -38,7 +38,7 @@
 
             <div class="flex-1">
               <a>
-                <h4 class="side-list-title">{{ following.Firstname }}{{ following.Lastname }}</h4>
+                <h4 class="side-list-title">{{ following.Nickname }}</h4>
               </a>
               <!-- <div class="side-list-info">125k Following</div> -->
             </div>
@@ -91,29 +91,10 @@
 
             <div class="flex-1">
               <a>
-                <h4 class="side-list-title">{{ follower.Firstname }}{{ follower.Lastname }}</h4>
+                <h4 class="side-list-title">{{ follower.Nickname }}</h4>
               </a>
               <!-- <div class="side-list-info">125k follower</div> -->
             </div>
-            <button
-              v-if=" follower.ID == sharedData.Myaccount.ID &&
-                !IsMyAccountFollowed()
-              "
-              @click="Follow(follower, $event)"
-              class="button bg-primary-soft text-primary dark:text-white"
-            >
-              follow
-            </button>
-            <button
-              v-else-if="
-                follower.ID == sharedData.Myaccount.ID &&
-                IsMyAccountFollowed()
-              "
-              @click="UnFollow(follower, $event)"
-              class="button bg-primary-soft text-primary dark:text-white"
-            >
-              unfollow
-            </button>
           </div>
 
           <button class="bg-secondery button w-full mt-2 hidden">

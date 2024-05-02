@@ -74,6 +74,7 @@ export default {
                 sharedData.AllUsers = response.Data.Alluser;
                 sharedData.AllUtilisateur = response.Data.AllUtilisateur
                 sharedData.Allpost = response.Data.Allpost;
+                sharedData.Allgroup = response.Data.Allgroup;
 
             } else {
                 console.log("error GetData : ", response.Msg);

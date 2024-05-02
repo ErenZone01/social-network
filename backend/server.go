@@ -10,6 +10,7 @@ import (
 	Errors "main/pkg/untils/error"
 	"main/pkg/untils/event"
 	"main/pkg/untils/follow"
+	"main/pkg/untils/group"
 	"main/pkg/untils/home"
 	"main/pkg/untils/login"
 	"main/pkg/untils/notification"
@@ -70,6 +71,7 @@ func handlerFunction() {
 	http.Handle("/Register", MiddlewareCors(register.MiddlewareRegister(register.RegisterHandler)))
 	http.Handle("/Login", MiddlewareCors(login.MiddlewareLogin(login.LoginHandler)))
 	http.Handle("/Post", MiddlewareCors(MiddlewareMethodPost(post.Post)))
+	http.Handle("/Group", MiddlewareCors(MiddlewareMethodPost(group.Group)))
 	http.Handle("/Comment", MiddlewareCors(MiddlewareMethodPost(comment.Comment)))
 	http.Handle("/Follow", MiddlewareCors(MiddlewareMethodPost(follow.FollowHandler)))
 	http.Handle("/UnFollow", MiddlewareCors(MiddlewareMethodPost(follow.UnFollowHandler)))

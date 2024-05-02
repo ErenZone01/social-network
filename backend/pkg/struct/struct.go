@@ -1,13 +1,14 @@
 package Struct
 
 type AllData struct {
-	Myaccount    User
-	Alluser      []User
-	Allpost      []Post
-	Allfollowers []User
-	Allfollowing []User
-	Allnotif     []Notif
+	Myaccount      User
+	Alluser        []User
+	Allpost        []Post
+	Allfollowers   []User
+	Allfollowing   []User
+	Allnotif       []Notif
 	AllUtilisateur []User
+	Allgroup		[]Group
 }
 
 type User struct {
@@ -71,4 +72,14 @@ type Notif struct {
 	Sender       string
 	AvatarSender string
 	ID_Group     int
+}
+
+type Group struct {
+	ID_Group  int `json:"ID_Group"`
+	GroupName string `json:"GroupName"`
+	GroupImage	string `json:"GroupImage"`
+	GroupImageFile	[]byte `json:"GroupImageFile"`
+	GroupDescription string `json:"GroupDescription"`
+	IdMember	string `json:"IdMember"`
+	IdCreator	int `json:"IdCreator"`
 }

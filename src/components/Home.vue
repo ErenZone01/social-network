@@ -41,9 +41,9 @@
                 v-for="Post in sharedData.Allpost"
                 :key="Post.Id"
                 class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2"
-              >
+              > 
                 <div v-for="user in sharedData.AllUtilisateur" :key="user.ID">
-                  <div v-if="user.ID == Post.ID_User">
+                  <div v-if="(user.ID == Post.ID_User && (Post.Privacy == 'Public' || (Post.Privacy == 'Private' && IfIFollowAnAccount(user))) || Post.ID_User == sharedData.Myaccount.ID)">
                     <!-- post heading -->
                     <div class="flex gap-3 sm:p-4 p-2.5 text-sm font-medium">
                       <a>
@@ -274,7 +274,7 @@
                   <div class="flex-1">
                     <a>
                       <h4 class="side-list-title">
-                        {{ user.Firstname }}{{ user.Lastname }}
+                        {{ user.Nickname }}
                       </h4>
                     </a>
                     <!-- <div class="side-list-info">125k user</div> -->

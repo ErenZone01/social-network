@@ -30,12 +30,14 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
 	data.Alluser = UserCouldBeFollow(user, Alluser, followings)
+	var Allgroup = sqlite.GetAllGroup()
 	data.Allpost = Allpost
 	data.Allfollowers = followers
 	data.Allfollowing = followings
 	data.AllUtilisateur = AllUtilisateur
 	data.Allnotif = Allnotif
 	data.Myaccount = user
+	data.Allgroup =Allgroup
 	responses.SendResponsesHome(w, r, "response succesfully", data)
 })
 

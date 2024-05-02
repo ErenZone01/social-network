@@ -13,7 +13,9 @@ const sharedData = reactive({
     Allpost: [],
     AllUsers: [],
     Myaccount: {},
-    AllUtilisateur: []
+    AllUtilisateur: [],
+    Allgroup: [],
+    option: 'Public',
 });
 
 export default sharedData;
