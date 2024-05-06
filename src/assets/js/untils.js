@@ -62,6 +62,25 @@ export default {
                 console.error("Erreur lors de la récupération des données :", error);
             }
         },
+        async FetchCustomRefGroup() {
+            try {
+                var groupID = parseInt(this.$route.params.groupID);
+                console.log("le params est : ", groupID)
+                var fetch = await CustomFetch("http://localhost:8080/ProfilGroup", "POST", { ID_Group: groupID });
+                if (fetch.Types == "Success") {
+                    sharedData.MyProfilePost = fetch.Data.Allpost;
+                    console.log("Allgroup : ", fetch.Data.MyGroup[0]);
+                    sharedData.MygroupProfile = fetch.Data.MyGroup[0]
+                    console.log("ProfileGroup : ", fetch);
+                } else if (fetch.Msg == "Methods Not Allowed") { console.log("le message : ", fetch.Msg); } else {
+                    console.log("le message : ", fetch.Msg);
+                    this.$router.push("/Login");
+                }
+
+            } catch (error) {
+                console.error("Erreur lors de la récupération des données :", error);
+            }
+        },
         async GetData() {
             let response = await CustomFetch("http://localhost:8080/", "GET", {})
             if (response.Types == "Success") {
@@ -74,7 +93,8 @@ export default {
                 sharedData.AllUsers = response.Data.Alluser;
                 sharedData.AllUtilisateur = response.Data.AllUtilisateur
                 sharedData.Allpost = response.Data.Allpost;
-                sharedData.Allgroup = response.Data.Allgroup;
+                sharedData.UncknowGroup = response.Data.UncknowGroup;
+                sharedData.MyGroup = response.Data.MyGroup;
 
             } else {
                 console.log("error GetData : ", response.Msg);
@@ -113,13 +133,17 @@ export default {
 
             // Utilisation de this.allUsers pour faire référence à la propriété data
         },
-        async Invitation(Statement, ID_Notif, event) {
+        async Invitation(Statement, Types, ID_Notif, event) {
             event.preventDefault();
-            let response = await CustomFetch("http://localhost:8080/Invitation", "POST", { States: Statement, ID_Notif: ID_Notif });
+            let response = await CustomFetch("http://localhost:8080/Invitation", "POST", { States: Statement, ID_Notif: ID_Notif, Types: Types });
             if (response.Types == "Success") {
                 console.log("Your requete is approved");
                 sharedData.Allnotif = response.Data.Allnotif;
-                sharedData.MyFollowers = response.Data.Allfollowers;
+                if (response.Data.Allfollowers) { sharedData.MyFollowers = response.Data.Allfollowers; } else {
+                    sharedData.MyGroup = response.Data.MyGroup;
+                    sharedData.UncknowGroup = response.Data.UncknowGroup;
+                }
+
             } else {
                 console.log("Error Invitation : ", response.Msg);
                 this.$router.push("/Login");
@@ -206,6 +230,73 @@ export default {
                 console.log("status : ", fetch.Msg);
                 console.log("page");
             }
-        }
+        },
+        async AddMemberGroup(ID_Groups) {
+            var fetch = await CustomFetch("http://localhost:8080/AddMemberGroup", "POST", { ID_Group: ID_Groups });
+            if (fetch.Types == "Success") {
+                console.log("Add member is succes");
+                sharedData.UncknowGroup = fetch.Data.UncknowGroup;
+                sharedData.MyGroup = fetch.Data.MyGroup;
+            } else {
+                console.log("Error of Change : ", fetch.Msg);
+                this.$router.push("/Login");
+            }
+        },
+        async InvitationGroup(ID_Groups, ID_User) {
+            var fetch = await CustomFetch("http://localhost:8080/InvitationGroup", "POST", { ID_Group: ID_Groups, ID_User: ID_User });
+            if (fetch.Types == "Success") {
+                console.log("your demand is succes");
+                sharedData.Allnotif = fetch.Data.Allnotif;
+            } else {
+                console.log("Error of Change : ", fetch.Msg);
+                this.$router.push("/Login");
+            }
+        },
+        async CreatePost(e) {
+            e.preventDefault();
+            let content = document.getElementById("post").value;
+            let option = document.getElementsByName("option")[0].value;
+            let fileInput = document.getElementsByName("Avatar")[0];
+            sharedData.selectedFriends = this.selectedFriends
+            let image = "" //Initialiser le nom de l image a une chaine vide par defaut
+            let images = null; // Initialiser les données de l'images à null par défaut
+            let byteArrayList = null;
+            if (fileInput.files.length > 0) {
+                // Vérifier si un fichier a été choisi
+                image = fileInput.files[0].name; // Nom du fichier
+                images = await fileInput.files[0].arrayBuffer(); // Données de l'images
+                // Convertir les données de l'images en tableau de bytes
+                let byteArray = new Uint8Array(images);
+                byteArrayList = Array.from(byteArray);
+            }
+            let types = "Post"
+            let groupID = 0;
+            if (this.$route.name !== 'Home') {
+                groupID = parseInt(this.$route.params.groupID);
+                types = "Group"
+            }
+            console.log(byteArrayList);
+            const post = { Content: content, Privacy: option, ImageData: byteArrayList, Image: image, MembersPost: this.selectedFriends, Types: types, ID_Group: groupID };
+
+            fetch("http://localhost:8080/Post", {
+                    method: "POST",
+                    body: JSON.stringify(post),
+                    //ndique que les cookies devraient être inclus dans la requête. Cela est souvent nécessaire lorsqu'une application utilise un système d'authentification basé sur les cookies.
+                    credentials: "include",
+                    header: { "Content-Type": "application/json" },
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.Types == "Success") {
+                        if (types == "Post") { sharedData.Allpost = data.Data } else { sharedData.MyProfilePost = data.Data }
+                        console.log("My post : ", data.Data);
+
+                    } else {
+
+                    }
+                })
+                .catch((error) => console.log("err : ", error));
+
+        },
     },
 };

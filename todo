@@ -3,3 +3,12 @@
 3- gerer la securité concernant l'email et enlever le username comme obligatoire
 4- l'Avatar none dois etre mis dans toutes les pages si l'utilisateur n'a pas de photo de profile
 5- gerer les pages d'erreur 404 405 500
+
+
+GROUP
+6- Verifier si celui qui demande le profile d'un groupe est deja membre  pour qu'il y accede
+7- Verifie si une invitation n'est pas deja enregistrer avant d'accepter une deuxieme une la meme personne dans le groupe
+8- Creer les events et notifier tous les membres du groupe
+9- Quitter le groupe a tout moment (BONUS)
+10- Enlever le div qui apparait lorsqu'on clique sur une Post
+11- Dans la creation de Post et de groupe enlever le bouton qui choisi le privacy, (pour le post uniquement quand on est dans un groupe pour poster)

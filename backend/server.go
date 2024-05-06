@@ -72,6 +72,8 @@ func handlerFunction() {
 	http.Handle("/Login", MiddlewareCors(login.MiddlewareLogin(login.LoginHandler)))
 	http.Handle("/Post", MiddlewareCors(MiddlewareMethodPost(post.Post)))
 	http.Handle("/Group", MiddlewareCors(MiddlewareMethodPost(group.Group)))
+	http.Handle("/InvitationGroup", MiddlewareCors(MiddlewareMethodPost(group.InvitationGroup)))
+	http.Handle("/AddMemberGroup", MiddlewareCors(MiddlewareMethodPost(notification.AddMemberGroup)))
 	http.Handle("/Comment", MiddlewareCors(MiddlewareMethodPost(comment.Comment)))
 	http.Handle("/Follow", MiddlewareCors(MiddlewareMethodPost(follow.FollowHandler)))
 	http.Handle("/UnFollow", MiddlewareCors(MiddlewareMethodPost(follow.UnFollowHandler)))
@@ -79,6 +81,8 @@ func handlerFunction() {
 	http.Handle("/Decon", MiddlewareCors(MiddlewareMethodPost(decon.Decon)))
 	http.Handle("/Invitation", MiddlewareCors(MiddlewareMethodPost(notification.Invitation)))
 	http.Handle("/Profil", MiddlewareCors(MiddlewareMethodPost(profil.Profil)))
+	http.Handle("/ProfilGroup", MiddlewareCors(MiddlewareMethodPost(profil.ProfilGroup)))
+
 	http.Handle("/Privacy", MiddlewareCors(MiddlewareMethodPost(profil.Privacy)))
 	http.Handle("/CheckSession", MiddlewareCors(MiddlewareMethodGet(session.CheckSession)))
 }

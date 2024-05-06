@@ -47,7 +47,7 @@
           >
             <select id="option" v-model="option" name="option">
               <!-- Option "Public" avec selected pour le définir comme par défaut -->
-              <option value="Public" selected >Public</option>
+              <option value="Public" selected>Public</option>
               <option value="Allmost private">Allmost private</option>
               <option value="Private">Private</option>
             </select>
@@ -58,14 +58,18 @@
           </button>
         </div>
         <div v-if="option === 'Allmost private'">
-          <div v-for="friend in sharedData.MyFollowings" :key="friend.ID">
-            <input
-              type="checkbox"
-              v-model="selectedFriends"
-              :value="friend.ID"
-            />
-            <label>{{ friend.Firstname }}</label>
-          </div>
+          <ul>
+            <div v-for="friend in sharedData.MyFollowers" :key="friend.ID">
+              <li>
+                <input
+                  type="checkbox"
+                  v-model="selectedFriends"
+                  :value="friend.ID"
+                />
+                <label>{{ friend.Firstname }}</label>
+              </li>
+            </div>
+          </ul>
         </div>
         <div class="flex items-center gap-2">
           <div class="col-span-2">
@@ -100,49 +104,10 @@ import sharedData from '../assets/js/data.js';
 
 <script lang="js" >
   import commonMixin from '../assets/js/untils.js';
-export default{
-  name: 'Post',
-  mixins: [commonMixin],
- data(){ return {option:sharedData.option}},
-  methods: {
-   async CreatePost(e) {
-      e.preventDefault();
-      let content = document.getElementById("post").value;
-      let option = document.getElementsByName("option")[0].value;
-      let fileInput = document.getElementsByName("Avatar")[0];
-      let image=""//Initialiser le nom de l image a une chaine vide par defaut
-      let images = null; // Initialiser les données de l'images à null par défaut
-      let byteArrayList = null;
-      if (fileInput.files.length > 0) {
-        // Vérifier si un fichier a été choisi
-        image = fileInput.files[0].name; // Nom du fichier
-        images = await fileInput.files[0].arrayBuffer(); // Données de l'images
-        // Convertir les données de l'images en tableau de bytes
-        let byteArray = new Uint8Array(images);
-        byteArrayList = Array.from(byteArray);
-      }
-      console.log(byteArrayList);
-      const post = { Content: content, Privacy: option, ImageData: byteArrayList, Image: image };
-     
-      fetch("http://localhost:8080/Post", {
-        method: "POST",
-        body: JSON.stringify(post),
-        //ndique que les cookies devraient être inclus dans la requête. Cela est souvent nécessaire lorsqu'une application utilise un système d'authentification basé sur les cookies.
-        credentials: "include",
-        header: { "Content-Type": "application/json" },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.Types == "Success"){
-            console.log("My post : ", data.Data);
-            sharedData.Allpost= data.Data
-          }else{
-
-          }
-        })
-        .catch((error) => console.log("err : ", error));
-    },
-  },
-  };
+  export default{
+    name: 'Post',
+    mixins: [commonMixin],
+   data(){ return {option:sharedData.option, selectedFriends:sharedData.selectedFriends}},  
+    };
 
 </script>

@@ -8,7 +8,16 @@ type AllData struct {
 	Allfollowing   []User
 	Allnotif       []Notif
 	AllUtilisateur []User
-	Allgroup		[]Group
+	MyGroup        []Group
+	UncknowGroup   []Group
+	GetAllMembers  []Members
+}
+
+type Members struct {
+	ID_Member int
+	ID_Post   int
+	ID_Group  int `json:"ID_Group"`
+	ID_User   int `json:"ID_User"`
 }
 
 type User struct {
@@ -36,9 +45,10 @@ type Post struct {
 	ImageData   []byte  `json:"ImageData"`
 	ID_User     int     `json:"ID_User"`
 	Privacy     string  `json:"Privacy"`
-	ID_Group    string  `json:"ID_Group"`
+	ID_Group    int     `json:"ID_Group"`
 	Types       string  `json:"Types"`
 	CreatedPost *string `json:"CreatedPost"`
+	MembersPost []int   `json:"MembersPost"`
 }
 
 type Session struct {
@@ -67,19 +77,19 @@ type Notif struct {
 	ID_Notif     int `json:"ID_Notif"`
 	Messages     string
 	Receiver     string
-	Types        string
+	Types        string `json:"Types"`
 	States       string `json:"States"`
 	Sender       string
 	AvatarSender string
-	ID_Group     int
+	ID_Group     int `json:"ID_Group"`
 }
 
 type Group struct {
-	ID_Group  int `json:"ID_Group"`
-	GroupName string `json:"GroupName"`
-	GroupImage	string `json:"GroupImage"`
-	GroupImageFile	[]byte `json:"GroupImageFile"`
+	ID_Group         int    `json:"ID_Group"`
+	GroupName        string `json:"GroupName"`
+	GroupImage       string `json:"GroupImage"`
+	GroupImageFile   []byte `json:"GroupIhjumageFile"`
 	GroupDescription string `json:"GroupDescription"`
-	IdMember	string `json:"IdMember"`
-	IdCreator	int `json:"IdCreator"`
+	IdMember         []int  `json:"IdMember"`
+	IdCreator        int    `json:"IdCreator"`
 }

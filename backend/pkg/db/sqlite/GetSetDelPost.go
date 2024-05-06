@@ -7,8 +7,8 @@ import (
 
 func GetPostsByUserID(userID int) ([]Struct.Post, error) {
 	var posts []Struct.Post
-	query := `SELECT * FROM Post WHERE ID_User = ?`
-	rows, err := DB.Query(query, userID)
+	query := `SELECT * FROM Post WHERE ID_User = ? AND Types = ?`
+	rows, err := DB.Query(query, userID, "Post")
 	if err != nil {
 		return nil, err
 	}
@@ -48,8 +48,8 @@ func DeletePost(id int) {
 }
 
 func GetAllPost() []Struct.Post {
-	query := "SELECT * FROM Post ORDER BY ID_Post DESC"
-	rows, err := DB.Query(query)
+	query := "SELECT * FROM Post WHERE Types=?  ORDER BY ID_Post DESC"
+	rows, err := DB.Query(query, "Post")
 	if err != nil {
 		fmt.Println("Error from GetAllPost: ", err)
 		return []Struct.Post{}
@@ -64,8 +64,28 @@ func GetAllPost() []Struct.Post {
 		}
 		PostLists = append(PostLists, post)
 	}
+	return PostLists
+}
+
+func GetAllPostByGroup(ID_Group int) []Struct.Post {
+	query := "SELECT * FROM Post WHERE ID_Group = ? ORDER BY ID_Post DESC"
+	rows, err := DB.Query(query, ID_Group)
+	if err != nil {
+		fmt.Println("GetAllPostGroup2 : Error scanning row: ", err)
+		return []Struct.Post{}
+	}
+	defer rows.Close()
+	var PostLists []Struct.Post
+	for rows.Next() {
+		var post Struct.Post
+		if err := rows.Scan(&post.Id, &post.Names, &post.Content, &post.Title, &post.Image, &post.ID_User, &post.Privacy, &post.ID_Group, &post.Types, &post.CreatedPost); err != nil {
+			fmt.Println("GetAllPostGroup2 : Error scanning row: ", err)
+			continue
+		}
+		PostLists = append(PostLists, post)
+	}
 	if err := rows.Err(); err != nil {
-		fmt.Println("GetAllUser : Error iterating rows: ", err)
+		fmt.Println("GetAllPostGroup3 : Error iterating rows: ", err)
 		return []Struct.Post{}
 	}
 	return PostLists

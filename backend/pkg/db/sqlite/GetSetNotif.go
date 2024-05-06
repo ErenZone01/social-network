@@ -23,7 +23,7 @@ func UpdateNotif(notif Struct.Notif) {
 }
 
 func GetMyNotif(Receiver string) []Struct.Notif {
-	query := "SELECT ID_Notification, Messages, Receiver, Types, States, Sender, AvatarSender, ID_Group From Notifications WHERE Receiver = ? "
+	query := "SELECT * From Notifications WHERE Receiver = ? "
 	rows, err := DB.Query(query, Receiver)
 	if err != nil {
 		fmt.Println("Error from GetAllUser: ", err)

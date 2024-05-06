@@ -389,7 +389,7 @@
                       </div>
                       <button
                         v-if="notif.States == 'pending'"
-                        @click="Invitation('true', notif.ID_Notif, $event)"
+                        @click="this.Invitation('true', notif.Types , notif.ID_Notif, $event)"
                         type="button"
                         class="button text-white bg-primary"
                       >
@@ -397,7 +397,7 @@
                       </button>
                       <button
                         v-if="notif.States == 'pending'"
-                        @click="Invitation('Decline', notif.ID_Notif, $event)"
+                        @click="this.Invitation('Decline', notif.Types, notif.ID_Notif, $event)"
                         type="button"
                         class="button text-white bg-primary"
                       >
@@ -955,13 +955,13 @@ var StructGroup = {
 	GroupImage	: avatar,
 	GroupImageFile	: byteArrayList,
 	GroupDescription : groupDescription.value,
-	IdMember	:"",
 	IdCreator	:0}
 
       var fetch = await CustomFetch("http://localhost:8080/Group", "POST", StructGroup);
             if (fetch.Types == "Success") {
-                console.log("Data of group : ", fetch.Data.Allgroup);
-                sharedData.Allgroup = fetch.Data.Allgroup;
+                console.log("Group created");
+                sharedData.UncknowGroup = fetch.Data.UncknowGroup;
+                sharedData.MyGroup = fetch.Data.MyGroup;
             } else {
                 console.log("Error of Creation Group : ", fetch.Msg);
                 this.$router.push("/Login");

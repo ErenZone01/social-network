@@ -7,7 +7,7 @@ import Group from "@/components/TimelineOption/Group.vue";
 import Profile from "@/components/TimelineOption/Profile.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import Groups from "../components/Group.vue";
-// import TimelineGroup from "../components/Timeline-Group.vue";
+import TimelineGroup from "../components/Timeline-Group.vue";
 
 import Messages from "../components/Messages.vue";
 
@@ -63,12 +63,12 @@ const router = createRouter({
         },
       ],
     },
-    // {
-    //   path: "/TimelineGroup/:groupID",
-    //   name: "TimelineGroup",
-    //   component: TimelineGroup,
-    // },
-  ],
+    {
+      path: "/TimelineGroup/:groupID",
+      name: "TimelineGroup",
+      component: TimelineGroup,
+    },
+   ],
 });
 
 export default router;

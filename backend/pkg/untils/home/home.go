@@ -5,6 +5,8 @@ import (
 	"main/pkg/session"
 	Struct "main/pkg/struct"
 	responses "main/pkg/untils/Responses"
+	"main/pkg/untils/group"
+	"main/pkg/untils/post"
 	"net/http"
 )
 
@@ -18,6 +20,7 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	var Alluser = sqlite.GetAllUser()
 	var AllUtilisateur = Alluser
 	var Allpost = sqlite.GetAllPost()
+	Allpost = post.GetMembers(Allpost)
 	var Allfollower = sqlite.GetMyFollowers(user)
 	var Allfollowing = sqlite.GetMyFollowing(user)
 	var Allnotif = sqlite.GetMyNotif(user.Nickname)
@@ -31,13 +34,14 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	}
 	data.Alluser = UserCouldBeFollow(user, Alluser, followings)
 	var Allgroup = sqlite.GetAllGroup()
+	Allgroup = group.GetMembersGroup(Allgroup)
+	data.UncknowGroup, data.MyGroup = group.GroupCouldBeFollow(user, Allgroup)
 	data.Allpost = Allpost
 	data.Allfollowers = followers
 	data.Allfollowing = followings
 	data.AllUtilisateur = AllUtilisateur
 	data.Allnotif = Allnotif
 	data.Myaccount = user
-	data.Allgroup =Allgroup
 	responses.SendResponsesHome(w, r, "response succesfully", data)
 })
 

@@ -1,0 +1,7 @@
+-- 001_initial.sql
+CREATE TABLE Members (
+    ID_Member INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID_Post INTEGER,
+    ID_Group INTEGER,
+    ID_User INTEGER NOT NULL
+);

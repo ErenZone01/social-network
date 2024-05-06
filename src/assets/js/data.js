@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 // Créez un objet réactif pour stocker vos données partagées 
 const sharedData = reactive({
     MyuserProfile: {},
+    MygroupProfile: {},
     MyProfileFollowers: [],
     MyProfileFollowings: [],
     MyProfilePost: [],
@@ -14,8 +15,10 @@ const sharedData = reactive({
     AllUsers: [],
     Myaccount: {},
     AllUtilisateur: [],
-    Allgroup: [],
+    UncknowGroup: [],
+    MyGroup: [],
     option: 'Public',
+    selectedFriends: []
 });
 
 export default sharedData;
