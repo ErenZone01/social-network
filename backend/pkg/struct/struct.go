@@ -93,3 +93,24 @@ type Group struct {
 	IdMember         []int  `json:"IdMember"`
 	IdCreator        int    `json:"IdCreator"`
 }
+type Comment struct {
+	ID_Comment     int     `json:"ID_Comment"`
+	Names          *string `json:"Names"`
+	Content        string  `json:"Content"`
+	Images         string  `json:"Image"`
+	ImageData      []byte  `json:"ImageData"`
+	ID_User        int     `json:"ID_User"`
+	ID_Post        int     `json:"ID_Post"`
+	ID_Group       int     `json:"ID_Group"`
+	Types          string  `json:"Types"`
+	CreatedComment *string `json:"CreatedComment"`
+}
+type EventGroup struct {
+	ID_Event         int
+	EventDescription string
+	Title            string
+	EventDays        string
+	Option           string
+	ID_User          int
+	ID_Group         int
+}

@@ -62,6 +62,7 @@ export default {
                 console.error("Erreur lors de la récupération des données :", error);
             }
         },
+        
         async FetchCustomRefGroup() {
             try {
                 var groupID = parseInt(this.$route.params.groupID);
@@ -95,6 +96,7 @@ export default {
                 sharedData.Allpost = response.Data.Allpost;
                 sharedData.UncknowGroup = response.Data.UncknowGroup;
                 sharedData.MyGroup = response.Data.MyGroup;
+                sharedData.AllComment = response.Data.AllComment;
 
             } else {
                 console.log("error GetData : ", response.Msg);
@@ -166,6 +168,7 @@ export default {
             }
 
         },
+        
         async ChangePrivacy(e) {
             e.preventDefault();
             var fetch = await CustomFetch("http://localhost:8080/Privacy", "POST", sharedData.Myaccount);
@@ -230,6 +233,9 @@ export default {
                 console.log("status : ", fetch.Msg);
                 console.log("page");
             }
+        },
+        RecupId(id){
+            sharedData.Id = id
         },
         async AddMemberGroup(ID_Groups) {
             var fetch = await CustomFetch("http://localhost:8080/AddMemberGroup", "POST", { ID_Group: ID_Groups });
