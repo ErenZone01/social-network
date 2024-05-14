@@ -232,7 +232,6 @@
     </main>
   </div>
   <Posts></Posts>
-  <Notif></Notif>
 </template>
 
 

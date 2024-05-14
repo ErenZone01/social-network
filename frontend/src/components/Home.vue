@@ -89,7 +89,7 @@
                       </div>
                     </div>
                     <div class="sm:px-4 p-2.5 pt-0">
-                      <p>{{ Post.Content }}</p>
+                      <p class="texte">{{ Post.Content }}</p>
                     </div>
                     <a
                       v-if="Post.Image != ''"
@@ -119,8 +119,8 @@
                         v-if="Comment.ID_Post == Post.ID"
                       >
                         <div
-                          class="flex items-start gap-3 relative"
-                          style="background-color: rgb(234 238 243)"
+                        class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2"
+                          style="background-color: rgb(137, 166, 201)"
                         >
                           <a>
                             <img
@@ -162,8 +162,8 @@
                               class="sm:rounded-lg w-full h-full object-cover"
                             />
                           </div>
-                          <div>
-                            <p class="mt-0.5">{{ Comment.Content }}</p>
+                          <div class="sm:px-4 p-2.5 pt-0">
+                            <p class="texte">{{ Comment.Content }}</p>
                           </div>
                         </div>
                       </div>
@@ -278,13 +278,11 @@
     </main>
   </div>
   <Posts></Posts>
-  <Notif></Notif>
   <Comment></Comment>
 </template>
 <script lang="js" setup>
 import Headers from './Header.vue'
 import Posts from './Post.vue'
-import Notif from './Notification.vue'
 import sharedData from '../assets/js/data.js';
 import Comment from "./Comment.vue";
 </script>
@@ -305,4 +303,5 @@ export default {
   font-size: 50%;
   width: max-content;
 }
+.texte{overflow-wrap: break-word;}
 </style>

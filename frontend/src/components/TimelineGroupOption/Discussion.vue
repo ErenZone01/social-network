@@ -48,7 +48,7 @@
               </div>
 
               <div class="sm:px-4 p-2.5 pt-0">
-                <p>{{ Post.Content }}</p>
+                <p class="texte">{{ Post.Content }}</p>
               </div>
               <a v-if="Post.Image != ''" href="#preview_modal" uk-toggle="" aria-expanded="false">
                 <div class="relative w-full lg:h-96 h-full sm:px-4">
@@ -64,7 +64,7 @@
                 <div
                   class="sm:p-4 p-2.5 border-t border-gray-100 font-normal space-y-3 relative dark:border-slate-700/40"
                   v-if="Comment.ID_Post == Post.ID">
-                  <div class="flex items-start gap-3 relative" style="background-color: rgb(234 238 243)">
+                  <div class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2" style="background-color: rgb(234 238 243)">
                     <a>
                       <img v-if="
                         sharedData.AllUtilisateur[Comment.ID_User - 1]
@@ -84,8 +84,8 @@
                       <img :src="'/src/assets/images/comment/' + Comment.Image" alt=""
                         class="sm:rounded-lg w-full h-full object-cover" />
                     </div>
-                    <div>
-                      <p class="mt-0.5">{{ Comment.Content }}</p>
+                    <div class="sm:px-4 p-2.5 pt-0">
+                      <p class="texte">{{ Comment.Content }}</p>
                     </div>
                   </div>
                 </div>
@@ -255,4 +255,12 @@ export default {
   mixins: [commonMixin],
 };
 </script>
-<style></style>
+<style scoped>
+/* Si vous utilisez CSS */
+.bg-custom-gray {
+  background-color: #d4cdcd;
+  font-size: 50%;
+  width: max-content;
+}
+.texte{overflow-wrap: break-word;}
+</style>

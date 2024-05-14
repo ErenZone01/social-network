@@ -149,15 +149,14 @@
     </main>
   </div>
   <Posts></Posts>
-  <Notif></Notif>
 </template>
 
 <script lang="js" setup>
 import Headers from './Header.vue'
 import Posts from './Post.vue'
-import Notif from './Notification.vue'
 import sharedData from '../assets/js/data.js';
 </script>
+
 <script lang="js">
 import commonMixin from '../assets/js/untils.js';
 export default {
