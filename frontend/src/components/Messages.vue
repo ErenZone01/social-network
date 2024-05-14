@@ -570,33 +570,11 @@ export default {
       sharedData.AllChats = await data.Data;
 
     },
-    // Exemple d'utilisation avec fetch
-    //   fetch("http://localhost:8080/Chats", {
-    //     method: "POST",
-    //     body: JSON.stringify(Receiver),
-    //     credentials: "include",
-    //     headers: { "Content-Type": "application/json" },
-    //   })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       if (data.Types == "Success") {
-    //         console.log("two : ", data.Data);
-    //         sharedData.AllChats = data.Data;
-
-    //         // Exemple d'envoi de message via WebSocket
-
-    //       } else {
-    //         // Gérer les erreurs
-    //       }
-    //     })
-    //     .catch((error) => console.log("err : ", error));
-    // },
 
     async SendAndDisplay(event) {
       if (event.keyCode === 13) {
         // Empêche le saut de ligne par défaut dans le textarea
         event.preventDefault();
-        console.log("presser");
         let textarea = document.getElementById("mes");
         if (textarea.value.trim() === "") {
           textarea.value = ""
@@ -641,36 +619,3 @@ export default {
   }
 }
 </script>
-<!-- createWebSocket() {
-  const WS_URL = 'ws://localhost:8080/ws';
-  
-  // Vérifier si la connexion WebSocket est déjà ouverte
-  if (!this.websocket || this.websocket.readyState !== WebSocket.OPEN) {
-    this.websocket = new WebSocket(WS_URL);
-
-    // Lorsque la connexion est ouverte
-    this.websocket.onopen = () => {
-      // this.websocket.send("coucou");
-      console.log('Connexion WebSocket ouverte.');
-    };
-
-    // Lorsque le serveur envoie un message
-    this.websocket.onmessage = (event) => {
-      console.log('Message reçu du serveur :', event.data);
-    };
-
-    // Lorsque la connexion est fermée
-    this.websocket.onclose = () => {
-      console.log('Connexion WebSocket fermée.');
-      // Vous pouvez gérer la reconnexion ici si nécessaire
-    };
-
-    // Lorsqu'une erreur se produit
-    this.websocket.onerror = (error) => {
-      console.error('Erreur WebSocket :', error);
-    };
-  } else {
-    // La connexion WebSocket est déjà ouverte
-    console.log('Connexion WebSocket déjà ouverte.');
-  }
-}, -->
