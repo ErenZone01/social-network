@@ -276,7 +276,7 @@ export default {
                 this.Effect(div, "Write something before sending", "red")
                 return
             }
-            let option = document.getElementsByName("option")[0].value;
+            let option = "";
 
             let fileInput = document.getElementsByName("Avatar")[0];
             sharedData.selectedFriends = this.selectedFriends
@@ -296,6 +296,8 @@ export default {
             if (this.$route.name !== 'Home') {
                 groupID = parseInt(this.$route.params.groupID);
                 types = "Group"
+            }else{
+                option = document.getElementsByName("option")[0].value;
             }
             console.log(byteArrayList);
             const post = { Content: content, Privacy: option, ImageData: byteArrayList, Image: image, MembersPost: this.selectedFriends, Types: types, ID_Group: groupID };
