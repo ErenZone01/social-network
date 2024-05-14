@@ -42,13 +42,14 @@ var Socket = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	defer ws.Close()
 	var user = session.Myaccount(w, r)
 	//si le compte n'existe pas quitte
-	if user.Error {
-		log.Println("Do you have an account")
-		return
+	// if user.Error {
+	// 	log.Println("Do you have an account")
+	// 	return
+	// }
+	// log.Println("First step In websocket for ", user.Nickname, "!!!")
+	if user.Nickname != "" {
+		clients[ws] = user
 	}
-	log.Println("First step In websocket for ", user.Nickname, "!!!")
-
-	clients[ws] = user
 	log.Println("len clients", len(clients))
 
 	for {
