@@ -40,6 +40,7 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	data.Allfollowers = followers
 	data.Allfollowing = followings
 	data.AllUtilisateur = AllUtilisateur
+	data.Allcomment = sqlite.GetAllComments()
 	data.Allnotif = Allnotif
 	data.Myaccount = user
 	responses.SendResponsesHome(w, r, "response succesfully", data)
@@ -59,7 +60,10 @@ func UserCouldBeFollow(myaccount Struct.User, Alluser []Struct.User, Followings 
 			}
 		}
 		if actif {
-			newAlluser = append(newAlluser, v)
+			var user = v
+			var tmp = sqlite.GetFollowsByUsers(myaccount.Id, v.Id)
+			if (tmp != Struct.Follow{}){ user.States = tmp.Operation}
+			newAlluser = append(newAlluser, user)
 		} else {
 			actif = true
 		}

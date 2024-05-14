@@ -6,9 +6,9 @@ import (
 )
 
 func CreateNewMember(membres Struct.Members) {
-	query := `INSERT INTO Members (ID_Post, ID_Group, ID_User) VALUES  (?,?,?)`
+	query := `INSERT INTO Members (ID_Post, ID_Group, ID_User, ID_Event) VALUES (?,?,?,?)`
 	//Inserer des utilisateurs dans notre table User
-	_, err := DB.Exec(query, membres.ID_Post, membres.ID_Group, membres.ID_User)
+	_, err := DB.Exec(query, membres.ID_Post, membres.ID_Group, membres.ID_User, membres.ID_Event)
 	if err != nil {
 		fmt.Println("SetMember : ", err)
 		return
@@ -26,7 +26,7 @@ func GetAllMemberPost(ID_Post int) []Struct.Members {
 	var MemberLists []Struct.Members
 	for rows.Next() {
 		var membres Struct.Members
-		if err := rows.Scan(&membres.ID_Member, &membres.ID_Post, &membres.ID_Group, &membres.ID_User); err != nil {
+		if err := rows.Scan(&membres.ID_Member, &membres.ID_Post, &membres.ID_Group, &membres.ID_User, &membres.ID_Event); err != nil {
 			fmt.Println("GetAllMember : Error scanning row: ", err)
 			continue
 		}
@@ -38,9 +38,9 @@ func GetAllMemberPost(ID_Post int) []Struct.Members {
 	}
 	return MemberLists
 }
-func GetAllMemberGroup(ID_Group int) []Struct.Members {
-	query := "SELECT * FROM Members WHERE ID_Group = ?"
-	rows, err := DB.Query(query, ID_Group)
+func GetAllMemberGroup(ID_Group int, ID_Event int) []Struct.Members {
+	query := "SELECT * FROM Members WHERE ID_Group = ? AND ID_Event = ?"
+	rows, err := DB.Query(query, ID_Group , ID_Event)
 	if err != nil {
 		fmt.Println("Error from GetAllMember: ", err)
 		return []Struct.Members{}
@@ -49,7 +49,7 @@ func GetAllMemberGroup(ID_Group int) []Struct.Members {
 	var MemberLists []Struct.Members
 	for rows.Next() {
 		var membres Struct.Members
-		if err := rows.Scan(&membres.ID_Member, &membres.ID_Post, &membres.ID_Group, &membres.ID_User); err != nil {
+		if err := rows.Scan(&membres.ID_Member, &membres.ID_Post, &membres.ID_Group, &membres.ID_User, &membres.ID_Event); err != nil {
 			fmt.Println("GetAllMember : Error scanning row: ", err)
 			continue
 		}

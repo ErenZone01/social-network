@@ -8,7 +8,12 @@ import Profile from "@/components/TimelineOption/Profile.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import Groups from "../components/Group.vue";
 import TimelineGroup from "../components/Timeline-Group.vue";
-
+import Discussion from "@/components/TimelineGroupOption/Discussion.vue";
+import Event from "@/components/TimelineGroupOption/Event.vue";
+import Chat from "@/components/TimelineGroupOption/Chat.vue";
+import NotFound from "../components/Error/NotFound.vue";
+import NotAllowed from "../components/Error/NotAllowed.vue";
+import InternalServer from "../components/Error/InternalServer.vue";
 import Messages from "../components/Messages.vue";
 
 const router = createRouter({
@@ -67,7 +72,34 @@ const router = createRouter({
       path: "/TimelineGroup/:groupID",
       name: "TimelineGroup",
       component: TimelineGroup,
+      children: [
+        { path: "", component: Profile }, // ProfileComponent est le composant par défaut
+        {
+          path: "/TimelineGroup/:groupID/Discussion",
+          name: "TimelineDiscussion",
+          component: Discussion,
+        },
+        {
+          path: "/TimelineGroup/:groupID/Event",
+          name: "TimelineEvent",
+          component: Event,
+        },
+        {
+          path: "/TimelineGroup/:groupID/Chat",
+          name: "TimelineChat",
+          component: Chat,
+        },
+      ],
     },
+    {path:'/:pathMatch(.*)*', name:"NotFound", component: NotFound},
+     {
+      path: '/405',
+      component: NotAllowed
+    },
+    {
+      path: '/500',
+      component: InternalServer
+    }
    ],
 });
 

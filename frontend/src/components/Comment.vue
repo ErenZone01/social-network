@@ -46,7 +46,7 @@
                 id="text"
                 name="Image"
                 type="file"
-                accept=".jpeg, .jpg, .gif"
+                accept="image/*, .gif"
                 class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
               />
             </div>
@@ -100,6 +100,8 @@
           if (data.Types == "Success"){
             console.log("My comment : ", data.Data);
             sharedData.Allcomment= data.Data
+            UIkit.modal("#create-comment").hide();
+
           }else{
 
           }

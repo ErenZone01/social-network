@@ -31,7 +31,9 @@ var Comment = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Follow : erreur de decodage json", err)
 		return
 	}
-	register.SaveImage(NewComment.Images, NewComment.ImageData, "comment")
+	if NewComment.Images != "" {
+		register.SaveImage(NewComment.Images, NewComment.ImageData, "comment")
+	}
 
 	// Appeler la fonction CreateNewPost pour enregistrer le post dans la base de données
 	sqlite.CreateNewComment(NewComment)

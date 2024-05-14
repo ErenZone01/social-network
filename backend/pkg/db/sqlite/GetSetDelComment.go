@@ -4,7 +4,7 @@ import (
 	"fmt"
 	Struct "main/pkg/struct"
 )
-
+//
 func GetCommentsByPostID(postID int) ([]Struct.Comment, error) {
 	var comments []Struct.Comment
 	query := `SELECT * FROM Comment WHERE ID_Post = ?`
@@ -29,7 +29,7 @@ func GetCommentsByPostID(postID int) ([]Struct.Comment, error) {
 
 func CreateNewComment(comment Struct.Comment) {
 	query := `INSERT INTO Comment (content, Images, ID_User, ID_Post, ID_Group, Types, Names) VALUES (?, ?, ?, ?, ?, ?, ?)`
-	_, err := DB.Exec(query, comment.Content, comment.Images, comment.ID_User, comment.ID_Post, comment.ID_Group, comment.Types, comment.Names)
+	_, err := DB.Exec(query, comment.Content, comment.Images, comment.ID_User, comment.ID_Post, comment.ID_Group, comment.Types,comment.Names)
 	if err != nil {
 		fmt.Println("CreateNewComment error:", err)
 		return
@@ -57,7 +57,7 @@ func GetAllComments() []Struct.Comment {
 	var commentList []Struct.Comment
 	for rows.Next() {
 		var comment Struct.Comment
-		if err := rows.Scan(&comment.ID_Comment, &comment.Content, &comment.Images, &comment.ID_User, &comment.ID_Post, &comment.ID_Group, &comment.Types, &comment.CreatedComment, &comment.Names); err != nil {
+		if err := rows.Scan(&comment.ID_Comment, &comment.Content, &comment.Images, &comment.ID_User, &comment.ID_Post, &comment.ID_Group, &comment.Types, &comment.CreatedComment,&comment.Names); err != nil {
 			fmt.Println("GetAllComments: Error scanning row:", err)
 			continue
 		}

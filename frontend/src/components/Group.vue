@@ -20,7 +20,6 @@
             </ul>
           </nav>
         </div>
-
         <!-- group list tabs -->
         <div class="uk-switcher" id="group-tabs">
           <!-- card layout 1 -->
@@ -62,21 +61,29 @@
                   <a href="#"> Travel </a>
                   <div class="md:block hidden">·</div>
                   <div v-if="group.IdMember != null">
-                    {{ group.IdMember.length }} members
+                    {{ group.IdMember.length + 1 }} members
                   </div>
-                  <div v-else>0 member</div>
+                  <div v-else>1 member</div>
                 </div>
                 <div class="flex gap-2">
-                  <button
+                  <button v-if="group.States != 'pending'"
                     type="button"
                     @click="this.InvitationGroup(group.ID_Group, 0)"
                     class="button bg-primary text-white flex-1"
                   >
                     Join
                   </button>
+                  <button
+                    v-else
+                    class="button bg-custom-gray text-gray-700 cursor-not-allowed"
+                    disabled
+                  >
+                    waiting for a response
+                  </button>
                   
                 </div>
               </div>
+              <div :id='"group"+group.ID_Group'></div>
             </div>
           </div>
 
@@ -119,14 +126,14 @@
                   <a href="#"> Travel </a>
                   <div class="md:block hidden">·</div>
                   <div v-if="group.IdMember != null">
-                    {{ group.IdMember.length }} members
+                    {{ group.IdMember.length + 1 }} members
                   </div>
-                  <div v-else>0 member</div>
+                  <div v-else>1 member</div>
                 </div>
                 <div class="flex gap-2">
                   <router-link
                     :to="{
-                      name: 'TimelineGroup',
+                      name: 'TimelineDiscussion',
                       params: { groupID: group.ID_Group },
                     }"
                     ><a class="button bg-secondery !w-auto"
@@ -141,7 +148,6 @@
       </div>
     </main>
   </div>
-  <Chat></Chat>
   <Posts></Posts>
   <Notif></Notif>
 </template>
@@ -149,7 +155,6 @@
 <script lang="js" setup>
 import Headers from './Header.vue'
 import Posts from './Post.vue'
-import Chat from './Chat.vue'
 import Notif from './Notification.vue'
 import sharedData from '../assets/js/data.js';
 </script>
@@ -164,3 +169,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>/* Si vous utilisez CSS */
+.bg-custom-gray {
+  background-color: #d4cdcd;
+  font-size: 100%;
+  width: max-content;
+}</style>

@@ -490,7 +490,6 @@
 </template>
 <script lang="js" setup>
 import Headers from './Header.vue'
-import Chat from './Chat.vue'
 import Notif from './Notification.vue'
 import sharedData from '../assets/js/data.js';
 import CommonMixin from '../assets/js/untils.js'

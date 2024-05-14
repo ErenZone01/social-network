@@ -37,10 +37,11 @@
           rows="6"
           placeholder="What do you have in mind?"
         ></textarea>
+        <div id="ErrorText"></div>
       </div>
 
       <div class="p-5 flex justify-between items-center">
-        <div>
+        <div v-if="this.$route.name=='Home'">
           <button
             class="inline-flex items-center py-1 px-2.5 gap-1 font-medium text-sm rounded-full bg-slate-50 border-2 border-slate-100 group aria-expanded:bg-slate-100 aria-expanded: dark:text-white dark:bg-slate-700 dark:border-slate-600"
             type="button"
@@ -78,7 +79,7 @@
                 id="text"
                 name="Avatar"
                 type="file"
-                accept=".jpeg, .jpg, .gif"
+                accept="image/*, .gif"
                 class="!w-full !rounded-lg !bg-transparent !shadow-sm !border-slate-200 dark:!border-slate-800 dark:!bg-white/5"
               />
             </div>

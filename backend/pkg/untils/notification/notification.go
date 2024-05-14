@@ -54,6 +54,15 @@ var Invitation = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			var Group Struct.Members
 			var Notif = sqlite.GetNotifById(notif.ID_Notif)
 			var ProfileGroup, _ = sqlite.GetGroupsByGroupID(Notif.ID_Group)
+			ProfileGroup = group.GetMembersProfileGroup(ProfileGroup)
+			if group.IsMember(myaccount, ProfileGroup) {
+				fmt.Println("utilisateur deja dans le group")
+				sqlite.DeleteNotif(notif.ID_Notif)
+				data.Allnotif = sqlite.GetMyNotif(myaccount.Nickname)
+				data.UncknowGroup, data.MyGroup = group.GroupCouldBeFollow(myaccount, group.GetMembersGroup(sqlite.GetAllGroup()))
+				responses.SendResponsesHome(w, r, " you have already member of this group !", data)
+				return
+			}
 			//si le cretaor est egale au receveur alors c'est une demande fait par un utilistauer hors du group
 			if ProfileGroup.IdCreator == myaccount.Id {
 				Group.ID_User = sqlite.GetUser(Notif.Sender).Id
@@ -68,16 +77,44 @@ var Invitation = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			Notif.Messages = " integrate the group "
 			sqlite.UpdateNotif(Notif)
 		}
-		var Allgroup = sqlite.GetAllGroup()
-		Allgroup = group.GetMembersGroup(Allgroup)
 		data.Allnotif = sqlite.GetMyNotif(myaccount.Nickname)
-		data.UncknowGroup, data.MyGroup = group.GroupCouldBeFollow(myaccount, Allgroup)
+		data.UncknowGroup, data.MyGroup = group.GroupCouldBeFollow(myaccount, group.GetMembersGroup(sqlite.GetAllGroup()))
 		fmt.Println("New member added")
-
+	} else if notif.Types == "event" {
+		var Notif = sqlite.GetNotifById(notif.ID_Notif)
+		var Event, _ = sqlite.GetEventByID(Notif.ID_Event)
+		if notif.States == "Decline" {
+			sqlite.DeleteNotif(notif.ID_Notif)
+		} else {
+			var members Struct.Members
+			members.ID_Event = Event.ID_Event
+			members.ID_Group = Event.ID_Group
+			members.ID_Post = 0
+			members.ID_User = myaccount.Id
+			sqlite.CreateNewMember(members)
+			//update notif to true
+			Notif.States = "true"
+			Notif.Messages = " participe in the event "
+			sqlite.UpdateNotif(Notif)
+		}
+		data.Allnotif = sqlite.GetMyNotif(myaccount.Nickname)
+		data.Allevent =GetMembersEvent(Event.ID_Group)
+		fmt.Println("New member added to event")
 	}
-
 	responses.SendResponsesHome(w, r, "responses succesfully", data)
 })
+
+func GetMembersEvent(ID_Group int) []Struct.EventGroup {
+	var Events []Struct.EventGroup
+	for _, v := range sqlite.GetEventByUsers(ID_Group) {
+		tmp := sqlite.GetAllMemberGroup(ID_Group, v.ID_Event)
+		for _, d := range tmp {
+			v.ID_Member = append(v.ID_Member, d.ID_User)
+		}
+		Events = append(Events, v)
+	}
+	return Events
+}
 
 var AddMemberGroup = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	var user = session.Myaccount(w, r)

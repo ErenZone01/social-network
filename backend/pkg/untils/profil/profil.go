@@ -8,7 +8,9 @@ import (
 	Struct "main/pkg/struct"
 	responses "main/pkg/untils/Responses"
 	Errors "main/pkg/untils/error"
+	"main/pkg/untils/group"
 	"main/pkg/untils/home"
+	"main/pkg/untils/notification"
 	"net/http"
 )
 
@@ -74,6 +76,11 @@ var Profil = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	for _, v := range Allfollowing {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
 	}
+	var ProfileFollow = sqlite.GetFollowsByUsers(user.Id, ProfilUser.Id)
+	if (ProfileFollow != Struct.Follow{}) {
+		ProfilUser.States = ProfileFollow.Operation
+	}
+
 	data.Allfollowers = followers
 	data.Allfollowing = followings
 	data.Allpost = MyPost
@@ -99,16 +106,23 @@ var ProfilGroup = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) 
 		Errors.SendError(w, r, http.StatusMethodNotAllowed, "Methods Not Allowed")
 		return
 	}
+	ProfilGroup = group.GetMembersProfileGroup(ProfilGroup)
+	if !group.IsMember(user, ProfilGroup) {
+		if ProfilGroup.IdCreator != user.Id {
+			Errors.SendError(w, r, http.StatusMethodNotAllowed, "Methods Not Allowed")
+			return
+		}
+	}
 	var newMember []int
-	var tab = sqlite.GetAllMemberGroup(ProfilGroup.ID_Group)
+	var tab = sqlite.GetAllMemberGroup(ProfilGroup.ID_Group, 0)
 	for _, v := range tab {
 		newMember = append(newMember, v.ID_User)
 	}
 	ProfilGroup.IdMember = newMember
 	var Data Struct.AllData
 	var MyPost = sqlite.GetAllPostByGroup(idGroup.ID_Group)
-	
+	Data.Allevent = notification.GetMembersEvent(ProfilGroup.ID_Group)
 	Data.Allpost = MyPost
-	Data.MyGroup = append(Data.MyGroup, ProfilGroup) 
+	Data.MyGroup = append(Data.MyGroup, ProfilGroup)
 	responses.SendResponsesHome(w, r, "response succesfully", Data)
 })

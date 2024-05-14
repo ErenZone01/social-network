@@ -1,44 +1,39 @@
-// Fonction CustomFetch qui prend l'URL, la méthode et les données en tant que paramètres
+// Fonction CustomFetch qui prend l'URL,  la méthode et les données en tant que paramètres
 
 import sharedData from './data.js';
+// importez le router à partir de votre fichier router.js
+import router from '../../router/index.ts'
 
+// Modifiez la signature de CustomFetch pour accepter le routeur en paramètre
 export async function CustomFetch(url, method, data) {
     try {
         const response = await fetch(url, {
             method: method,
             headers: {
-                'Content-Type': 'application/json', // Vous pouvez ajuster les en-têtes selon vos besoins
+                'Content-Type': 'application/json',
             },
             credentials: "include",
-            // N'ajoute pas le corps si la méthode est POST
             body: (method === 'POST') ? JSON.stringify(data) : undefined,
         });
 
-        // Vérifier si la réponse est un statut OK (200)
         if (!response.ok) {
-            // Vérifier si la réponse est une méthode non autorisée (Method Not Allowed)
             if (response.status === 405) {
-                throw new Error('Méthode non autorisée (Method Not Allowed). Statut : ' + response.status);
-            }
-            // Vérifier si la réponse est une erreur interne du serveur (Internal Server Error)
-            else if (response.status === 500) {
-                throw new Error('Erreur interne du serveur (Internal Server Error). Statut : ' + response.status);
-            }
-            // Si ce n'est pas le cas, lancer une erreur avec le statut de la réponse
-            else {
-                throw new Error('Erreur lors de la requête fetch. Statut : ' + response.status);
+                router.push('/405');
+                return
+            } else if (response.status === 500) {
+                router.push('/500');
+                return
             }
         }
-        // Convertir la réponse en format JSON
-        const responseData = await response.json();
 
-        // Retourner les données récupérées
+        const responseData = await response.json();
         return responseData;
     } catch (error) {
-        console.error('Erreur lors de la requête fetch :', error);
-        throw error; // Lancer l'erreur pour être gérée par l'appelant
+        router.push('/500');
+        return
     }
 };
+
 
 export default {
     methods: {
@@ -62,7 +57,6 @@ export default {
                 console.error("Erreur lors de la récupération des données :", error);
             }
         },
-        
         async FetchCustomRefGroup() {
             try {
                 var groupID = parseInt(this.$route.params.groupID);
@@ -71,7 +65,8 @@ export default {
                 if (fetch.Types == "Success") {
                     sharedData.MyProfilePost = fetch.Data.Allpost;
                     console.log("Allgroup : ", fetch.Data.MyGroup[0]);
-                    sharedData.MygroupProfile = fetch.Data.MyGroup[0]
+                    sharedData.MygroupProfile = fetch.Data.MyGroup[0];
+                    sharedData.MyEvent = fetch.Data.Allevent;
                     console.log("ProfileGroup : ", fetch);
                 } else if (fetch.Msg == "Methods Not Allowed") { console.log("le message : ", fetch.Msg); } else {
                     console.log("le message : ", fetch.Msg);
@@ -94,10 +89,10 @@ export default {
                 sharedData.AllUsers = response.Data.Alluser;
                 sharedData.AllUtilisateur = response.Data.AllUtilisateur
                 sharedData.Allpost = response.Data.Allpost;
+                sharedData.Allgroup = response.Data.Allgroup;
+                sharedData.Allcomment = response.Data.Allcomment;
                 sharedData.UncknowGroup = response.Data.UncknowGroup;
                 sharedData.MyGroup = response.Data.MyGroup;
-                sharedData.AllComment = response.Data.AllComment;
-
             } else {
                 console.log("error GetData : ", response.Msg);
                 this.$router.push("/Login");
@@ -121,15 +116,20 @@ export default {
                 sharedData.AllUsers = fetch.Data.Alluser
                 sharedData.Allnotif = fetch.Data.Allnotif;
                 sharedData.MyFollowings = fetch.Data.Allfollowing;
+                var div = document.getElementById("follow" + user.ID);
                 if (this.$route.name !== 'Home') {
                     this.FetchCustomRef();
                 }
-
             } else {
+                console.log("fetch msg : ", fetch.Msg);
 
-                if (fetch.Msg.toLowerCase().includes("you have already follow")) { console.log("Error of Follow : ", fetch.Msg); } else {
+                if (fetch.Msg.toLowerCase().includes("your request has already been sent")) {
                     console.log("Error of Follow : ", fetch.Msg);
-                    this.$router.push("/Login");
+                    var div = document.getElementById("follow" + user.ID);
+                    if (div) { this.Effect(div, fetch.Msg, "red") }
+                } else {
+                    console.log("Error of Follow : ", fetch.Msg);
+                    //this.$router.push("/Login");
                 }
             }
 
@@ -139,18 +139,23 @@ export default {
             event.preventDefault();
             let response = await CustomFetch("http://localhost:8080/Invitation", "POST", { States: Statement, ID_Notif: ID_Notif, Types: Types });
             if (response.Types == "Success") {
-                console.log("Your requete is approved");
+                console.log("the data : ", response.Data);
                 sharedData.Allnotif = response.Data.Allnotif;
-                if (response.Data.Allfollowers) { sharedData.MyFollowers = response.Data.Allfollowers; } else {
+                if (Types == "person") {
+                    sharedData.MyFollowers = response.Data.Allfollowers;
+                    console.log("je suis dans person");
+                } else if (Types == "group") {
+                    console.log("je suis dans groupe");
                     sharedData.MyGroup = response.Data.MyGroup;
                     sharedData.UncknowGroup = response.Data.UncknowGroup;
+                } else if (Types == "event") {
+                    console.log("je suis dans les event");
+                    sharedData.MyEvent = response.Data.Allevent
                 }
-
             } else {
                 console.log("Error Invitation : ", response.Msg);
                 this.$router.push("/Login");
             }
-
         },
         async UnFollow(user, event) {
             event.preventDefault();
@@ -168,7 +173,6 @@ export default {
             }
 
         },
-        
         async ChangePrivacy(e) {
             e.preventDefault();
             var fetch = await CustomFetch("http://localhost:8080/Privacy", "POST", sharedData.Myaccount);
@@ -234,9 +238,6 @@ export default {
                 console.log("page");
             }
         },
-        RecupId(id){
-            sharedData.Id = id
-        },
         async AddMemberGroup(ID_Groups) {
             var fetch = await CustomFetch("http://localhost:8080/AddMemberGroup", "POST", { ID_Group: ID_Groups });
             if (fetch.Types == "Success") {
@@ -249,19 +250,32 @@ export default {
             }
         },
         async InvitationGroup(ID_Groups, ID_User) {
+            var div = document.getElementById("group" + ID_Groups);
             var fetch = await CustomFetch("http://localhost:8080/InvitationGroup", "POST", { ID_Group: ID_Groups, ID_User: ID_User });
             if (fetch.Types == "Success") {
-                console.log("your demand is succes");
+                console.log("the msg : " + fetch.Msg);
                 sharedData.Allnotif = fetch.Data.Allnotif;
+                sharedData.UncknowGroup = fetch.Data.UncknowGroup;
+                sharedData.MyGroup = fetch.Data.MyGroup;
             } else {
-                console.log("Error of Change : ", fetch.Msg);
-                this.$router.push("/Login");
+                if (fetch.Msg.toLowerCase().includes("you have already sent your invitation !")) {
+                    if (div) { this.Effect(div, fetch.Msg, "red") }
+                } else {
+                    console.log("Error of Follow : ", fetch.Msg);
+                    this.$router.push("/Login");
+                }
             }
         },
         async CreatePost(e) {
             e.preventDefault();
             let content = document.getElementById("post").value;
+            if (content.trim() === "") {
+                var div = document.getElementById("ErrorText");
+                this.Effect(div, "Write something before sending", "red")
+                return
+            }
             let option = document.getElementsByName("option")[0].value;
+
             let fileInput = document.getElementsByName("Avatar")[0];
             sharedData.selectedFriends = this.selectedFriends
             let image = "" //Initialiser le nom de l image a une chaine vide par defaut
@@ -296,7 +310,11 @@ export default {
                     if (data.Types == "Success") {
                         if (types == "Post") { sharedData.Allpost = data.Data } else { sharedData.MyProfilePost = data.Data }
                         console.log("My post : ", data.Data);
-
+                        document.getElementById("post").value = "";
+                        this.option = "Public";
+                        this.selectedFriends = [];
+                        fileInput.value = ""
+                        UIkit.modal("#create-status").hide();
                     } else {
 
                     }
@@ -304,5 +322,16 @@ export default {
                 .catch((error) => console.log("err : ", error));
 
         },
+        async Effect(div, msg, color) {
+            div.textContent = msg;
+            div.style = "color : " + color;
+            setTimeout(() => {
+                div.textContent = "";
+            }, 3000);
+        },
+        RecupId(id) {
+            sharedData.Id = id
+        }
+
     },
 };

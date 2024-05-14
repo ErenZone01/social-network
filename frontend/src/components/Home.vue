@@ -32,9 +32,7 @@
                   </div>
                 </div>
               </div>
-
               <!--  post image with slider-->
-
               <!-- post text-->
               <div
                 v-for="Post in sharedData.Allpost"
@@ -44,11 +42,13 @@
                 <div v-for="user in sharedData.AllUtilisateur" :key="user.ID">
                   <div
                     v-if="
-                      (user.ID == Post.ID_User &&
-                        (Post.Privacy == 'Public' ||
-                          (Post.Privacy == 'Private' &&
-                            IfIFollowAnAccount(user)))) ||
-                      Post.ID_User == sharedData.Myaccount.ID
+                      user.ID == Post.ID_User &&
+                      (user.ID == sharedData.Myaccount.ID ||
+                        Post.Privacy == 'Public' ||
+                        (Post.Privacy == 'Private' &&
+                          IfIFollowAnAccount(user)) ||
+                        (Post.Privacy == 'Allmost private' &&
+                          Post.MembersPost.includes(sharedData.Myaccount.ID)))
                     "
                   >
                     <!-- post heading -->
@@ -88,7 +88,6 @@
                         </div>
                       </div>
                     </div>
-
                     <div class="sm:px-4 p-2.5 pt-0">
                       <p>{{ Post.Content }}</p>
                     </div>
@@ -110,78 +109,66 @@
                     <div
                       class="sm:p-4 p-2.5 flex items-center gap-4 text-xs font-semibold"
                     ></div>
-
                     <!-- comments -->
                     <div
                       v-for="Comment in sharedData.Allcomment"
                       :key="Comment.Id"
-                      class="sm:p-4 p-2.5 border-t border-gray-100 font-normal space-y-3 relative dark:border-slate-700/40">
-                    <div v-if="Comment.ID_Post == Post.ID">
-                      <div class="flex items-start gap-3 relative">
-                        <a href="timeline.html">
-                          <img
-                            src="/src/assets/images/avatars/avatar-2.jpg"
-                            alt=""
-                            class="w-6 h-6 mt-1 rounded-full"
-                          />
-                        </a>
-                        <div class="flex-1"> 
-                          
-                          <a
-                            href="timeline.html"
-                            class="text-black font-medium inline-block dark:text-white"
-                          >
-                        
-                          </a>
-                          <p class="mt-0.5">
-                          </p>
-                          <img
-                          :src="'/src/assets/images/comment/' + Comment.Image"
-                          alt=""
-                          class="sm:rounded-lg w-full h-full object-cover"
-                        />
-                        </div>
-                      </div>
-                      <div class="flex items-start gap-3 relative">
-                        <a href="timeline.html">
-                          <img
-                            src="/src/assets/images/avatars/avatar-3.jpg"
-                            alt=""
-                            class="w-6 h-6 mt-1 rounded-full"
-                          />
-                        </a>
-                        <div class="flex-1">
-                          <a
-                            href="timeline.html"
-                            class="text-black font-medium inline-block dark:text-white"
-                          >
-                          {{ Comment.Names }}
-                          </a>
-                          <p class="mt-0.5">{{ Comment.Content }}</p>
-                        </div>
-                      </div>
-
-                      <button
-                        type="button"
-                        class="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 mt-2"
+                    >
+                      <div
+                        class="sm:p-4 p-2.5 border-t border-gray-100 font-normal space-y-3 relative dark:border-slate-700/40"
+                        v-if="Comment.ID_Post == Post.ID"
                       >
-                        <ion-icon
-                          name="chevron-down-outline"
-                          class="ml-auto duration-200 group-aria-expanded:rotate-180"
-                        ></ion-icon>
-                        More Commen:t
-                      </button>
+                        <div
+                          class="flex items-start gap-3 relative"
+                          style="background-color: rgb(234 238 243)"
+                        >
+                          <a>
+                            <img
+                              v-if="
+                                sharedData.AllUtilisateur[Comment.ID_User - 1]
+                                  .Avatar != ''
+                              "
+                              :src="
+                                '/src/assets/images/avatars/' +
+                                sharedData.AllUtilisateur[Comment.ID_User - 1]
+                                  .Avatar
+                              "
+                              alt=""
+                              class="w-6 h-6 mt-1 rounded-full"
+                            />
+                            <img
+                              v-else-if="
+                                sharedData.AllUtilisateur[Comment.ID_User - 1]
+                                  .Avatar == ''
+                              "
+                              :src="'/src/assets/images/avatars/Avatar.webp'"
+                              alt=""
+                              class="w-6 h-6 mt-1 rounded-full"
+                            />
+                          </a>             
+                            <a
+                              class="text-black font-medium inline-block dark:text-white"
+                            >
+                              {{ Comment.Names }}
+                            </a>
+                          <div
+                            v-if="Comment.Image != ''"
+                          >
+                            <img
+                              :src="
+                                '/src/assets/images/comment/' + Comment.Image
+                              "
+                              alt=""
+                              class="sm:rounded-lg w-full h-full object-cover"
+                            />
+                          </div>
+                          <div>
+                            <p class="mt-0.5">{{ Comment.Content }}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-
                     <!-- add comment -->
-               
-
-                      <button
-                        type="submit"
-                        class="text-sm rounded-full py-1.5 px-3.5 bg-secondery"
-                      >
-                      </button>
-                    </div>
                     <div
                       class="sm:px-4 sm:py-3 p-2.5 border-t border-gray-100 flex items-center gap-1 dark:border-slate-700/40"
                     >
@@ -197,20 +184,21 @@
                         alt=""
                         class="w-9 h-9 rounded-full"
                       />
-
                       <div
-                    class="flex-1 bg-slate-100 hover:bg-opacity-80 transition-all rounded-lg cursor-pointer dark:bg-dark3"
-                    uk-toggle="target: #create-comment"
-                  >
-                    <div @click="  this.RecupId(Post.ID)"  class="py-2.5 text-center dark:text-white">
-                      add comment
-                    </div>
-                  </div>
+                        class="flex-1 bg-slate-100 hover:bg-opacity-80 transition-all rounded-lg cursor-pointer dark:bg-dark3"
+                        uk-toggle="target: #create-comment"
+                      >
+                        <div
+                          @click="this.RecupId(Post.ID)"
+                          class="py-2.5 text-center dark:text-white"
+                        >
+                          add comment
+                        </div>
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
               <!-- placeholder -->
             </div>
           </div>
@@ -259,18 +247,26 @@
                       <h4 class="side-list-title">
                         {{ user.Nickname }}
                       </h4>
+                      <p>({{ user.Privacy }})</p>
                     </a>
+                    <div :id="'follow' + user.ID"></div>
                     <!-- <div class="side-list-info">125k user</div> -->
                   </div>
-
                   <button
+                    v-if="user.States != 'pending'"
                     @click="Follow(user, $event)"
                     class="button bg-primary-soft text-primary dark:text-white"
                   >
                     follow
                   </button>
+                  <button
+                    v-else
+                    class="button bg-custom-gray text-gray-700 cursor-not-allowed"
+                    disabled
+                  >
+                    waiting for a response
+                  </button>
                 </div>
-
                 <button class="bg-secondery button w-full mt-2 hidden">
                   See all
                 </button>
@@ -281,23 +277,17 @@
       </div>
     </main>
   </div>
-
-  <Chat></Chat>
   <Posts></Posts>
   <Notif></Notif>
   <Comment></Comment>
 </template>
-
 <script lang="js" setup>
-import Headers from "./Header.vue";
-import Posts from "./Post.vue";
-import Chat from "./Chat.vue";
-import Notif from "./Notification.vue";
+import Headers from './Header.vue'
+import Posts from './Post.vue'
+import Notif from './Notification.vue'
+import sharedData from '../assets/js/data.js';
 import Comment from "./Comment.vue";
-
-import sharedData from "../assets/js/data.js";
 </script>
-
 <script lang="js">
 import commonMixin from "../assets/js/untils.js";
 export default {
@@ -308,4 +298,11 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+/* Si vous utilisez CSS */
+.bg-custom-gray {
+  background-color: #d4cdcd;
+  font-size: 50%;
+  width: max-content;
+}
+</style>

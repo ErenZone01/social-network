@@ -39,7 +39,9 @@
             <div
               class="flex flex-col justify-center md:items-center lg:-mt-48 -mt-28"
             >
-              <div class="flex justify-center relative lg:h-48 lg:w-48 w-28 h-28 mb-4 z-10">
+              <div
+                class="flex justify-center relative lg:h-48 lg:w-48 w-28 h-28 mb-4 z-10"
+              >
                 <div
                   class="relative overflow-hidden rounded-full md:border-[6px] border-gray-100 shrink-0 dark:border-slate-900 shadow"
                 >
@@ -74,8 +76,8 @@
                   ></ion-icon>
                 </button>
               </div>
-              
-              <div >
+
+              <div>
                 <h3
                   v-if="
                     sharedData.MyuserProfile.Firstname &&
@@ -98,7 +100,11 @@
                   {{ sharedData.Myaccount.Privacy }}</button
                 >(click to change it)
               </div>
-
+              <div v-else>
+                <p v-if="sharedData.MyuserProfile.Privacy">
+                  ({{ sharedData.MyuserProfile.Privacy }})
+                </p>
+              </div>
               <button
                 v-if="
                   sharedData.MyuserProfile.ID != sharedData.Myaccount.ID &&
@@ -111,12 +117,21 @@
               </button>
               <button
                 v-else-if="
-                  (sharedData.MyuserProfile.ID != sharedData.Myaccount.ID ) && !IsMyAccountFollowed()
+                  sharedData.MyuserProfile.States != 'pending' &&
+                  sharedData.MyuserProfile.ID != sharedData.Myaccount.ID &&
+                  !IsMyAccountFollowed()
                 "
                 @click="Follow(sharedData.MyuserProfile, $event)"
                 class="button bg-primary-soft text-primary dark:text-white"
               >
                 follow
+              </button>
+              <button
+                v-else
+                class="button bg-custom-gray text-gray-700 cursor-not-allowed"
+                disabled
+              >
+                waiting for a response
               </button>
             </div>
           </div>
@@ -224,8 +239,6 @@
 <script lang="js" setup>
 import Headers from "./Header.vue";
 import Posts from './Post.vue'
-import Chat from './Chat.vue'
-import Notif from './Notification.vue'
 import { RouterLink } from "vue-router";
 import sharedData from '../assets/js/data.js';
 </script>
@@ -243,3 +256,10 @@ export default {
     }
   },
 };</script>
+
+<style scoped>/* Si vous utilisez CSS */
+.bg-custom-gray {
+  background-color: #d4cdcd;
+  font-size: 100%;
+  width: max-content;
+}</style>

@@ -32,7 +32,9 @@ var Post = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Follow : erreur de decodage json", err)
 		return
 	}
-	register.SaveImage(NewPost.Image, NewPost.ImageData, "post")
+	if NewPost.Image != "" {
+		register.SaveImage(NewPost.Image, NewPost.ImageData, "post")
+	}
 	// Appeler la fonction CreateNewPost pour enregistrer le post dans la base de données
 	sqlite.CreateNewPost(NewPost)
 	var Allpost []Struct.Post

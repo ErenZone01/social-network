@@ -11,6 +11,8 @@ type AllData struct {
 	MyGroup        []Group
 	UncknowGroup   []Group
 	GetAllMembers  []Members
+	Allcomment     []Comment
+	Allevent       []EventGroup
 }
 
 type Members struct {
@@ -18,6 +20,7 @@ type Members struct {
 	ID_Post   int
 	ID_Group  int `json:"ID_Group"`
 	ID_User   int `json:"ID_User"`
+	ID_Event  int `json:"ID_Event"`
 }
 
 type User struct {
@@ -34,6 +37,7 @@ type User struct {
 	Privacy    string `json:"Privacy"`
 	Error      bool
 	Actif      string
+	States     string
 }
 
 type Post struct {
@@ -82,6 +86,7 @@ type Notif struct {
 	Sender       string
 	AvatarSender string
 	ID_Group     int `json:"ID_Group"`
+	ID_Event     int `json:"ID_Event"`
 }
 
 type Group struct {
@@ -92,6 +97,7 @@ type Group struct {
 	GroupDescription string `json:"GroupDescription"`
 	IdMember         []int  `json:"IdMember"`
 	IdCreator        int    `json:"IdCreator"`
+	States           string
 }
 type Comment struct {
 	ID_Comment     int     `json:"ID_Comment"`
@@ -105,12 +111,14 @@ type Comment struct {
 	Types          string  `json:"Types"`
 	CreatedComment *string `json:"CreatedComment"`
 }
+
 type EventGroup struct {
-	ID_Event         int
-	EventDescription string
-	Title            string
-	EventDays        string
-	Option           string
-	ID_User          int
-	ID_Group         int
+	ID_Event         int    `json:"ID_Event"`
+	EventDescription string `json:"EventDescription"`
+	Title            string `json:"Title"`
+	EventDays        string `json:"EventDays"`
+	Option           string `json:"Option"`
+	ID_User          int    `json:"ID_User"`
+	ID_Group         int    `json:"ID_Group"`
+	ID_Member        []int
 }

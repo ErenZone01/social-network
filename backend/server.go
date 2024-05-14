@@ -82,7 +82,6 @@ func handlerFunction() {
 	http.Handle("/Invitation", MiddlewareCors(MiddlewareMethodPost(notification.Invitation)))
 	http.Handle("/Profil", MiddlewareCors(MiddlewareMethodPost(profil.Profil)))
 	http.Handle("/ProfilGroup", MiddlewareCors(MiddlewareMethodPost(profil.ProfilGroup)))
-
 	http.Handle("/Privacy", MiddlewareCors(MiddlewareMethodPost(profil.Privacy)))
 	http.Handle("/CheckSession", MiddlewareCors(MiddlewareMethodGet(session.CheckSession)))
 }

@@ -18,11 +18,11 @@ const sharedData = reactive({
     UncknowGroup: [],
     MyGroup: [],
     option: 'Public',
-    selectedFriends: [],
-    AllComment: [],
-    Id: 0
-    //selectedFriends: []
-
+    optionEvent: 'Going',
+    MyEvent: [],
+    Allcomment: [],
+    Id: 0,
+    MyEvent: []
 });
 
 export default sharedData;

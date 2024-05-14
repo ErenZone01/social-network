@@ -34,11 +34,11 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	}
 	//tempFollowing := sqlite.GetMyFollowing(myaccount)
 	if IsAlreadyFollowing(myaccount, following) {
-		Errors.SendError(w, r, http.StatusOK, "You have already follow : "+following.Nickname)
+		Errors.SendError(w, r, http.StatusOK, "Your request has already been sent")
 		return
 	}
 	sqlite.SetFollowing(myaccount, following, operation, "person", 0)
-	sqlite.SetNotif(msg, following.Nickname, myaccount.Nickname, operation, "person", myaccount.Avatar, 0)
+	sqlite.SetNotif(msg, following.Nickname, myaccount.Nickname, operation, "person", myaccount.Avatar, 0, 0)
 	var data Struct.AllData
 	var Allnotif = sqlite.GetMyNotif(myaccount.Nickname)
 	var Allfollowing = sqlite.GetMyFollowing(myaccount)
@@ -46,7 +46,8 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	var followings []Struct.User
 	var followers = []Struct.User{}
 	for _, v := range Allfollower {
-		followers = append(followers, sqlite.GetUserById(v.ID_User))
+		var tmp = sqlite.GetUserById(v.ID_User)
+		followers = append(followers, tmp)
 	}
 	for _, v := range Allfollowing {
 		followings = append(followings, sqlite.GetUserById(v.ID_Receiver))
@@ -55,7 +56,7 @@ var FollowHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request
 	data.Allfollowing = followings
 	data.Allnotif = Allnotif
 	fmt.Println(myaccount.Nickname," follow ", following.Nickname)
-	responses.SendResponsesHome(w, r, "responses succesfully", data)
+	responses.SendResponsesHome(w, r, "Your request has been sent", data)
 })
 
 func IsAlreadyFollowing(myUser Struct.User, following Struct.User) bool {
