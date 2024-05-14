@@ -93,6 +93,8 @@ export default {
                 sharedData.Allcomment = response.Data.Allcomment;
                 sharedData.UncknowGroup = response.Data.UncknowGroup;
                 sharedData.MyGroup = response.Data.MyGroup;
+                sharedData.AllChats = response.Data.AllChats;
+                sharedData.LatestChat= response.Data.LatestChat
             } else {
                 console.log("error GetData : ", response.Msg);
                 this.$router.push("/Login");

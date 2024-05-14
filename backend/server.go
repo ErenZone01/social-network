@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"main/pkg/db/sqlite"
 	"main/pkg/session"
+	"main/pkg/untils/chat"
 	"main/pkg/untils/comment"
 	"main/pkg/untils/decon"
 	Errors "main/pkg/untils/error"
@@ -17,35 +18,35 @@ import (
 	"main/pkg/untils/post"
 	"main/pkg/untils/profil"
 	"main/pkg/untils/register"
+	"main/pkg/untils/socket"
 	"net/http"
 )
 
 var DB *sql.DB
 
 func MiddlewareCors(next http.Handler) http.Handler {
-    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        // Autoriser l'origine spécifique de votre application frontend
-        w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
-        // Autoriser les méthodes spécifiées, y compris OPTIONS
-        w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-        // Autoriser les en-têtes spécifiés, y compris Authorization
-        w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-        // Autoriser l'envoi de cookies
-        w.Header().Set("Access-Control-Allow-Credentials", "true")
-        // Autoriser les codes de statut personnalisés
-        w.Header().Set("Access-Control-Expose-Headers", "Status-Code")
-        
-        // Répondre à la pré-vérification (preflight) OPTIONS avec un OK
-        if r.Method == "OPTIONS" {
-            w.WriteHeader(http.StatusOK)
-            return
-        }
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Autoriser l'origine spécifique de votre application frontend
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
+		// Autoriser les méthodes spécifiées, y compris OPTIONS
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		// Autoriser les en-têtes spécifiés, y compris Authorization
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		// Autoriser l'envoi de cookies
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		// Autoriser les codes de statut personnalisés
+		w.Header().Set("Access-Control-Expose-Headers", "Status-Code")
 
-        // Poursuivre le traitement de la demande
-        next.ServeHTTP(w, r)
-    })
+		// Répondre à la pré-vérification (preflight) OPTIONS avec un OK
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		// Poursuivre le traitement de la demande
+		next.ServeHTTP(w, r)
+	})
 }
-
 
 func MiddlewareMethodGet(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -84,6 +85,9 @@ func handlerFunction() {
 	http.Handle("/ProfilGroup", MiddlewareCors(MiddlewareMethodPost(profil.ProfilGroup)))
 	http.Handle("/Privacy", MiddlewareCors(MiddlewareMethodPost(profil.Privacy)))
 	http.Handle("/CheckSession", MiddlewareCors(MiddlewareMethodGet(session.CheckSession)))
+	http.Handle("/Chat", MiddlewareCors(MiddlewareMethodPost(chat.Chat)))
+	http.Handle("/Chats", MiddlewareCors(MiddlewareMethodPost(chat.Chats)))
+	http.Handle("/ws", MiddlewareCors(MiddlewareMethodGet(socket.Socket)))
 }
 
 func main() {

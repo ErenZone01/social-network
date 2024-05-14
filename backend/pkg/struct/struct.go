@@ -13,6 +13,8 @@ type AllData struct {
 	GetAllMembers  []Members
 	Allcomment     []Comment
 	Allevent       []EventGroup
+	LatestChat     User
+	AllChats       []Chat
 }
 
 type Members struct {
@@ -110,6 +112,22 @@ type Comment struct {
 	ID_Group       int     `json:"ID_Group"`
 	Types          string  `json:"Types"`
 	CreatedComment *string `json:"CreatedComment"`
+}
+
+type Chat struct {
+	ID_Chat     int    `json:"ID_Chat"`
+	ID_User     int    `json:"ID_User"`
+	ID_Receiver int    `json:"ID_Receiver"`
+	Content     string `json:"Content"`
+	Types       string `json:"Types"`
+	ID_Group    int    `json:"ID_Group"`
+}
+
+type Render struct {
+	Payload string `json:"Payload"`
+	To      int    `json:"To"`
+	Obj     interface{}
+	From    int `json:"From"`
 }
 
 type EventGroup struct {

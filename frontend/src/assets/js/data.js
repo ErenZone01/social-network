@@ -22,7 +22,9 @@ const sharedData = reactive({
     MyEvent: [],
     Allcomment: [],
     Id: 0,
-    MyEvent: []
+    MyEvent: [],
+    AllChats:[],
+    LatestChat:{},
 });
 
 export default sharedData;

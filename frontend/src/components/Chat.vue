@@ -1,5 +1,5 @@
 <template>
-     <!-- open chat box -->
+  <!-- open chat box -->
   <div>
     <button type="button"
       class="sm:m-10 m-5 px-4 py-2.5 rounded-2xl bg-gradient-to-tr from-blue-500 to-blue-700 text-white shadow fixed bottom-0 right-0 group flex items-center gap-2">
@@ -239,6 +239,6 @@
 </template>
 
 <script lang="js">
-export default{
+export default {
 }
 </script>
