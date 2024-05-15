@@ -65,19 +65,6 @@
 
                     <div v-else>0 Going</div>
                   </div>
-                  <div class="flex gap-2">
-                    <button
-                      class="button text-white bg-primary">
-                      Going
-                    </button>
-                    <button
-                      class="button text-white bg-primary">
-                      Not Going
-                    </button>
-                    <button type="button" class="button bg-secondery !w-auto">
-                      <ion-icon name="arrow-redo" class="text-lg"></ion-icon>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>

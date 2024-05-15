@@ -50,7 +50,7 @@
               <div class="sm:px-4 p-2.5 pt-0">
                 <p class="texte">{{ Post.Content }}</p>
               </div>
-              <a v-if="Post.Image != ''" href="#preview_modal" uk-toggle="" aria-expanded="false">
+              <a v-if="Post.Image != ''" aria-expanded="false">
                 <div class="relative w-full lg:h-96 h-full sm:px-4">
                   <img :src="'/src/assets/images/post/' + Post.Image" alt=""
                     class="sm:rounded-lg w-full h-full object-cover" />
@@ -90,11 +90,6 @@
                   </div>
                 </div>
               </div>
-              <button type="button" class="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 mt-2">
-                <ion-icon name="chevron-down-outline"
-                  class="ml-auto duration-200 group-aria-expanded:rotate-180"></ion-icon>
-                More Comment
-              </button>
               <!-- add comment -->
               <div
                 class="sm:px-4 sm:py-3 p-2.5 border-t border-gray-100 flex items-center gap-1 dark:border-slate-700/40">

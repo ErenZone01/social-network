@@ -5,5 +5,5 @@ CREATE TABLE
         ID_Post INTEGER,
         ID_Group INTEGER,
         ID_User INTEGER NOT NULL,
-        ID_Event INTEGER,
+        ID_Event INTEGER
     );

@@ -4,8 +4,11 @@ import (
 	"database/sql"
 	"fmt"
 	"os"
-	"path/filepath"
 
+	"github.com/golang-migrate/migrate/v4"
+	"github.com/golang-migrate/migrate/v4/database/sqlite"
+	_ "github.com/golang-migrate/migrate/v4/database/sqlite"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -44,37 +47,35 @@ func CreateBD() *sql.DB {
 	}
 	fmt.Println("Connection bd etablishing")
 	// Appliquer les migrations
-	if err := migrate(db); err != nil {
+	if err := migration(db); err != nil {
 		fmt.Println("Failed to apply migrations: ", err)
 		return nil
 	}
 	return db
 }
 
-func migrate(db *sql.DB) error {
-	// Liste des fichiers de migration
-	migrations, err := filepath.Glob(filepath.Join(migrationsDir, "*.sql"))
+var db *sql.DB
+
+func migration(db *sql.DB) error {
+	// Création de l'instance de migration
+	driver, err := sqlite.WithInstance(db, &sqlite.Config{})
 	if err != nil {
-		fmt.Println("not found")
+		fmt.Println("Erreur lors de la création de l'instance de migration:", err)
 		return err
 	}
 
-	// Appliquer chaque migration
-	for _, migration := range migrations {
-		// Lire le contenu du fichier de migration
-		query, err := os.ReadFile(migration)
-		if err != nil {
-			fmt.Println("not read")
-			return err
-		}
-
-		// Exécuter la requête de migration
-		if _, err := db.Exec(string(query)); err != nil {
-			fmt.Println("error")
-			return err
-		}
-
-		fmt.Println("Applied migration: ", migration)
+	m, err1 := migrate.NewWithDatabaseInstance("file://"+migrationsDir, "sqlite", driver)
+	if err1 != nil {
+		fmt.Println("Erreur lors de l'exécution des migrations:", err1)
+		return err1
 	}
+
+	// Exécution des migrations vers la dernière version disponible
+	if err2 := m.Up(); err2 != nil && err2 != migrate.ErrNoChange {
+		fmt.Println("Erreur lors de l'exécution des migrations:", err2)
+		return err2
+	}
+
+	fmt.Println("Migrations appliquées avec succès")
 	return nil
 }

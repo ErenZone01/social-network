@@ -1,7 +1,6 @@
 package sqlite
 
 import (
-	"fmt"
 	Struct "main/pkg/app/struct"
 )
 
@@ -32,7 +31,6 @@ func CreateNewPost(post Struct.Post) {
 	//Inserer des utilisateurs dans notre table User
 	_, err := DB.Exec(query, post.Names, post.Content, post.Title, post.Image, post.ID_User, post.Privacy, post.ID_Group, post.Types, post.CreatedPost)
 	if err != nil {
-		fmt.Println("SetPost : ", err)
 		return
 	}
 }
@@ -42,7 +40,6 @@ func DeletePost(id int) {
 	DELETE FROM Post WHERE ID_Post = ?
 	`, id)
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
 }
@@ -51,7 +48,6 @@ func GetAllPost() []Struct.Post {
 	query := "SELECT * FROM Post WHERE Types=?  ORDER BY ID_Post DESC"
 	rows, err := DB.Query(query, "Post")
 	if err != nil {
-		fmt.Println("Error from GetAllPost: ", err)
 		return []Struct.Post{}
 	}
 	defer rows.Close()
@@ -59,7 +55,6 @@ func GetAllPost() []Struct.Post {
 	for rows.Next() {
 		var post Struct.Post
 		if err := rows.Scan(&post.Id, &post.Names, &post.Content, &post.Title, &post.Image, &post.ID_User, &post.Privacy, &post.ID_Group, &post.Types, &post.CreatedPost); err != nil {
-			fmt.Println("GetAllUser : Error scanning row: ", err)
 			continue
 		}
 		PostLists = append(PostLists, post)
@@ -71,7 +66,6 @@ func GetAllPostByGroup(ID_Group int) []Struct.Post {
 	query := "SELECT * FROM Post WHERE ID_Group = ? ORDER BY ID_Post DESC"
 	rows, err := DB.Query(query, ID_Group)
 	if err != nil {
-		fmt.Println("GetAllPostGroup2 : Error scanning row: ", err)
 		return []Struct.Post{}
 	}
 	defer rows.Close()
@@ -79,13 +73,11 @@ func GetAllPostByGroup(ID_Group int) []Struct.Post {
 	for rows.Next() {
 		var post Struct.Post
 		if err := rows.Scan(&post.Id, &post.Names, &post.Content, &post.Title, &post.Image, &post.ID_User, &post.Privacy, &post.ID_Group, &post.Types, &post.CreatedPost); err != nil {
-			fmt.Println("GetAllPostGroup2 : Error scanning row: ", err)
 			continue
 		}
 		PostLists = append(PostLists, post)
 	}
 	if err := rows.Err(); err != nil {
-		fmt.Println("GetAllPostGroup3 : Error iterating rows: ", err)
 		return []Struct.Post{}
 	}
 	return PostLists

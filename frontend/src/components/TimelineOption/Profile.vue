@@ -66,8 +66,6 @@
         </div>
         <a
           v-if="Post.Image != ''"
-          href="#preview_modal"
-          uk-toggle=""
           aria-expanded="false"
         >
           <div class="relative w-full lg:h-96 h-full sm:px-4">
@@ -130,16 +128,6 @@
             </div>
           </div>
         </div>
-        <button
-          type="button"
-          class="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 mt-2"
-        >
-          <ion-icon
-            name="chevron-down-outline"
-            class="ml-auto duration-200 group-aria-expanded:rotate-180"
-          ></ion-icon>
-          More Comment
-        </button>
       </div>
     </div>
 

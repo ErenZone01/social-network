@@ -1,7 +1,6 @@
 package sqlite
 
 import (
-	"fmt"
 	Struct "main/pkg/app/struct"
 )
 
@@ -11,7 +10,6 @@ func NewSession(session Struct.Session) {
     INSERT INTO AllSessions ( user_id,  Session_value) VALUES (?,?)
 `, session.Users_id, session.Value)
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
 }
@@ -20,7 +18,6 @@ func DataSession() ([]Struct.Session, error) {
 	query := "SELECT id, user_id, Session_value FROM AllSessions"
 	rows, err := DB.Query(query)
 	if err != nil {
-		fmt.Println("Error:", err)
 		return nil, err
 	}
 	defer rows.Close()
@@ -28,13 +25,11 @@ func DataSession() ([]Struct.Session, error) {
 	for rows.Next() {
 		var ses Struct.Session
 		if err := rows.Scan(&ses.Id, &ses.Users_id, &ses.Value); err != nil {
-			fmt.Println("Error scanning row:", err)
 			continue
 		}
 		sesList = append(sesList, ses)
 	}
 	if err := rows.Err(); err != nil {
-		fmt.Println("Error iterating rows:", err)
 		return nil, err
 	}
 	return sesList, nil
@@ -44,7 +39,6 @@ func DeleteSession(value string) {
 	DELETE FROM AllSessions WHERE Session_value = ?
 	`, value)
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
 }

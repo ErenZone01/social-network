@@ -1,7 +1,6 @@
 package sqlite
 
 import (
-	"fmt"
 	Struct "main/pkg/app/struct"
 )
 
@@ -9,7 +8,6 @@ func CreateNewEvent(event Struct.EventGroup) {
 	query := `INSERT INTO EventGroup ( EventDescription, Title, EventDays, Options, ID_User, ID_Group) VALUES (?, ?, ?, ?, ?, ?)`
 	_, err := DB.Exec(query, event.EventDescription, event.Title, event.EventDays, event.Option, event.ID_User, event.ID_Group)
 	if err != nil {
-		fmt.Println("CreateNewevent error:", err)
 		return
 	}
 }
@@ -27,7 +25,6 @@ func GetEventByID(ID_Event int) (Struct.EventGroup, error) {
 func UpdateEvent(event Struct.EventGroup) {
 	_, err := DB.Exec("UPDATE EventGroup SET Options = ? WHERE ID_Group = ?", event.Option, event.ID_Group)
 	if err != nil {
-		fmt.Println("Error event :", err)
 		return
 	}
 }
