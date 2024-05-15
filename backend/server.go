@@ -3,22 +3,22 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"main/pkg/app/session"
+	"main/pkg/app/untils/chat"
+	"main/pkg/app/untils/comment"
+	"main/pkg/app/untils/decon"
+	Errors "main/pkg/app/untils/error"
+	"main/pkg/app/untils/event"
+	"main/pkg/app/untils/follow"
+	"main/pkg/app/untils/group"
+	"main/pkg/app/untils/home"
+	"main/pkg/app/untils/login"
+	"main/pkg/app/untils/notification"
+	"main/pkg/app/untils/post"
+	"main/pkg/app/untils/profil"
+	"main/pkg/app/untils/register"
+	"main/pkg/app/untils/socket"
 	"main/pkg/db/sqlite"
-	"main/pkg/session"
-	"main/pkg/untils/chat"
-	"main/pkg/untils/comment"
-	"main/pkg/untils/decon"
-	Errors "main/pkg/untils/error"
-	"main/pkg/untils/event"
-	"main/pkg/untils/follow"
-	"main/pkg/untils/group"
-	"main/pkg/untils/home"
-	"main/pkg/untils/login"
-	"main/pkg/untils/notification"
-	"main/pkg/untils/post"
-	"main/pkg/untils/profil"
-	"main/pkg/untils/register"
-	"main/pkg/untils/socket"
 	"net/http"
 )
 
@@ -88,6 +88,7 @@ func handlerFunction() {
 	http.Handle("/Chat", MiddlewareCors(MiddlewareMethodPost(chat.Chat)))
 	http.Handle("/Chats", MiddlewareCors(MiddlewareMethodPost(chat.Chats)))
 	http.Handle("/ChatsGroup", MiddlewareCors(MiddlewareMethodPost(chat.ChatsGroup)))
+	http.Handle("/Delete", MiddlewareCors(MiddlewareMethodGet(notification.Delete)))
 	http.Handle("/ws", MiddlewareCors(MiddlewareMethodGet(socket.Socket)))
 }
 

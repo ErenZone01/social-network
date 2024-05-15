@@ -3,7 +3,7 @@ package sqlite
 import (
 	"database/sql"
 	"fmt"
-	Struct "main/pkg/struct"
+	Struct "main/pkg/app/struct"
 )
 
 func GetMyFollowers(user Struct.User) []Struct.Follow { // recuperer les gens qui me suive

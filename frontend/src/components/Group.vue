@@ -32,7 +32,7 @@
               <a>
                 <div class="card-media h-24">
                   <img
-                    :src="'/src/assets/images/group/' + group.GroupImage"
+                    :src="'/src/assets/images/group/group.jpg'"
                     alt=""
                   />
                   <div class="card-overly"></div>
@@ -97,7 +97,7 @@
               <a>
                 <div class="card-media h-24">
                   <img
-                    :src="'/src/assets/images/group/' + group.GroupImage"
+                    :src="'/src/assets/images/group/group.jpg'"
                     alt=""
                   />
                   <div class="card-overly"></div>

@@ -2,7 +2,7 @@ package sqlite
 
 import (
 	"fmt"
-	Struct "main/pkg/struct"
+	Struct "main/pkg/app/struct"
 )
 
 func CreateNewEvent(event Struct.EventGroup) {
@@ -17,7 +17,7 @@ func CreateNewEvent(event Struct.EventGroup) {
 func GetEventByID(ID_Event int) (Struct.EventGroup, error) {
 	query := `SELECT * FROM EventGroup WHERE ID_Event = ?`
 	var event Struct.EventGroup
-	err := DB.QueryRow(query, ID_Event).Scan(&event.ID_Event , &event.EventDescription, &event.Title, &event.EventDays, &event.Option, &event.ID_User, &event.ID_Group)
+	err := DB.QueryRow(query, ID_Event).Scan(&event.ID_Event, &event.EventDescription, &event.Title, &event.EventDays, &event.Option, &event.ID_User, &event.ID_Group)
 	if err != nil {
 		return Struct.EventGroup{}, err
 	}
@@ -35,7 +35,7 @@ func UpdateEvent(event Struct.EventGroup) {
 func GetEventByUsers(ID_Group int) []Struct.EventGroup { //recuperer les events que je suis
 	var events []Struct.EventGroup
 	query := "SELECT * FROM EventGroup WHERE ID_Group = ? "
-	rows, err := DB.Query(query,ID_Group)
+	rows, err := DB.Query(query, ID_Group)
 	if err != nil {
 		return nil
 	}

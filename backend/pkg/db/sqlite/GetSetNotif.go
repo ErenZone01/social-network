@@ -2,7 +2,7 @@ package sqlite
 
 import (
 	"fmt"
-	Struct "main/pkg/struct"
+	Struct "main/pkg/app/struct"
 )
 
 func SetNotif(msg string, Receiver string, Sender string, State string, Type string, AvatarSender string, IdGroup int, ID_Event int) {
@@ -82,3 +82,14 @@ DELETE FROM Notifications WHERE ID_Notification = ?
 		return
 	}
 }
+
+func DeleteNotifByReceiver(Receiver string) {
+	_, err := DB.Exec(`
+DELETE FROM Notifications WHERE Receiver = ? AND  States = ?
+`, Receiver, "true")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+}
+

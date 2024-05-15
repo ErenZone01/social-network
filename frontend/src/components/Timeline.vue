@@ -127,7 +127,7 @@
                 follow
               </button>
               <button
-                v-else
+                v-else-if="sharedData.MyuserProfile.ID != sharedData.Myaccount.ID"
                 class="button bg-custom-gray text-gray-700 cursor-not-allowed"
                 disabled
               >
@@ -212,17 +212,6 @@
                   'border-blue-600': $route.name === 'TimelineFriends',
                 }"
                 >Friend</router-link
-              >
-
-              <!-- Lien pour les groupes -->
-              <router-link
-                :to="{
-                  name: 'TimelineGroups',
-                  params: { userID: $route.params.userID },
-                }"
-                class="inline-block py-3 leading-8 px-3.5 border-b-2 text-blue-600"
-                :class="{ 'border-blue-600': $route.name === 'TimelineGroups' }"
-                >Group</router-link
               >
             </nav>
           </div>

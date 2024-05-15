@@ -93,8 +93,6 @@
                     </div>
                     <a
                       v-if="Post.Image != ''"
-                      href="#preview_modal"
-                      uk-toggle=""
                       aria-expanded="false"
                     >
                       <div class="relative w-full lg:h-96 h-full sm:px-4">

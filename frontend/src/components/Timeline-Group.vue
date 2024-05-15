@@ -11,7 +11,7 @@
         <!-- cover -->
         <div class="relative overflow-hidden w-full lg:h-72 h-36">
           <img
-            :src='"/src/assets/images/group/"+ sharedData.MygroupProfile.GroupImage'
+            :src='"/src/assets/images/group/group.jpg"'
             alt=""
             class="h-full w-full object-cover inset-0"
           />

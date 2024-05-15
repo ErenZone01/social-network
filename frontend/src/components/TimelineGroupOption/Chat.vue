@@ -18,8 +18,7 @@
           <img v-if="
             sharedData.MygroupProfile.GroupImage &&
             sharedData.MygroupProfile.GroupImage != ''
-          " :src="'/src/assets/images/group/' +
-            sharedData.MygroupProfile.GroupImage
+          " :src="'/src/assets/images/group/group.jpg'
             " class="w-8 h-8 rounded-full shadow" alt="" />
           <img v-else :src="'/src/assets/images/avatars/Avatar.webp'" alt="" class="w-8 h-8 rounded-full shadow" />
           <div class="w-2 h-2 bg-teal-500 rounded-full absolute right-0 bottom-0 m-px"></div>

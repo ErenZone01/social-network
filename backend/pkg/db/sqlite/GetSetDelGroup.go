@@ -2,7 +2,7 @@ package sqlite
 
 import (
 	"fmt"
-	Struct "main/pkg/struct"
+	Struct "main/pkg/app/struct"
 )
 
 func GetGroupsByGroupID(groupId int) (Struct.Group, error) {

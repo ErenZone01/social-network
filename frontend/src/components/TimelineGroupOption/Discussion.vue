@@ -201,7 +201,7 @@
             <h3 class="font-bold text-base">People you may know</h3>
           </div>
           <div class="side-list">
-            <div v-for="user in sharedData.AllUtilisateur" :key="user.ID">
+            <div v-for="user in sharedData.MyFollowers" :key="user.ID">
               <div class="side-list-item" v-if="
                 (!sharedData.MygroupProfile.IdMember ||
                   !sharedData.MygroupProfile.IdMember.includes(user.ID)) &&

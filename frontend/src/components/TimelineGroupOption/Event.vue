@@ -63,7 +63,7 @@
                     <div class="md:block hidden">·</div>
                     <div v-if="event.ID_Member">{{ event.ID_Member.length }} Going</div>
 
-                    <div v-else>1 Going</div>
+                    <div v-else>0 Going</div>
                   </div>
                   <div class="flex gap-2">
                     <button

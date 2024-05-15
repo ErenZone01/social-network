@@ -56,12 +56,7 @@
 
                 </div>
 
-                <!-- search -->
-                <div class="relative mt-4">
-                  <div class="absolute left-3 bottom-1/2 translate-y-1/2 flex"><ion-icon name="search"
-                      class="text-xl"></ion-icon></div>
-                  <input type="text" placeholder="Search" class="w-full !pl-10 !py-2 !rounded-lg">
-                </div>
+               
 
               </div>
 
@@ -78,9 +73,7 @@
                         class="object-cover w-full h-full rounded-full">
                       <img v-else :src='"/src/assets/images/avatars/Avatar.webp"' alt=""
                         class="object-cover w-full h-full rounded-full">
-                      <div
-                        class="w-4 h-4 absolute bottom-0 right-0  bg-green-500 rounded-full border border-white dark:border-slate-800">
-                      </div>
+                      
                     </div>
                     <div class="flex-1 min-w-0">
                       <div class="flex items-center gap-2 mb-1.5">
@@ -135,37 +128,10 @@
                   <div v-if="IfAnAccountFollowMe(sharedData.LatestChat) || IfIFollowAnAccount(sharedData.LatestChat)"
                     class="text-base font-bold">{{ sharedData.LatestChat.Firstname }} {{
                       sharedData.LatestChat.Lastname }}</div>
-                  <div v-else class="text-base font-bold"> JOKKO
                   </div>
-                  <div class="text-xs text-green-500 font-semibold"> Online</div>
-                </div>
 
               </div>
 
-              <div class="flex items-center gap-2">
-                <button type="button" class="button__ico">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
-                    <path fill-rule="evenodd"
-                      d="M2 3.5A1.5 1.5 0 013.5 2h1.148a1.5 1.5 0 011.465 1.175l.716 3.223a1.5 1.5 0 01-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 006.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 011.767-1.052l3.223.716A1.5 1.5 0 0118 15.352V16.5a1.5 1.5 0 01-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 012.43 8.326 13.019 13.019 0 012 5V3.5z"
-                      clip-rule="evenodd" />
-                  </svg>
-                </button>
-                <button type="button" class="hover:bg-slate-100 p-1.5 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round"
-                      d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
-                  </svg>
-                </button>
-                <button type="button" class="hover:bg-slate-100 p-1.5 rounded-full"
-                  uk-toggle="target: .rightt ; cls: hidden">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                  </svg>
-                </button>
-              </div>
 
             </div>
 
@@ -200,12 +166,7 @@
               <div v-else class="py-10 text-center text-sm lg:pt-8">
                 <img src="/src/assets/images/avatars/avatar-6.jpg" class="w-24 h-24 rounded-full mx-auto mb-3" alt="">
                 <div class="mt-8">
-                  <div class="md:text-xl text-base font-medium text-black dark:text-white">JOKKO </div>
-                  <div class="text-gray-500 text-sm   dark:text-white/80"> @Jokko</div>
-                </div>
-                <div class="mt-3.5">
-                  <a href="timeline.html"
-                    class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold bg-secondery">View profile</a>
+                  <div class="md:text-xl text-base font-medium text-black dark:text-white">Click any chat to begin chating</div>
                 </div>
               </div>
               <!-- target -->
@@ -222,7 +183,10 @@
                   <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery">{{ chat.Content }} </div>
                 </div>
 
-                <!-- sent -->
+                <!-- s<div class="mt-3.5">
+                  <a href="timeline.html"
+                    class="inline-block rounded-lg px-4 py-1.5 text-sm font-semibold bg-secondery">View profile</a>
+                </div>ent -->
                 <div v-else class="flex gap-2 flex-row-reverse items-end">
                   <!-- <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow"> -->
                   <img v-if="sharedData.Myaccount.Avatar != ''" :src="'/src/assets/images/avatars/' + sharedData.Myaccount.Avatar
@@ -235,14 +199,7 @@
                 </div>
                 <br>
               </div>
-              <div v-else class="text-sm font-medium space-y-6">
-                <!-- received -->
-                <div class="flex gap-3">
-                  <img src="/src/assets/images/avatars/avatar-6.jpg" alt="" class="w-9 h-9 rounded-full shadow">
-                  <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> Envie de discutter? 😊 Selectionnez un de
-                    vos abonnés/abonnement! </div>
-                </div>
-              </div>
+              
               <!-- end -->
             </div>
 
@@ -468,32 +425,11 @@ export default {
         const render = { Payload: "chat", To: chat.ID_Receiver, Obj: sharedData.AllChats, From: chat.ID_User }
         mysocket.send(render)
         textarea.value = "";
-        // Traitez votre action ici, par exemple, envoyez le message
       }
-      // e.preventDefault();
+    },
 
-      // fetch("http://localhost:8080/Chat", {
-      //   method: "POST",
-      //   body: JSON.stringify(chat),
-      //   credentials: "include",
-      //   headers: { "Content-Type": "application/json" },
-      // })
-      // .then((response) => response.json())
-      // .then((data) => {
-      //   // if (data.Types == "Success") {
-      //   //   console.log("My chat : ", data.Data, chat.ID_User);
-      //   //   sharedData.AllChats = data.Data;
-      //   //   console.log(sharedData.AllChats[data.Data.length - 1].ID_User, "target", chat.ID_Receiver);
-      //   //   const render = { Payload: "test", To: chat.ID_Receiver, Obj: sharedData.AllChats, From: sharedData.AllChats[data.Data.length - 1].ID_User }
-      //   //   mysocket.send(render)
-
-
-
-      //   // } else {
-      //   //   // Gérer les erreurs
-      //   // }
-      // })
-      // .catch((error) => console.log("err : ", error));
+    mounted(){
+      
     }
   }
 }
