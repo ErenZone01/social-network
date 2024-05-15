@@ -125,8 +125,8 @@
                     sharedData.LatestChat.Avatar &&
                     sharedData.LatestChat.Avatar != ''
                   " :src="'/src/assets/images/avatars/' +
-                        sharedData.LatestChat.Avatar
-                        " class="w-8 h-8 rounded-full shadow" alt="" />
+                    sharedData.LatestChat.Avatar
+                    " class="w-8 h-8 rounded-full shadow" alt="" />
                   <img v-else :src="'/src/assets/images/avatars/Avatar.webp'" alt=""
                     class="w-8 h-8 rounded-full shadow" />
                   <div class="w-2 h-2 bg-teal-500 rounded-full absolute right-0 bottom-0 m-px"></div>
@@ -179,8 +179,8 @@
                   sharedData.LatestChat.Avatar &&
                   sharedData.LatestChat.Avatar != ''
                 " :src="'/src/assets/images/avatars/' +
-                        sharedData.LatestChat.Avatar
-                        " class="w-24 h-24 rounded-full mx-auto mb-3" alt="" />
+                  sharedData.LatestChat.Avatar
+                  " class="w-24 h-24 rounded-full mx-auto mb-3" alt="" />
                 <img v-else :src="'/src/assets/images/avatars/Avatar.webp'" alt=""
                   class="w-24 h-24 rounded-full mx-auto mb-3" />
                 <div class="mt-8">
@@ -233,123 +233,7 @@
                     class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
                     {{ chat.Content }} </div>
                 </div>
-
-                <!-- time -->
-                <!-- <div class="flex justify-center ">
-              <div class="font-medium text-gray-500 text-sm dark:text-white/70">
-                April 8,2023,6:30 AM
-              </div>
-            </div>
-
-            <!-- received -->
-                <!-- <div class="flex gap-3">
-              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
-              <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> I’m selling a photo of a sunset. It’s a
-                print on canvas, signed by the photographer. Do you like it? 😊 </div>
-            </div> -->
-
-                <!-- sent -->
-                <!-- <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-4 h-4 rounded-full shadow">
-              <div
-                class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
-                Wow, it’s beautiful. How much ? 😍 </div>
-            </div> -->
-
-                <!-- sent media-->
-                <!-- <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-4 h-4 rounded-full shadow">
-
-              <a class="block rounded-[18px] border overflow-hidden" href="#">
-                <div class="max-w-md">
-                  <div class="max-w-full relative w-72">
-                    <div class="relative" style="padding-bottom: 57.4286%">
-                      <div class="w-full h-full absolute inset-0">
-                        <img src="/src/assets/images/product/product-1.jpg" alt=""
-                          class="block max-w-full max-h-52 w-full h-full Groupsobject-cover">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-
-            </div> -->
-
-                <!-- time -->
-                <!-- <div class="flex justify-center ">
-              <div class="font-medium text-gray-500 text-sm dark:text-white/70">
-                April 8,2023,6:30 AM
-              </div>
-            </div> -->
-
-
-                <!-- received -->
-                <!-- <div class="flex gap-3">
-              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
-              <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> I’m glad you like it. I’m asking for $200
-                🤑</div>
-            </div> -->
-
-                <!-- sent -->
-                <!-- <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
-              <div
-                class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
-                $200? Too steep. Can you lower the price a bit? 😕</div>
-            </div> -->
-
-                <!-- received -->
-                <!-- <div class="flex gap-3">
-              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
-              <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> Well, I can’t go too low because I paid a
-                lot. But I’m willing to negotiate. What’s your offer? 🤔 </div>
-
-            </div> -->
-
-                <!-- sent -->
-                <!-- <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
-              <div
-                class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
-                Sorry, can’t pay more than $150. 😅</div>
-            </div> -->
-
-                <!-- time -->
-                <!-- <div class="flex justify-center ">
-              <div class="font-medium text-gray-500 text-sm dark:text-white/70">
-                April 8,2023,6:30 AM
-              </div>
-            </div> -->
-
-                <!-- received -->
-                <!-- <div class="flex gap-3">
-              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
-              <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> $150? Too low. Photo worth more. 😬</div>
-            </div> -->
-
-                <!-- sent -->
-                <!-- <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
-              <div
-                class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
-                Too high. I Can’t . How about $160? Final offer. 😬 </div>
-            </div> -->
-
-                <!-- received -->
-                <!-- <div class="flex gap-3">
-              <img src="/src/assets/images/avatars/avatar-2.jpg" alt="" class="w-9 h-9 rounded-full shadow">
-              <div class="px-4 py-2 rounded-[20px] max-w-sm bg-secondery"> Fine, fine. You’re hard to please. I’ll
-                take $160, but only because I like you. 😍</div>
-            </div> -->
-
-                <!-- sent -->
-                <!-- <div class="flex gap-2 flex-row-reverse items-end">
-              <img src="/src/assets/images/avatars/avatar-3.jpg" alt="" class="w-5 h-5 rounded-full shadow">
-              <div
-                class="px-4 py-2 rounded-[20px] max-w-sm bg-gradient-to-tr from-sky-500 to-blue-500 text-white shadow">
-                Great, thank you. I appreciate it. I love this photo and can’t wait to hang it. 😩 </div>
-            </div> -->
-
+                <br>
               </div>
               <div v-else class="text-sm font-medium space-y-6">
                 <!-- received -->
@@ -401,7 +285,7 @@
                 </div>
 
                 <button type="button" class="shrink-0">
-                  <ion-icon class="text-3xl flex" name="happy-outline"></ion-icon>
+                  <ion-icon class="text-3xl flex" name="happy-outline">😎</ion-icon>
                 </button>
                 <div class="dropbar p-2"
                   uk-drop="stretch: x; target: #message__wrap ;animation: uk-animation-scale-up uk-transform-origin-bottom-left ;animate-out: true; pos: top-left ; offset:2; mode: click ; duration: 200 ">
@@ -411,46 +295,36 @@
 
                     <div class="grid grid-cols-5 overflow-y-auto max-h-44 p-3 text-center text-xl">
 
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😊
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🤩
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😎
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🥳
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😂
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🥰
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😡
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😊
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🤩
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😎
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🥳
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😂
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🥰
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😡
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🤔
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😊
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🤩
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😎
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 🥳
-                      </div>
-                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"> 😂
-                      </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😊')"> 😊 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('🤩')"> 🤩 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😎')"> 😎 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😊')"> 😊 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('🤩')"> 🤩 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😎')"> 😎 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😊')"> 😊 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('🤩')"> 🤩 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😎')"> 😎 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😊')"> 😊 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('🤩')"> 🤩 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😎')"> 😎 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😊')"> 😊 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('🤩')"> 🤩 </div>
+                      <div class="hover:bg-secondery p-1.5 rounded-md hover:scale-125 cursor-pointer duration-200"
+                        @click="EmojiClicked('😎')"> 😎 </div>
 
                     </div>
 
@@ -464,7 +338,8 @@
 
               <div class="relative flex-1">
                 <textarea placeholder="Write your message" rows="1"
-                  class="w-full resize-none bg-secondery rounded-full px-4 p-2" id="mes" @keydown.enter="SendAndDisplay($event)"></textarea>
+                  class="w-full resize-none bg-secondery rounded-full px-4 p-2" id="mes"
+                  @keydown.enter="SendAndDisplay($event)"></textarea>
                 <!-- <button type="text" >send</button> -->
                 <button type="button" class="text-white shrink-0 p-2 absolute right-0.5 top-0">
                   <ion-icon class="text-xl flex" name="send-outline"></ion-icon>
@@ -559,6 +434,12 @@ export default {
   name: 'Messages',
   mixins: [CommonMixin],
   methods: {
+
+    EmojiClicked(emoji) {
+      let textarea = document.getElementById("mes");
+      textarea.value += emoji
+      // console.log('Emoji choisi :', emoji);
+    },
 
     async TargetChat(e, Receiver) {
       e.preventDefault();

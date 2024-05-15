@@ -26,12 +26,12 @@ func CreateChat(chat Struct.Chat) {
 //			return
 //		}
 //	}
-func GetTheLatestChat(sender int) Struct.User {
+func GetTheLatestChat(sender int, types string) Struct.User {
 	var userID int
 	// query := "SELECT * FROM Chat where ID_Receiver=?  OR  ID_User=?  ORDER BY ID_Chat DESC"
-	query := "SELECT * FROM Chat WHERE ID_Receiver = ? OR ID_User = ? ORDER BY ID_Chat DESC LIMIT 1"
+	query := "SELECT * FROM Chat WHERE (ID_Receiver = ? OR ID_User = ?) AND Types = ? ORDER BY ID_Chat DESC LIMIT 1"
 
-	rows, err := DB.Query(query, sender, sender)
+	rows, err := DB.Query(query, sender, sender, types)
 	if err != nil {
 		fmt.Println("Error from Get latest Chat: ", err)
 		return Struct.User{}
@@ -59,9 +59,35 @@ func GetTheLatestChat(sender int) Struct.User {
 
 }
 
-func GetAllChat(sender, receiver int) []Struct.Chat {
-	query := "SELECT * FROM Chat where ID_Receiver=? AND ID_User=? OR ID_Receiver=? AND  ID_User=? "
-	rows, err := DB.Query(query, sender, receiver, receiver, sender)
+func GetChatsGroup(idGroup int, types string) []Struct.Chat {
+	query := "SELECT * FROM Chat WHERE ID_Receiver=? AND Types=?"
+	rows, err := DB.Query(query, idGroup, types)
+	if err != nil {
+		fmt.Println("Error from GetAllChatGroup: ", err)
+		return []Struct.Chat{}
+	}
+	defer rows.Close()
+	var Chats []Struct.Chat
+	for rows.Next() {
+		var chat Struct.Chat
+		if err := rows.Scan(&chat.ID_Chat, &chat.ID_User, &chat.ID_Receiver, &chat.Content, &chat.Types, &chat.ID_Group); err != nil {
+			fmt.Println("GetAllChatGroup: Error scanning row: ", err)
+			continue
+		}
+		// log.Println("one chat", chat)
+		Chats = append(Chats, chat)
+	}
+	if err := rows.Err(); err != nil {
+		fmt.Println("GetAllChatGroup : Error iterating rows: ", err)
+		return []Struct.Chat{}
+	}
+	return Chats
+}
+
+func GetAllChat(sender, receiver int, types string) []Struct.Chat {
+
+	query := "SELECT * FROM Chat WHERE (ID_Receiver=? AND ID_User=?) OR (ID_Receiver=? AND ID_User=?) AND  Types=?"
+	rows, err := DB.Query(query, sender, receiver, receiver, sender, types)
 	if err != nil {
 		fmt.Println("Error from GetAllChat: ", err)
 		return []Struct.Chat{}

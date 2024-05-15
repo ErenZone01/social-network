@@ -3,6 +3,7 @@ package socket
 import (
 	"fmt"
 	"log"
+	"main/pkg/db/sqlite"
 	"main/pkg/session"
 	Struct "main/pkg/struct"
 	"net/http"
@@ -50,14 +51,16 @@ var Socket = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	if user.Nickname != "" {
 		clients[ws] = user
 	}
-	log.Println("len clients", len(clients))
+	// log.Println("len clients", len(clients))
+
+	go handleMessages()
 
 	for {
 		var chatSlice Struct.Render
 		err := ws.ReadJSON(&chatSlice)
 		if err != nil {
-			if closeMsg, ok := err.(*websocket.CloseError); ok {
-				log.Printf("connection closed with status %v due to %s", closeMsg.Code, closeMsg.Text)
+			if _, ok := err.(*websocket.CloseError); ok {
+				// log.Printf("connection closed with status %v due to %s", closeMsg.Code, closeMsg.Text)
 			} else {
 				fmt.Println("read error:", err)
 			}
@@ -66,21 +69,20 @@ var Socket = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// fmt.Println("received from client:", chatSlice)
-		log.Println("chat slice", chatSlice.Payload)
+		// log.Println("chat slice", chatSlice.Payload)
 		Broadcast <- chatSlice
 	}
 
-	go handleMessages()
 })
 
 func handleMessages() {
-	for {
-		chatSlice := <-Broadcast
+	for v := range Broadcast {
+		chatSlice := v
 		if chatSlice.Payload == "chat" {
 			for client := range clients {
 				user := clients[client]
 				if chatSlice.To == user.Id {
-					log.Println("for ", chatSlice.To, " by ", user.Nickname, " id ", user.Id)
+					// log.Println("for ", chatSlice.To, " by ", user.Nickname, " id ", user.Id)
 					err := client.WriteJSON(chatSlice)
 					if err != nil {
 						client.Close()
@@ -89,16 +91,20 @@ func handleMessages() {
 				}
 			}
 		} else if chatSlice.Payload == "group" {
+			idCreator, _ := sqlite.GetGroupsByGroupID(chatSlice.To)
+			members := sqlite.GetAllMemberOfAnyGroup(chatSlice.To)
+			members = append(members, idCreator.IdCreator)
 			for client := range clients {
 				//search members
-				menbers := []int{1, 3, 4}
 				user := clients[client]
-				if NumberInSlice(user.Id, menbers) {
-					log.Println("for in group", chatSlice.To, " by ", user.Nickname, " id ", user.Id)
-					err := client.WriteJSON(chatSlice)
-					if err != nil {
-						client.Close()
-						delete(clients, client)
+				if user.Id != chatSlice.From {
+					if NumberInSlice(user.Id, members) {
+						log.Println("for in group", chatSlice.To, " by ", user.Nickname, " id ", user.Id)
+						err := client.WriteJSON(chatSlice)
+						if err != nil {
+							client.Close()
+							delete(clients, client)
+						}
 					}
 				}
 			}

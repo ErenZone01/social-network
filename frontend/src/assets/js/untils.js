@@ -63,11 +63,14 @@ export default {
                 console.log("le params est : ", groupID)
                 var fetch = await CustomFetch("http://localhost:8080/ProfilGroup", "POST", { ID_Group: groupID });
                 if (fetch.Types == "Success") {
+                    // console.log("fectch: ", fetch.Data);
+                    // console.log("Allgroup : ", fetch.Data.MyGroup[0]);
+                    // console.log("ProfileGroup : ", fetch);
+                    sharedData.AllUsers = fetch.Data.Alluser
                     sharedData.MyProfilePost = fetch.Data.Allpost;
-                    console.log("Allgroup : ", fetch.Data.MyGroup[0]);
                     sharedData.MygroupProfile = fetch.Data.MyGroup[0];
+                    sharedData.AllChatsGroup = fetch.Data.AllChatsGroup;
                     sharedData.MyEvent = fetch.Data.Allevent;
-                    console.log("ProfileGroup : ", fetch);
                 } else if (fetch.Msg == "Methods Not Allowed") { console.log("le message : ", fetch.Msg); } else {
                     console.log("le message : ", fetch.Msg);
                     this.$router.push("/Login");
@@ -335,7 +338,28 @@ export default {
         },
         RecupId(id) {
             sharedData.Id = id
-        }
+        },
+        // async FetchDataGroup(){
+        //     try {
+        //         var group = parseInt(this.$route.params.groupID);
+        //         console.log("le params est : ", group)
+        //         var fetch = await CustomFetch("http://localhost:8080/ChatsGroup", "POST", { ID_Group: group });
+        //         // if (fetch.Types == "Success") {
+        //         //     // sharedData.MyuserProfile = fetch.Data.Myaccount;
+        //         //     // sharedData.MyProfileFollowings = fetch.Data.Allfollowing;
+        //         //     // sharedData.MyProfileFollowers = fetch.Data.Allfollowers;
+        //         //     // sharedData.MyProfilePost = fetch.Data.Allpost;
+        //         //     console.log(fetch);
+        //         // } else if (fetch.Msg == "Methods Not Allowed") { console.log("le message : ", fetch.Msg); } else {
+        //         //     console.log("le message : ", fetch.Msg);
+        //         //     this.$router.push("/Login");
+        //         // }
+        //         console.log(sharedData.MygroupProfile);
+
+        //     } catch (error) {
+        //         console.error("Erreur lors de la récupération des données :", error);
+        //     }
+        // }
 
     },
 };

@@ -251,7 +251,7 @@ export default {
   watch: {
     '$route'(to, from) {
       // Appeler fetchData() lorsque la route change
-       this.FetchCustomRef();
+      this.FetchCustomRef();
     }
   },
 };</script>

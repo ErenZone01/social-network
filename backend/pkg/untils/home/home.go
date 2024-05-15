@@ -21,9 +21,9 @@ var Home = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	var AllUtilisateur = Alluser
 	var Allpost = sqlite.GetAllPost()
 	Allpost = post.GetMembers(Allpost)
-	var LatestChat = sqlite.GetTheLatestChat(user.Id)
+	var LatestChat = sqlite.GetTheLatestChat(user.Id, "chat")
 	// log.Println("latest",LatestChat)
-	var AllChats = sqlite.GetAllChat(user.Id, LatestChat.Id)
+	var AllChats = sqlite.GetAllChat(user.Id, LatestChat.Id, "chat")
 	var Allfollower = sqlite.GetMyFollowers(user)
 	var Allfollowing = sqlite.GetMyFollowing(user)
 	var Allnotif = sqlite.GetMyNotif(user.Nickname)

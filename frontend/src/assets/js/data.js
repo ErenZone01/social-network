@@ -25,6 +25,7 @@ const sharedData = reactive({
     MyEvent: [],
     AllChats:[],
     LatestChat:{},
+    AllChatsGroup:[]
 });
 
 export default sharedData;

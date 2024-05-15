@@ -87,6 +87,7 @@ func handlerFunction() {
 	http.Handle("/CheckSession", MiddlewareCors(MiddlewareMethodGet(session.CheckSession)))
 	http.Handle("/Chat", MiddlewareCors(MiddlewareMethodPost(chat.Chat)))
 	http.Handle("/Chats", MiddlewareCors(MiddlewareMethodPost(chat.Chats)))
+	http.Handle("/ChatsGroup", MiddlewareCors(MiddlewareMethodPost(chat.ChatsGroup)))
 	http.Handle("/ws", MiddlewareCors(MiddlewareMethodGet(socket.Socket)))
 }
 

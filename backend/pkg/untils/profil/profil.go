@@ -123,6 +123,8 @@ var ProfilGroup = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) 
 	var MyPost = sqlite.GetAllPostByGroup(idGroup.ID_Group)
 	Data.Allevent = notification.GetMembersEvent(ProfilGroup.ID_Group)
 	Data.Allpost = MyPost
+	Data.AllChatsGroup = sqlite.GetChatsGroup(idGroup.ID_Group, "group")
+	Data.Alluser = sqlite.GetAllUser()
 	Data.MyGroup = append(Data.MyGroup, ProfilGroup)
 	responses.SendResponsesHome(w, r, "response succesfully", Data)
 })

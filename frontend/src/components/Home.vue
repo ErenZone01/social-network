@@ -110,6 +110,7 @@
                       class="sm:p-4 p-2.5 flex items-center gap-4 text-xs font-semibold"
                     ></div>
                     <!-- comments -->
+                    <h1 style="text-align: center;" >Comment(s)</h1>
                     <div
                       v-for="Comment in sharedData.Allcomment"
                       :key="Comment.Id"

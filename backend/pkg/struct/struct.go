@@ -15,6 +15,7 @@ type AllData struct {
 	Allevent       []EventGroup
 	LatestChat     User
 	AllChats       []Chat
+	AllChatsGroup	[]Chat
 }
 
 type Members struct {
