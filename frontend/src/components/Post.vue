@@ -8,8 +8,8 @@
 
         <!-- close button -->
         <button type="button" class="button-icon absolute top-0 right-0 m-2.5 uk-modal-close">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -56,8 +56,7 @@
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button type="button" @click="CreatePost($event)"
-            class="button bg-blue-500 text-white py-2 px-12 text-[14px]">
+          <button type="button" @click="CreatePost($event)" class="button bg-blue-500 text-white py-2 px-12 text-[14px]">
             Create
           </button>
         </div>
@@ -78,11 +77,13 @@ export default {
     async CreatePost(e) {
       e.preventDefault();
       let content = document.getElementById("post").value;
+      let error = document.getElementById("ErrorText")
       if (content.trim() === "") {
+        this.Effect(error, "Write something before sending", "red")
         return
       }
       let option = "";
-  
+
       let fileInput = document.getElementsByName("Avatar")[0];
       sharedData.selectedFriends = this.selectedFriends
       let image = "" //Initialiser le nom de l image a une chaine vide par defaut
@@ -104,9 +105,15 @@ export default {
       } else {
         option = document.getElementsByName("option")[0].value;
       }
+      if (option == "Allmost private") {
+        if (this.selectedFriends.length == 0){
+          this.Effect(error, "PLease select at least one person", "red");
+          return
+        }
+      }
       console.log(byteArrayList);
       const post = { Content: content, Privacy: option, ImageData: byteArrayList, Image: image, MembersPost: this.selectedFriends, Types: types, ID_Group: groupID };
-  
+
       fetch("http://localhost:8080/Post", {
         method: "POST",
         body: JSON.stringify(post),
@@ -125,11 +132,18 @@ export default {
             fileInput.value = ""
             UIkit.modal("#create-status").hide();
           } else {
-  
+
           }
         })
         .catch((error) => console.log("err : ", error));
-  
+
+    },
+    async Effect(div, msg, color) {
+      div.textContent = msg;
+      div.style = "color : " + color;
+      setTimeout(() => {
+        div.textContent = "";
+      }, 3000);
     }
   }
 };

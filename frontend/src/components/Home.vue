@@ -37,7 +37,6 @@
               <div
                 v-for="Post in sharedData.Allpost"
                 :key="Post.Id"
-                class="bg-white rounded-xl shadow-sm text-sm font-medium border1 dark:bg-dark2"
               >
                 <div v-for="user in sharedData.AllUtilisateur" :key="user.ID">
                   <div
@@ -47,8 +46,7 @@
                         Post.Privacy == 'Public' ||
                         (Post.Privacy == 'Private' &&
                           IfIFollowAnAccount(user)) ||
-                        (Post.Privacy == 'Allmost private' &&
-                          Post.MembersPost.includes(sharedData.Myaccount.ID)))
+                        (Post.Privacy == 'Allmost private' && Post.MembersPost && Post.MembersPost.includes(sharedData.Myaccount.ID)))
                     "
                   >
                     <!-- post heading -->
